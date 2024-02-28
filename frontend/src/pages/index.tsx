@@ -1,34 +1,21 @@
 import React from "react";
-import HelloWorld from "../components/HelloWorld";
-import { Link } from "gatsby";
+import Untertext from "../components/homepage/Untertext";
+import MainText from "../components/homepage/MainText";
+import NavbarProto from "../components/homepage/NavbarProto";
+import SVGImage from "../components/homepage/SVGImage";
 
-function Index() {
+export default function Index() {
     return (
-        <div>
-            <h1
-                className={
-                    "flex flex-col justify-center items-center text-3xl font-bold"
-                }
-            >
-                Test
-            </h1>
-            <h2
-                className={
-                    "flex flex-col justify-center items-center text-xl font-bold"
-                }
-            >
-                <HelloWorld />
-            </h2>
-            <Link
-                to={"/prototype"}
-                className={
-                    "font-medium text-blue-600 dark:text-blue-500 hover:underline flex flex-col justify-center items-center"
-                }
-            >
-                prototype
-            </Link>
+        <div className={"flex flex-col justify-between h-screen bg-text"}>
+            <NavbarProto />
+            <div className={"flex justify-center items-center gap-32"}>
+                <SVGImage />
+                <MainText />
+            </div>
+            <div className="flex justify-center max-w1/4">
+                <Untertext />
+            </div>
+            <div></div>
         </div>
     );
 }
-
-export default Index;
