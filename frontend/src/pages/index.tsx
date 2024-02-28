@@ -1,5 +1,6 @@
 import React from "react";
 import HelloWorld from "../components/HelloWorld";
+import { Link } from "gatsby";
 
 function Index() {
     return (
@@ -18,7 +19,14 @@ function Index() {
             >
                 <HelloWorld />
             </h2>
-
+            <Link
+                to={"/prototype"}
+                className={
+                    "font-medium text-blue-600 dark:text-blue-500 hover:underline flex flex-col justify-center items-center"
+                }
+            >
+                prototype
+            </Link>
         </div>
     );
 }
