@@ -74,7 +74,7 @@ export default function NavbarProto() {
                 <a
                     className="inline-block py-2 px-6 bg-button hover:bg-buttonhover text-sm text-white
                     font-bold rounded-xl transition duration-200"
-                    href="#"
+                    href="/"
                 >
                     Start Game
                 </a>
