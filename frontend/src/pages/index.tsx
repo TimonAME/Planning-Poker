@@ -1,17 +1,18 @@
 import React from "react";
-import {Link} from "gatsby";
+import HelloWorld from "../components/HelloWorld";
 
 function Index() {
     return (
         <div>
             <h1
                 className={
-                    "flex justify-center items-center h-screen text-3xl font-bold"
+                    "flex flex-col justify-center items-center h-screen text-3xl font-bold"
                 }
             >
                 Test
+                <HelloWorld />
             </h1>
-            <Link to="/hallo">Hallo</Link>
+
         </div>
     );
 }
