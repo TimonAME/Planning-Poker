@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "gatsby";
 
 function Index() {
     return (
@@ -10,6 +11,7 @@ function Index() {
             >
                 Test
             </h1>
+            <Link to="/hallo">Hallo</Link>
         </div>
     );
 }
