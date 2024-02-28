@@ -6,12 +6,18 @@ function Index() {
         <div>
             <h1
                 className={
-                    "flex flex-col justify-center items-center h-screen text-3xl font-bold"
+                    "flex flex-col justify-center items-center text-3xl font-bold"
                 }
             >
                 Test
-                <HelloWorld />
             </h1>
+            <h2
+                className={
+                    "flex flex-col justify-center items-center text-xl font-bold"
+                }
+            >
+                <HelloWorld />
+            </h2>
 
         </div>
     );
