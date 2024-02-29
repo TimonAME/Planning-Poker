@@ -8,11 +8,11 @@ export default function Index() {
     return (
         <div className={"flex flex-col justify-between h-screen bg-text"}>
             <NavbarProto />
-            <div className={"flex justify-center items-center gap-32"}>
+            <div className={"flex sm:flex-row flex-col justify-center items-center gap-32"}>
                 <SVGImage />
                 <MainText />
             </div>
-            <div className="flex justify-center max-w1/4">
+            <div className="flex justify-center max-w-1/4">
                 <Untertext />
             </div>
             <div></div>
