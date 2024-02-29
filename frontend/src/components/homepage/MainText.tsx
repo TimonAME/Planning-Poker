@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MainText() {
     return (
-        <div className="flex flex-col w-1/3">
+        <div className="flex flex-col sm:w-1/3">
             <div className="flex justify-center items-center text-left">
                 <div>
                     <h1 className="text-sm font-mono uppercase mb-4 text-primary">
