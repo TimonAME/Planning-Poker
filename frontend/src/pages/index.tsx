@@ -6,7 +6,7 @@ import SVGImage from "../components/homepage/SVGImage";
 
 export default function Index() {
     return (
-        <div className={"flex flex-col justify-between h-screen bg-text"}>
+        <div className={"flex flex-col justify-between h-screen bg-text overflow-hidden"}>
             <NavbarProto />
             <div className={
                 "flex sm:flex-row flex-col justify-center items-center w-full mx-4 sm:gap-32 gap-4"}>
