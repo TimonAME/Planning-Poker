@@ -3,7 +3,7 @@ import React from "react";
 export default function MainText() {
     return (
         <div className="flex flex-col sm:w-1/3">
-            <div className="flex justify-center items-center text-left">
+            <div className="flex justify-center items-center text-left w-full">
                 <div>
                     <h1 className="text-sm font-mono uppercase mb-4 text-primary">
                         Scrum planning poker for agile teams
@@ -15,16 +15,14 @@ export default function MainText() {
                         The Planning Poker tool allows teams to estimate the
                         effort for tasks by using special cards collectively.
                     </p>
+                    <a
+                        className="inline-block py-2 px-6 mt-5 bg-button hover:bg-buttonhover text-sm text-white
+                        font-bold rounded-xl transition duration-200"
+                        href="/"
+                    >
+                        Start Game
+                    </a>
                 </div>
-            </div>
-            <div className={"mt-5"}>
-                <a
-                    className="inline-block py-2 px-6 bg-button hover:bg-buttonhover text-sm text-white
-                    font-bold rounded-xl transition duration-200"
-                    href="/"
-                >
-                    Start Game
-                </a>
             </div>
         </div>
     );
