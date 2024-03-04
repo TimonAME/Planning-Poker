@@ -15,7 +15,6 @@ export default function Index() {
             </div>
             <div className="flex justify-center">
                 <Untertext />
-                { /* TODO: Change Size to block scrolling */}
             </div>
             <div></div>
         </div>
