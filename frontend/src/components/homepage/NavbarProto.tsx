@@ -5,7 +5,7 @@ export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <nav className="relative px-4 py-4 flex justify-around items-center h-16">
+        <nav className="relative px-4 py-4 flex justify-center items-center h-16 lg:gap-48 md:gap-28">
             <Link
                 to="#"
                 className="text-3xl font-bold leading-none hidden md:block"
@@ -17,12 +17,13 @@ export default function Navbar() {
                     ></path>
                 </svg>
             </Link>
-            <ul className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 flex mx-auto items-center w-auto space-x-6">
+            <ul className="flex items-center gap-6">
                 <li>
                     <Link to="#" className="text-sm text-primary font-bold">
                         Home
                     </Link>
                 </li>
+                {/*
                 <li className="text-gray-300">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +35,7 @@ export default function Navbar() {
                         <path d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                     </svg>
                 </li>
+                */}
                 <li>
                     <Link
                         to="#"
@@ -42,6 +44,7 @@ export default function Navbar() {
                         Documentation
                     </Link>
                 </li>
+                {/*
                 <li className="text-gray-300">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -53,6 +56,7 @@ export default function Navbar() {
                         <path d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                     </svg>
                 </li>
+                */}
                 <li>
                     <Link
                         to="#"
