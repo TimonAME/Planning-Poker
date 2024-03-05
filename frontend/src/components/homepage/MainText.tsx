@@ -9,7 +9,7 @@ export default function MainText() {
                     <h1 className="text-sm font-mono uppercase mb-4 text-primary">
                         Scrum planning poker for agile teams
                     </h1>
-                    <h2 className="text-5xl font-bold mb-4 text-primary">
+                    <h2 className="text-7xl font-bold mb-4 text-primary">
                         Planning Poker
                     </h2>
                     <p className="text-sm text-primary">
