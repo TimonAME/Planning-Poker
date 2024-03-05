@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/prelobby/Navbar";
+import Lobbyname from "../components/prelobby/Lobbyname";
 
 export default function Index() {
     return (
@@ -7,10 +8,13 @@ export default function Index() {
             {/* dotted background from: https://bg.ibelick.com/ */}
             <div
                 className={
-                    "flex flex-col justify-between h-screen overflow-hidden"
+                    "flex flex-col justify-between overflow-hidden"
                 }
             >
                 <Navbar />
+            </div>
+            <div className={"flex flex-row justify-start ml-10"}>
+                <Lobbyname />
             </div>
         </div>
     );
