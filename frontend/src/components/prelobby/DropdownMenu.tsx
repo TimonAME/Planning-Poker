@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 function DropdownMenu() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <div className="relative inline-block text-left">
@@ -13,9 +14,11 @@ function DropdownMenu() {
                     aria-haspopup="true"
                     aria-expanded="true"
                     onClick={() => setIsOpen(!isOpen)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                 >
                     <svg
-                        className="-mr-1 -ml-1 h-5 w-5"
+                        className="h-5 w-5"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -30,35 +33,25 @@ function DropdownMenu() {
                 </button>
             </div>
 
-            {isOpen && (
+            {(isOpen || isHovered) && (
                 <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                     <div
-                        className="py-1"
+                        className="py-1 px-4"
                         role="menu"
                         aria-orientation="vertical"
                         aria-labelledby="options-menu"
                     >
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                            role="menuitem"
-                        >
-                            Test 1
-                        </a>
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                            role="menuitem"
-                        >
-                            Test 2
-                        </a>
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                            role="menuitem"
-                        >
-                            Test 3
-                        </a>
+                        <p className="text-sm text-gray-700">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore
+                            eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.
+                        </p>
                     </div>
                 </div>
             )}
