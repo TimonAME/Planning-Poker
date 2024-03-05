@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'gatsby';
 
 export default function MainText() {
     return (
@@ -15,13 +16,13 @@ export default function MainText() {
                         The Planning Poker tool allows teams to estimate the
                         effort for tasks by using special cards collectively.
                     </p>
-                    <a
+                    <Link
                         className="inline-block py-2 px-6 mt-5 bg-button hover:bg-buttonhover text-sm text-white
                         font-bold rounded-xl transition duration-200"
-                        href="/"
+                        to="/prelobby"
                     >
                         Start Game
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

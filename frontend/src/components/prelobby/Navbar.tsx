@@ -6,6 +6,7 @@ export default function Navbar() {
 
     return (
         <nav className="relative px-4 py-4 flex justify-around items-center h-16">
+            {/*
             <Link
                 to="#"
                 className="text-3xl font-bold leading-none hidden md:block"
@@ -17,9 +18,10 @@ export default function Navbar() {
                     ></path>
                 </svg>
             </Link>
+            */}
             <ul className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 flex mx-auto items-center w-auto space-x-6">
                 <li>
-                    <Link to="#" className="text-sm text-primary font-bold">
+                    <Link to="/" className="text-sm text-primary font-bold">
                         Home
                     </Link>
                 </li>
@@ -62,14 +64,18 @@ export default function Navbar() {
                     </Link>
                 </li>
             </ul>
+            {/*
             <div className="hidden md:block">
+
                 <Link
                     className="inline-block py-2 px-6 bg-button hover:bg-buttonhover text-sm text-white font-bold rounded-xl transition duration-200"
                     to="/prelobby"
                 >
                     Start Game
                 </Link>
+
             </div>
+            */}
         </nav>
     );
 }
