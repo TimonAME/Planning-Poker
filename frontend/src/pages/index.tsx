@@ -16,7 +16,7 @@ export default function Index() {
                 <NavbarProto />
                 <div
                     className={
-                        "flex sm:flex-row flex-col justify-center items-center w-full sm:gap-32 gap-4"
+                        "flex sm:flex-row flex-col justify-center items-center w-full lg:gap-32 md:gap-24 sm:gap-16 gap-4"
                     }
                 >
                     <SVGImage />
