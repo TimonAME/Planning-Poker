@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/prelobby/Navbar";
-import Lobbyname from "../components/prelobby/Lobbyname";
+import DropdownMenu from "../components/prelobby/DropdownMenu";
 
 export default function Index() {
     return (
@@ -14,7 +14,7 @@ export default function Index() {
                 <Navbar />
             </div>
             <div className={"flex flex-row justify-start ml-10"}>
-                <Lobbyname />
+                <DropdownMenu />
             </div>
         </div>
     );
