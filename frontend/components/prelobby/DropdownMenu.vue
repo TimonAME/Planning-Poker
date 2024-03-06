@@ -9,20 +9,21 @@
             @mouseenter="setIsHovered(true)"
             @mouseleave="setIsHovered(false)"
         >
-            Lobbyname
+            {{ Lobbyname }}
         </button>
         <div class="relative inline-block text-left">
             <button
                 type="button"
-                class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none transition-colors duration-200"
-                :class="{ 'bg-indigo-300 text-white': isOpen }"
+                class="inline-flex justify-center rounded-md px-4 py-2 bg-transparent text-sm font-medium text-gray-700 focus:outline-none transition-colors duration-200"
                 id="options-menu"
                 aria-haspopup="true"
                 aria-expanded="true"
                 @click="toggleDropdown"
+                style="border: none"
             >
                 <svg
-                    class="h-5 w-5"
+                    class="h-5 w-5 hover:text-indigo-500"
+                    :class="{ 'text-indigo-500': isOpen }"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -51,16 +52,10 @@
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
                 >
+                    <!-- TODO Text soll genau unter Lobbyname stehen und Dropdownsymbol soll rechts davon stehen! -->
                     <p class="text-sm text-gray-700">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        Diese Lobby gehört AME.me. Wir stimmen heute über unsere
+                        User-Storys ab. Viel Spaß!
                     </p>
                 </div>
             </div>
@@ -77,6 +72,8 @@ const dropdownRef = ref(null);
 const lobbyNameRef = ref(null);
 const lobbyNameWidth = ref(0);
 const lobbyNameHeight = ref(0);
+
+let Lobbyname = "Lobbyname";
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
