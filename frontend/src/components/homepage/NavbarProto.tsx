@@ -8,7 +8,7 @@ export default function Navbar() {
         <nav className="relative px-4 py-4 flex justify-center items-center h-16 lg:gap-48 md:gap-28">
             <Link
                 to="#"
-                className="text-3xl font-bold leading-none hidden md:block w-16"
+                className="text-3xl font-bold leading-none hidden md:block w-32"
             >
                 <svg className="h-10" viewBox="0 0 10240 10240">
                     <path
@@ -66,7 +66,7 @@ export default function Navbar() {
                     </Link>
                 </li>
             </ul>
-            <div className="hidden md:block w-16">
+            <div className="hidden md:block w-32">
                 <Link
                     className="inline-block py-2 px-6 bg-button hover:bg-buttonhover text-sm text-white font-bold rounded-xl transition duration-200"
                     to="/prelobby"
