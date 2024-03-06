@@ -3,18 +3,18 @@
         class="flex flex-col items-start absolute top-3 left-8"
         ref="dropdownRef"
     >
-        <button
-            ref="lobbyNameRef"
-            class="text-4xl font-bold text-primary mr-4 cursor-default select-none"
-            @mouseenter="setIsHovered(true)"
-            @mouseleave="setIsHovered(false)"
-        >
-            {{ Lobbyname }}
-        </button>
-        <div class="relative inline-block text-left">
+        <div class="flex flex-row">
+            <button
+                ref="lobbyNameRef"
+                class="text-4xl font-bold text-primary mr-2 cursor-default select-none"
+                @mouseenter="setIsHovered(true)"
+                @mouseleave="setIsHovered(false)"
+            >
+                {{ Lobbyname }}
+            </button>
             <button
                 type="button"
-                class="inline-flex justify-center rounded-md px-4 py-2 bg-transparent text-sm font-medium text-gray-700 focus:outline-none transition-colors duration-200"
+                class="inline-flex justify-center rounded-md px-2 py-2 bg-transparent text-sm font-medium text-gray-700 focus:outline-none transition-colors duration-200"
                 id="options-menu"
                 aria-haspopup="true"
                 aria-expanded="true"
@@ -36,7 +36,8 @@
                     />
                 </svg>
             </button>
-
+        </div>
+        <div class="">
             <div
                 v-if="isOpen || isHovered"
                 class="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
@@ -52,7 +53,6 @@
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
                 >
-                    <!-- TODO Text soll genau unter Lobbyname stehen und Dropdownsymbol soll rechts davon stehen! -->
                     <p class="text-sm text-gray-700">
                         Diese Lobby gehört AME.me. Wir stimmen heute über unsere
                         User-Storys ab. Viel Spaß!
@@ -73,7 +73,7 @@ const lobbyNameRef = ref(null);
 const lobbyNameWidth = ref(0);
 const lobbyNameHeight = ref(0);
 
-let Lobbyname = "Lobbyname";
+let Lobbyname = "AME.me";
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
