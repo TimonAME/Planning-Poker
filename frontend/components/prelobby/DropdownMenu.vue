@@ -6,7 +6,7 @@
         <div class="flex flex-row">
             <button
                 ref="lobbyNameRef"
-                class="text-4xl font-bold text-primary mr-2 cursor-default select-none"
+                class="text-4xl font-bold mr-2 cursor-default select-none"
                 @mouseenter="setIsHovered(true)"
                 @mouseleave="setIsHovered(false)"
             >
