@@ -1,11 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function DropdownMenu() {
     const [isOpen, setIsOpen] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        //TODO fix errors
+        const handleClickOutside = (event) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
-        <div className={"flex items-center absolute top-3 left-8"}>
+        <div
+            className={"flex items-center absolute top-3 left-8"}
+            ref={dropdownRef}
+        >
             <h1
                 className={
                     "text-4xl font-bold text-primary mr-4 cursor-default select-none"
