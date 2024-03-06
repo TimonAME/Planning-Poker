@@ -18,7 +18,7 @@
                     class="mt-5 btn btn-primary flex items-center justify-center w-2/3"
                     to="/prelobby"
                 >
-                    Start Game
+                    Create Lobby
                 </router-link>
             </div>
         </div>

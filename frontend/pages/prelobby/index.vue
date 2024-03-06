@@ -9,12 +9,16 @@
         <div class="flex flex-row justify-start ml-10">
             <DropdownMenu />
         </div>
+        <div class="flex flex-row justify-center">
+            <StartGame />
+        </div>
     </div>
 </template>
 
 <script setup>
 import Navbar from "~/components/prelobby/Navbar.vue";
 import DropdownMenu from "~/components/prelobby/DropdownMenu.vue";
+import StartGame from "~/components/prelobby/StartGame.vue";
 </script>
 
 <style lang="scss" scoped></style>

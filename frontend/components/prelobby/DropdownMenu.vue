@@ -3,26 +3,27 @@
         class="flex flex-col items-start absolute top-3 left-8"
         ref="dropdownRef"
     >
-        <button
-            ref="lobbyNameRef"
-            class="text-4xl font-bold text-primary mr-4 cursor-default select-none"
-            @mouseenter="setIsHovered(true)"
-            @mouseleave="setIsHovered(false)"
-        >
-            Lobbyname
-        </button>
-        <div class="relative inline-block text-left">
+        <div class="flex flex-row">
+            <button
+                ref="lobbyNameRef"
+                class="text-4xl font-bold text-primary mr-2 cursor-default select-none"
+                @mouseenter="setIsHovered(true)"
+                @mouseleave="setIsHovered(false)"
+            >
+                {{ Lobbyname }}
+            </button>
             <button
                 type="button"
-                class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none transition-colors duration-200"
-                :class="{ 'bg-indigo-300 text-white': isOpen }"
+                class="inline-flex justify-center rounded-md px-2 py-2 bg-transparent text-sm font-medium text-gray-700 focus:outline-none transition-colors duration-200"
                 id="options-menu"
                 aria-haspopup="true"
                 aria-expanded="true"
                 @click="toggleDropdown"
+                style="border: none"
             >
                 <svg
-                    class="h-5 w-5"
+                    class="h-5 w-5 hover:text-indigo-500"
+                    :class="{ 'text-indigo-500': isOpen }"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -35,7 +36,8 @@
                     />
                 </svg>
             </button>
-
+        </div>
+        <div class="">
             <div
                 v-if="isOpen || isHovered"
                 class="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
@@ -52,15 +54,8 @@
                     aria-labelledby="options-menu"
                 >
                     <p class="text-sm text-gray-700">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        Diese Lobby gehört AME.me. Wir stimmen heute über unsere
+                        User-Storys ab. Viel Spaß!
                     </p>
                 </div>
             </div>
@@ -77,6 +72,8 @@ const dropdownRef = ref(null);
 const lobbyNameRef = ref(null);
 const lobbyNameWidth = ref(0);
 const lobbyNameHeight = ref(0);
+
+let Lobbyname = "AME.me";
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
