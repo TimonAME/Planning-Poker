@@ -8,7 +8,7 @@ export default function Navbar() {
         <nav className="relative px-4 py-4 flex justify-center items-center h-16 lg:gap-48 md:gap-28">
             <ul className="flex items-center gap-6">
                 <li>
-                    <Link to="#" className="text-sm text-primary font-bold">
+                    <Link to="/" className="text-sm text-primary font-bold">
                         Home
                     </Link>
                 </li>
