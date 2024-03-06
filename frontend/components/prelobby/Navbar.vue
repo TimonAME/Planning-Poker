@@ -9,7 +9,11 @@
         </router-link>
         <ul class="flex items-center gap-6">
             <li>
-                <router-link to="/" class="text-sm font-bold">Home</router-link>
+                <router-link
+                    to="/"
+                    class="text-sm hover:text-primary transition-colors duration-80"
+                    >Home</router-link
+                >
             </li>
             <!--
       <li class="text-gray-300">
@@ -19,7 +23,9 @@
       </li>
       -->
             <li>
-                <router-link to="#" class="text-sm hover:text-gray-500"
+                <router-link
+                    to="#"
+                    class="text-sm hover:text-primary transition-colors duration-80"
                     >Documentation</router-link
                 >
             </li>
@@ -31,7 +37,9 @@
       </li>
       -->
             <li>
-                <router-link to="#" class="text-sm hover:text-gray-500"
+                <router-link
+                    to="#"
+                    class="text-sm hover:text-primary transition-colors duration-80"
                     >Settings</router-link
                 >
             </li>

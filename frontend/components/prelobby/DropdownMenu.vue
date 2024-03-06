@@ -73,24 +73,28 @@ const lobbyNameRef = ref(null);
 const lobbyNameWidth = ref(0);
 const lobbyNameHeight = ref(0);
 
-let Lobbyname = "AME.me";
+let Lobbyname = "SCRUM Planning Poker";
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
 };
+
+/*
+Dropdown schließen, wenn außerhalb geklickt wird
 
 const handleClickOutside = (event) => {
     if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
         isOpen.value = false;
     }
 };
+ */
 
 const setIsHovered = (value) => {
     isHovered.value = value;
 };
 
 onMounted(() => {
-    document.addEventListener("mousedown", handleClickOutside);
+    //document.addEventListener("mousedown", handleClickOutside);
     lobbyNameWidth.value = lobbyNameRef.value.offsetWidth;
     lobbyNameHeight.value = lobbyNameRef.value.offsetHeight;
 });

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex flex-col justify-center items-center h-screen">
         <router-link to="/" class="link link-primary">Home</router-link>
     </div>
 </template>
