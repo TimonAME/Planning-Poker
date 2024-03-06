@@ -49,9 +49,9 @@
         </ul>
         <div class="hidden md:block w-32">
             <router-link
-                class="inline-block py-2 px-6 bg-button hover:bg-buttonhover text-sm text-white font-bold rounded-xl transition duration-200"
+                class="inline-block py-2 px-5 bg-button hover:bg-buttonhover text-sm text-white font-bold rounded-xl transition duration-200"
                 to="/prelobby"
-                >Start Game</router-link
+                >Create Lobby</router-link
             >
         </div>
     </nav>

@@ -18,7 +18,7 @@
                     class="inline-block py-2 px-6 mt-5 bg-button hover:bg-buttonhover text-sm text-white font-bold rounded-xl transition duration-200"
                     to="/prelobby"
                 >
-                    Start Game
+                    Create Lobby
                 </router-link>
             </div>
         </div>
