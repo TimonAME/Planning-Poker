@@ -14,7 +14,7 @@
             </button>
             <button
                 type="button"
-                class="inline-flex justify-center rounded-md px-2 py-2 bg-transparent text-sm font-medium text-gray-700 focus:outline-none transition-colors duration-200"
+                class="inline-flex justify-center rounded-md px-2 py-2 text-sm font-medium focus:outline-none transition-colors duration-200"
                 id="options-menu"
                 aria-haspopup="true"
                 aria-expanded="true"
@@ -40,7 +40,7 @@
         <div class="">
             <div
                 v-if="isOpen || isHovered"
-                class="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                class="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
                 :style="{
                     width: lobbyNameWidth + 'px',
                     top: lobbyNameHeight + 'px',
@@ -53,7 +53,7 @@
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
                 >
-                    <p class="text-sm text-gray-700">
+                    <p class="text-sm">
                         Diese Lobby gehört AME.me. Wir stimmen heute über unsere
                         User-Storys ab. Viel Spaß!
                     </p>
