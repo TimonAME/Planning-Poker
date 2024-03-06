@@ -2,7 +2,7 @@
     <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 630 630"
-        class="md:w-1/5 sm:w-1/3 w-1/2 fill-current"
+        class="md:w-1/5 sm:w-1/3 w-1/2 fill-current text-black"
     >
         <rect width="630" height="630" fill="#f7df1e" />
         <path
