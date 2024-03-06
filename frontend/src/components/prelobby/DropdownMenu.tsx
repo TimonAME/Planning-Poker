@@ -7,7 +7,9 @@ function DropdownMenu() {
     return (
         <div className={"flex items-center absolute top-3 left-8"}>
             <h1
-                className={"text-4xl font-bold text-primary mr-4"}
+                className={
+                    "text-4xl font-bold text-primary mr-4 cursor-default select-none"
+                }
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -40,8 +42,7 @@ function DropdownMenu() {
                 </div>
 
                 {(isOpen || isHovered) && (
-                    <div
-                        className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                         <div
                             className="py-1 px-4"
                             role="menu"
