@@ -13,13 +13,13 @@
         </button>
         <div
             :class="{ 'translate-x-full': !open }"
-            class="fixed right-0 top-0 h-full w-96 bg-gray-200 transform transition-transform duration-200 ease-in-out"
+            class="sidebar fixed right-0 top-0 h-full w-96 transform transition-transform duration-200 ease-in-out"
         >
-            <section class="absolute inset-y-0 right-0 max-w-full flex">
-                <div class="h-full flex flex-col py-6 bg-white shadow-xl">
+            <section class="absolute inset-y-0 right-0 w-full flex">
+                <div class="h-full flex flex-col py-6 bg-base-200">
                     <!-- Sidebar Header -->
                     <div class="flex items-center justify-between px-4">
-                        <h2 class="text-xl font-semibold text-black">
+                        <h2 class="text-xl font-semibold">
                             Search
                         </h2>
                         <button
@@ -49,176 +49,34 @@
                     <div class="mt-4 px-4">
                         <input
                             type="text"
-                            placeholder="Search post here"
-                            class="w-full p-2 border border-gray-300 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+                            placeholder="Search..."
+                            class="w-full p-2 bg-base-300 border border-transparent rounded-md focus:border-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-colors duration-300"
                         />
                     </div>
                     <div class="mt-4 px-4">
-                        <p class="ml-2 text-gray-400">Results</p>
+                        <p class="ml-2 text-base-content">Results</p>
                     </div>
                     <!-- Sidebar Content -->
                     <div class="mt-4 px-4 h-full overflow-auto">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <!-- Card 1 -->
                             <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
+                                class="bg-base-300 hover:bg-neutral p-4 cursor-pointer rounded-md shadow-md transition-colors duration-300"
                             >
                                 <h3
-                                    class="text-lg font-semibold text-black mb-2"
+                                    class="text-lg font-bold text-primary mb-2"
                                 >
                                     Card 1
                                 </h3>
-                                <p class="text-gray-600">
+                                <p class="text-base-content">
                                     Content for card 1.
-                                </p>
-                            </div>
-                            <!-- Card 2 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 2
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 2.
-                                </p>
-                            </div>
-                            <!-- Card 3 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 3
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 3.
-                                </p>
-                            </div>
-                            <!-- Card 4 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 4
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 4.
-                                </p>
-                            </div>
-                            <!-- Card 5 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 5
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 5.
-                                </p>
-                            </div>
-                            <!-- Card 6 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 6
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 6.
-                                </p>
-                            </div>
-                            <!-- Card 7 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 7
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 7.
-                                </p>
-                            </div>
-                            <!-- Card 8 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 8
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 8.
-                                </p>
-                            </div>
-                            <!-- Card 9 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 9
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 9.
-                                </p>
-                            </div>
-                            <!-- Card 10 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 10
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 10.
-                                </p>
-                            </div>
-                            <!-- Card 11 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 11
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 11.
-                                </p>
-                            </div>
-                            <!-- Card 12 -->
-                            <div
-                                class="bg-gray-50 hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-gray-300 transition-colors duration-300"
-                            >
-                                <h3
-                                    class="text-lg font-semibold text-black mb-2"
-                                >
-                                    Card 12
-                                </h3>
-                                <p class="text-gray-600">
-                                    Content for card 12.
                                 </p>
                             </div>
                             <!-- Add more cards as needed -->
                         </div>
                     </div>
                     <!-- Sidebar Footer -->
+                    <!--
                     <div class="mt-6 px-4">
                         <button
                             class="flex justify-center items-center bg-black text-white rounded-md text-sm p-2 gap-1"
@@ -251,6 +109,7 @@
                             Filters
                         </button>
                     </div>
+                    -->
                 </div>
             </section>
         </div>
@@ -266,3 +125,9 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.sidebar {
+    box-shadow: -25px 0 20px -20px rgba(0, 0, 0, 0.45);
+}
+</style>
