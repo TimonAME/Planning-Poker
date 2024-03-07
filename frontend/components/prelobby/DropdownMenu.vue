@@ -37,10 +37,10 @@
                 </svg>
             </button>
         </div>
-        <div class="">
+        <div>
             <div
                 v-if="isOpen || isHovered"
-                class="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg ring-1 ring-black ring-opacity-5"
+                class="modal-box -ml-3"
                 :style="{
                     width: lobbyNameWidth + 'px',
                     top: lobbyNameHeight + 'px',
@@ -48,12 +48,12 @@
                 }"
             >
                 <div
-                    class="py-1 px-4"
+                    class=""
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
                 >
-                    <p class="text-sm">
+                    <p class="text-sm -mb-3 -mx-2 -mt-4">
                         Diese Lobby gehört AME.me. Wir stimmen heute über unsere
                         User-Storys ab. Viel Spaß!
                     </p>
@@ -73,7 +73,7 @@ const lobbyNameRef = ref(null);
 const lobbyNameWidth = ref(0);
 const lobbyNameHeight = ref(0);
 
-let Lobbyname = "SCRUM Planning Poker";
+let Lobbyname = "ame.me";
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
@@ -95,7 +95,12 @@ const setIsHovered = (value) => {
 
 onMounted(() => {
     //document.addEventListener("mousedown", handleClickOutside);
-    lobbyNameWidth.value = lobbyNameRef.value.offsetWidth;
+    if (lobbyNameRef.value.offsetWidth < 247) {
+        lobbyNameWidth.value = 269;
+    } else {
+        lobbyNameWidth.value = lobbyNameRef.value.offsetWidth + 22;
+    }
+    console.log(lobbyNameWidth.value);
     lobbyNameHeight.value = lobbyNameRef.value.offsetHeight;
 });
 </script>
