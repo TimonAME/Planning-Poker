@@ -27,13 +27,7 @@
         </svg>
       </li>
       -->
-            <li>
-                <router-link
-                    to="#"
-                    class="text-sm hover:text-primary transition-colors duration-80"
-                    >Documentation</router-link
-                >
-            </li>
+            <Documentation />
             <!--
       <li class="text-gray-300">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
