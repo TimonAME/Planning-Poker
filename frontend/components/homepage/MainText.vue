@@ -15,7 +15,7 @@
                     for tasks by using special cards collectively.
                 </p>
                 <router-link
-                    class="inline-block py-2 px-6 mt-5  text-sm  font-bold rounded-xl transition duration-200"
+                    class="mt-5 btn btn-primary flex items-center justify-center w-2/3"
                     to="/prelobby"
                 >
                     Create Lobby
