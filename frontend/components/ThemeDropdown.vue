@@ -33,6 +33,8 @@
 </template>
 
 <script setup>
+import { ref, watch } from "vue";
+
 const themes = [
     { label: "Light", value: "light" },
     { label: "Dark", value: "dark" },
@@ -55,5 +57,14 @@ const themes = [
     { label: "Sunset", value: "sunset" },
 ];
 
-const selectedTheme = ref("light");
+let selectedTheme;
+if (typeof window !== "undefined") {
+    selectedTheme = ref(localStorage.getItem("selectedTheme") || "light");
+
+    watch(selectedTheme, (newTheme) => {
+        localStorage.setItem("selectedTheme", newTheme);
+    });
+} else {
+    selectedTheme = ref(null);
+}
 </script>
