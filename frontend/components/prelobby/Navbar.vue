@@ -30,4 +30,7 @@
 </template>
 
 <script>
+import Sidebar from '../Sidebar/Sidebar.vue';
+
+
 </script>

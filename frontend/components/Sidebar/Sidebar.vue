@@ -19,9 +19,10 @@
                 <div class="h-full flex flex-col py-6 bg-base-200">
                     <!-- Sidebar Header -->
                     <div class="flex items-center justify-between px-4">
-                        <h2 class="text-xl font-semibold">
-                            Search
-                        </h2>
+                        <div class="flex gap-4">
+                            <button class="btn btn-outline btn-success">Import</button>
+                            <button class="btn btn-outline btn-error">Export</button>
+                        </div>
                         <button
                             @click="open = false"
                             class="text-gray-500 hover:text-gray-700"
@@ -46,7 +47,7 @@
                         </button>
                     </div>
                     <!-- Search Input -->
-                    <div class="mt-4 px-4">
+                    <div class="mt-5 px-4">
                         <input
                             type="text"
                             placeholder="Search..."
@@ -54,7 +55,7 @@
                         />
                     </div>
                     <div class="mt-4 px-4">
-                        <p class="ml-2 text-base-content">Results</p>
+                        <p class="ml-2 text-base-content">User Stories:</p>
                     </div>
                     <!-- Sidebar Content -->
                     <div class="mt-4 px-4 h-full overflow-auto">
@@ -66,10 +67,10 @@
                                 <h3
                                     class="text-lg font-bold text-primary mb-2"
                                 >
-                                    Card 1
+                                    1. User Story
                                 </h3>
-                                <p class="text-base-content">
-                                    Content for card 1.
+                                <p class="text-base-content overflow-y-auto max-h-24">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores id corporis nesciunt corrupti expedita nemo numquam illo, tempora animi voluptates incidunt mollitia aperiam laborum vel. Molestias iure deleniti fuga. Vero.
                                 </p>
                             </div>
                             <!-- Add more cards as needed -->
@@ -118,6 +119,7 @@
 
 <script>
 import { ref } from "vue";
+
 export default {
     setup() {
         const open = ref(false);
