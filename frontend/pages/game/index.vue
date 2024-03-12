@@ -7,8 +7,17 @@
         >
             <Navbar class="z-20" />
             <DropdownMenu class="z-20" />
-            <div class="flex flex-col justify-center items-center h-screen">
-                <router-link to="/" class="link link-primary">Home</router-link>
+
+            <div
+                class="relative z-10 flex flex-col justify-center items-center mt-5"
+            >
+                <div class="mockup-window border bg-base-300 w-1/2 mt-44">
+                    <div class="flex justify-center px-4 py-16 bg-base-200">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -17,6 +26,7 @@
 <script setup>
 import DropdownMenu from "~/components/prelobby/Lobbyname.vue";
 import Navbar from "~/components/prelobby/Navbar.vue";
+import UserDisplay from "~/components/prelobby/UserDisplay.vue";
 </script>
 
 <style lang="scss" scoped></style>
