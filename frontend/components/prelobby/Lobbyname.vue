@@ -100,7 +100,6 @@ onMounted(() => {
     } else {
         lobbyNameWidth.value = lobbyNameRef.value.offsetWidth + 22;
     }
-    console.log(lobbyNameWidth.value);
     lobbyNameHeight.value = lobbyNameRef.value.offsetHeight;
 });
 </script>
