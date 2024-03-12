@@ -5,15 +5,17 @@
         <div
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
-            <Navbar />
-            <div class="flex flex-row justify-start">
-                <DropdownMenu />
-            </div>
-            <div class="flex flex-col justify-center items-center mt-5">
+            <Navbar class="z-20" />
+            <DropdownMenu class="z-20" />
+            <div
+                class="relative z-10 flex flex-col justify-center items-center mt-5"
+            >
                 <StartGame />
             </div>
-            <div class="flex flex-col justify-center items-center mt-5">
-              <UserDisplay />
+            <div
+                class="relative z-10 flex flex-col justify-center items-center mt-5"
+            >
+                <UserDisplay />
             </div>
         </div>
     </div>
