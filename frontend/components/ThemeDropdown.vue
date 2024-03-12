@@ -58,7 +58,7 @@ const themes = [
     { label: "Sunset", value: "sunset" },
 ];
 
-const selectedTheme = ref("light");
+const selectedTheme = ref();
 
 function saveTheme() {
     if (typeof window !== "undefined") {
