@@ -26,6 +26,7 @@
                     :aria-label="theme.label"
                     :value="theme.value"
                     v-model="selectedTheme"
+                    @change="saveTheme"
                 />
             </li>
         </ul>
@@ -33,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, onMounted } from "vue";
 
 const themes = [
     { label: "Light", value: "light" },
@@ -57,14 +58,20 @@ const themes = [
     { label: "Sunset", value: "sunset" },
 ];
 
-let selectedTheme;
-if (typeof window !== "undefined") {
-    selectedTheme = ref(localStorage.getItem("selectedTheme") || "light");
+const selectedTheme = ref("light");
 
-    watch(selectedTheme, (newTheme) => {
-        localStorage.setItem("selectedTheme", newTheme);
-    });
-} else {
-    selectedTheme = ref();
+function saveTheme() {
+    if (typeof window !== "undefined") {
+        localStorage.setItem("selectedTheme", selectedTheme.value);
+    }
 }
+
+onMounted(() => {
+    if (typeof window !== "undefined") {
+        const storedTheme = localStorage.getItem("selectedTheme");
+        if (storedTheme) {
+            selectedTheme.value = storedTheme;
+        }
+    }
+});
 </script>

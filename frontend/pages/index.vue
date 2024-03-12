@@ -8,7 +8,6 @@
             <Navbar />
             <div
                 class="flex sm:flex-row flex-col justify-center items-center w-full lg:gap-32 md:gap-24 sm:gap-16 gap-4"
-                
             >
                 <SVGImage />
                 <MainText />
@@ -22,7 +21,7 @@
 </template>
 
 <script setup>
-import Untertext from "../components/homepage/Untertext.vue";
+import Untertext from "../components/homepage/Below_text.vue";
 import MainText from "../components/homepage/MainText.vue";
 import Navbar from "../components/homepage/Navbar.vue";
 import SVGImage from "../components/homepage/SVGImage.vue";

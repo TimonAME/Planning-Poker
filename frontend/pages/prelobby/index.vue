@@ -18,7 +18,7 @@
 
 <script setup>
 import Navbar from "~/components/prelobby/Navbar.vue";
-import DropdownMenu from "~/components/prelobby/DropdownMenu.vue";
+import DropdownMenu from "~/components/prelobby/Lobbyname.vue";
 import StartGame from "~/components/prelobby/StartGame.vue";
 </script>
 
