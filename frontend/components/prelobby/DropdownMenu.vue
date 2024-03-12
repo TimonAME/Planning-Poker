@@ -40,7 +40,7 @@
         <div>
             <div
                 v-if="isOpen || isHovered"
-                class="modal-box -ml-3"
+                class="modal-box -ml-3 bg-base-200"
                 :style="{
                     width: lobbyNameWidth + 'px',
                     top: lobbyNameHeight + 'px',

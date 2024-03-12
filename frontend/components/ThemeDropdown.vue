@@ -65,6 +65,6 @@ if (typeof window !== "undefined") {
         localStorage.setItem("selectedTheme", newTheme);
     });
 } else {
-    selectedTheme = ref(null);
+    selectedTheme = ref();
 }
 </script>
