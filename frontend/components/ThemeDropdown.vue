@@ -1,5 +1,8 @@
 <template>
-    <div class="dropdown">
+    <div v-if="loading" class="fullscreen-loader">
+        <span class="loading loading-spinner text-primary"></span>
+    </div>
+    <div v-else class="dropdown">
         <div tabindex="0" role="button" class="btn m-1">
             Theme
             <svg
@@ -26,7 +29,6 @@
                     :aria-label="theme.label"
                     :value="theme.value"
                     v-model="selectedTheme"
-                    @change="saveTheme"
                 />
             </li>
         </ul>
@@ -34,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, watch, onMounted } from "vue";
 
 const themes = [
     { label: "Light", value: "light" },
@@ -58,20 +60,36 @@ const themes = [
     { label: "Sunset", value: "sunset" },
 ];
 
-const selectedTheme = ref("light");
-
-function saveTheme() {
-    if (typeof window !== "undefined") {
-        localStorage.setItem("selectedTheme", selectedTheme.value);
-    }
-}
+let selectedTheme;
+const loading = ref(true);
 
 onMounted(() => {
     if (typeof window !== "undefined") {
-        const storedTheme = localStorage.getItem("selectedTheme");
-        if (storedTheme) {
-            selectedTheme.value = storedTheme;
-        }
+        const savedTheme = localStorage.getItem("selectedTheme");
+        selectedTheme = ref(savedTheme || "light");
+        loading.value = false; // Setzen Sie den Ladezustand auf false, wenn das gespeicherte Thema geladen wurde
+
+        watch(selectedTheme, (newTheme) => {
+            localStorage.setItem("selectedTheme", newTheme);
+        });
+    } else {
+        selectedTheme = ref();
+        loading.value = false;
     }
 });
 </script>
+
+<style>
+.fullscreen-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(29, 35, 42);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Stellen Sie sicher, dass der Loader über allem anderen liegt */
+}
+</style>

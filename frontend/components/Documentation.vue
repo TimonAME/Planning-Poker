@@ -48,6 +48,9 @@
                 Lorem ipsum dolor sit amet.
             </p>
         </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
     </dialog>
 </template>
 
