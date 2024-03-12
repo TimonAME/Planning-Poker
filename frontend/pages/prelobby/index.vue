@@ -12,6 +12,9 @@
             <div class="flex flex-col justify-center items-center mt-5">
                 <StartGame />
             </div>
+            <div class="flex flex-col justify-center items-center mt-5">
+              <UserDisplay />
+            </div>
         </div>
     </div>
 </template>
@@ -20,6 +23,7 @@
 import Navbar from "~/components/prelobby/Navbar.vue";
 import DropdownMenu from "~/components/prelobby/DropdownMenu.vue";
 import StartGame from "~/components/prelobby/StartGame.vue";
+import UserDisplay from "~/components/prelobby/UserDisplay.vue";
 </script>
 
 <style lang="scss" scoped></style>
