@@ -5,8 +5,8 @@
         <div
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
-            <Navbar class="z-20" />
-            <Lobbyname class="z-10" />
+            <Navbar class="z-19" />
+            <Lobbyname class="z-20" />
             <div
                 class="relative z-10 flex flex-col justify-center items-center mt-5"
             >
