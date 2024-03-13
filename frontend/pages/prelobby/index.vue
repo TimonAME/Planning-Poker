@@ -6,7 +6,7 @@
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
             <Navbar class="z-20" />
-            <DropdownMenu class="z-20" />
+            <Lobbyname class="z-10" />
             <div
                 class="relative z-10 flex flex-col justify-center items-center mt-5"
             >
@@ -23,7 +23,7 @@
 
 <script setup>
 import Navbar from "~/components/prelobby/Navbar.vue";
-import DropdownMenu from "~/components/prelobby/Lobbyname.vue";
+import Lobbyname from "~/components/prelobby/Lobbyname.vue";
 import StartGame from "~/components/prelobby/StartGame.vue";
 import UserDisplay from "~/components/prelobby/UserDisplay.vue";
 </script>
