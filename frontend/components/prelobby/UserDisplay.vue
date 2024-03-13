@@ -22,8 +22,8 @@
                     <span
                         class="absolute p-6 text-3xl transition-opacity"
                         :class="{ 'opacity-0': hoveredIndex === index }"
-                        >{{ user.name[0] }}</span
-                    >
+                        >{{ getInitials(user.name) }}
+                    </span>
                 </div>
             </div>
         </transition-group>
@@ -33,7 +33,10 @@
 <script setup>
 import { ref } from "vue";
 
-const users = ref([{ id: 1, name: "Lobby Admin" }]);
+const users = ref([
+    { id: 1, name: "Lobby Admin" },
+    { id: 2, name: "Timon Amesmann" },
+]);
 
 const hoveredIndex = ref(null);
 
@@ -44,6 +47,19 @@ function toggleOpacity(index, isHovered) {
         hoveredIndex.value = null;
     }
 }
+
+function getInitials(name) {
+    let ret = "";
+    name = name.split(" ");
+    if (name.length === 1) {
+        ret += name[0][0].toUpperCase();
+        return ret;
+    } else {
+        ret += name[0][0].toUpperCase() + name[1][0].toUpperCase();
+        return ret;
+    }
+}
+
 onMounted(() => {
     setInterval(() => {
         if (users.value.length < 20) {

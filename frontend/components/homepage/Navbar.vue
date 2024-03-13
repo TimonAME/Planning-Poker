@@ -11,6 +11,7 @@
                 data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 403.86 410.07"
+                class="h-8 w-8"
             >
                 <path
                     class="cls-1"
