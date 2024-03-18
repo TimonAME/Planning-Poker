@@ -1,14 +1,14 @@
 package com.example.messagingstompwebsocket;
 
-public class Message {
+public class Message extends BasicMessage {
 
     private String messageContent;
 
     public Message() {
     }
 
-    public Message(String name) {
-        this.messageContent = name;
+    public Message(String message) {
+        this.messageContent = message;
     }
 
     public String getMessageContent() {
