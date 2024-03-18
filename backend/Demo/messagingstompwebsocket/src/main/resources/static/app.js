@@ -41,10 +41,10 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendName() {
+function sendMessageContent() {
     stompClient.publish({
         destination: "/app/hello",
-        body: JSON.stringify({'name': $("#name").val()})
+        body: JSON.stringify({'messageContent': $("#messageContent").val()})
     });
 }
 
@@ -56,5 +56,5 @@ $(function () {
     $("form").on('submit', (e) => e.preventDefault());
     $( "#connect" ).click(() => connect());
     $( "#disconnect" ).click(() => disconnect());
-    $( "#send" ).click(() => sendName());
+    $( "#send" ).click(() => sendMessageContent());
 });
