@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed right-0 top-0 m-2">
+    <div class="fixed right-0 sm:top-0 top-14 m-2">
         <button @click="open = !open" class="btn">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -20,8 +20,12 @@
                     <!-- Sidebar Header -->
                     <div class="flex items-center justify-between px-4">
                         <div class="flex gap-4">
-                            <button class="btn btn-outline btn-success">Import</button>
-                            <button class="btn btn-outline btn-error">Export</button>
+                            <button class="btn btn-outline btn-success">
+                                Import
+                            </button>
+                            <button class="btn btn-outline btn-error">
+                                Export
+                            </button>
                         </div>
                         <button
                             @click="open = false"
@@ -64,13 +68,18 @@
                             <div
                                 class="bg-base-300 hover:bg-neutral p-4 cursor-pointer rounded-md shadow-md transition-colors duration-300"
                             >
-                                <h3
-                                    class="text-lg font-bold text-primary mb-2"
-                                >
+                                <h3 class="text-lg font-bold text-primary mb-2">
                                     1. User Story
                                 </h3>
-                                <p class="text-base-content overflow-y-auto max-h-24">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores id corporis nesciunt corrupti expedita nemo numquam illo, tempora animi voluptates incidunt mollitia aperiam laborum vel. Molestias iure deleniti fuga. Vero.
+                                <p
+                                    class="text-base-content overflow-y-auto max-h-24"
+                                >
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Maiores id corporis
+                                    nesciunt corrupti expedita nemo numquam
+                                    illo, tempora animi voluptates incidunt
+                                    mollitia aperiam laborum vel. Molestias iure
+                                    deleniti fuga. Vero.
                                 </p>
                             </div>
                             <!-- Add more cards as needed -->

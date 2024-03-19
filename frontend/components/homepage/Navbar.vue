@@ -24,7 +24,7 @@
             </svg>
         </router-link>
         <ul class="flex items-center gap-6">
-            <li class="hidden sm:block">
+            <li>
                 <router-link
                     to="#"
                     class="text-sm font-bold hover:text-primary transition-colors duration-80"
@@ -32,6 +32,7 @@
                 >
             </li>
             <Documentation />
+            <ThemeDropdown class="block md:hidden" />
             <li>
                 <router-link
                     to="#"
@@ -40,7 +41,7 @@
                 >
             </li>
         </ul>
-        <ThemeDropdown class="ml-6 md:ml-0" />
+        <ThemeDropdown class="hidden md:block ml-6 md:ml-0" />
     </nav>
 </template>
 

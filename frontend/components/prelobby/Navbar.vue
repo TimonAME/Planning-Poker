@@ -16,6 +16,7 @@
                 >
             </li>
             <Documentation />
+            <ThemeDropdown class="block md:hidden" />
             <li>
                 <router-link
                     to="#"
@@ -24,13 +25,17 @@
                 >
             </li>
         </ul>
-        <ThemeDropdown />
+        <ThemeDropdown class="hidden md:block ml-6 md:ml-0" />
         <Sidebar />
     </nav>
 </template>
 
 <script>
-import Sidebar from '../Sidebar/Sidebar.vue';
+import Sidebar from "../Sidebar/Sidebar.vue";
+import { defineComponent } from "vue";
+import ThemeDropdown from "~/components/ThemeDropdown.vue";
 
-
+export default defineComponent({
+    components: { ThemeDropdown },
+});
 </script>

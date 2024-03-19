@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col items-start absolute top-3 left-8"
+        class="flex flex-col items-start absolute sm:top-3 top-16 left-8"
         ref="dropdownRef"
     >
         <div class="flex flex-row">
