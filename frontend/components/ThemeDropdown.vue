@@ -3,7 +3,11 @@
         <span class="loading loading-spinner text-primary"></span>
     </div>
     <div v-else class="dropdown">
-        <div tabindex="0" role="button" class="btn m-1">
+        <div
+            tabindex="0"
+            role="button"
+            class="md:btn m-1 text-sm underline md:no-underline"
+        >
             Theme
             <svg
                 width="12px"
@@ -19,7 +23,7 @@
         </div>
         <ul
             tabindex="0"
-            class="dropdown-content bg-base-200 text-base-content rounded-box top-px h-[28.6rem] max-h-[calc(100vh-10rem)] w-56 overflow-y-auto border border-white/5 shadow-2xl outline outline-1 outline-black/5 mt-16"
+            class="dropdown-content bg-base-200 text-base-content rounded-box top-px h-[28.6rem] max-h-[calc(100vh-10rem)] w-56 overflow-y-auto border border-white/5 shadow-2xl outline outline-1 outline-black/5 sm:mt-16 mt-8"
         >
             <li v-for="(theme, index) in themes" :key="index">
                 <input

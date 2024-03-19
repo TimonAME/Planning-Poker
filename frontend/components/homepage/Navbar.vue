@@ -24,28 +24,14 @@
             </svg>
         </router-link>
         <ul class="flex items-center gap-6">
-            <li>
+            <li class="hidden sm:block">
                 <router-link
                     to="#"
                     class="text-sm font-bold hover:text-primary transition-colors duration-80"
                     >Home</router-link
                 >
             </li>
-            <!--
-      <li class="text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
-          <path d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-        </svg>
-      </li>
-      -->
             <Documentation />
-            <!--
-      <li class="text-gray-300">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
-          <path d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-        </svg>
-      </li>
-      -->
             <li>
                 <router-link
                     to="#"
@@ -54,7 +40,7 @@
                 >
             </li>
         </ul>
-        <ThemeDropdown />
+        <ThemeDropdown class="ml-6 md:ml-0" />
     </nav>
 </template>
 

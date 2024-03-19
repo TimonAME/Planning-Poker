@@ -1,5 +1,7 @@
 <template>
-    <router-link class="btn btn-primary" to="/game"> Start Game </router-link>
+    <router-link class="btn btn-primary w-1/5" to="/game">
+        Start Game
+    </router-link>
 </template>
 
 <script setup></script>
