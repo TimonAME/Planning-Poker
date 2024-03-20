@@ -4,15 +4,37 @@ import java.util.ArrayList;
 
 public class Lobby {
 
-    public static ArrayList<User> joinedUsers;
+    public String adminHash;
+    public String lobbyHash;
 
-    public static ArrayList<User> getJoinedUsers() {
-        return joinedUsers;
+    public ArrayList<String> userHashes = new ArrayList<>();
+
+    public Lobby(String adminHash, String lobbyHash) {
+        this.adminHash = adminHash;
+        this.lobbyHash = lobbyHash;
     }
 
-    public static void setJoinedUsers(ArrayList<User> joinedUsers) {
-        Lobby.joinedUsers = joinedUsers;
+
+    public String getLobbyHash() {
+        return lobbyHash;
     }
 
+    public void setLobbyHash(String lobbyHash) {
+        this.lobbyHash = lobbyHash;
+    }
 
+    public String getAdminHash() {
+        return adminHash;
+    }
+
+    public void setAdminHash(String adminHash) {
+        this.adminHash = adminHash;
+    }
+
+    @Override
+    public String toString() {
+        return "Lobby{" +
+                "lobbyHash='" + lobbyHash + '\'' +
+                '}';
+    }
 }

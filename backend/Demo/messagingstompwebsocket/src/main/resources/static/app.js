@@ -1,37 +1,56 @@
+const userHash = createHash();
+let userState = "empty";
+let lobbyHash = "";
 const stompClient = new StompJs.Client({
     brokerURL: 'ws://localhost:8080/gs-guide-websocket'
 });
 
-let username = "";
-
-stompClient.onConnect = (frame) => {
-    setConnected(true);
-    console.log('Connected: ' + frame);
-    stompClient.subscribe('/topic/lobby', (message) => {
-        console.log(JSON.parse(message.body));
-        showGreeting(JSON.parse(message.body).messageContent);
-    });
-    stompClient.publish({
-        destination: "/app/join",
-        body: JSON.stringify({
-            'userName': $("#username").val()
-        })
-    });
-    username = $("#username").val();
-
-};
-
-function makeid(length) {
+function createHash() {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
     let counter = 0;
-    while (counter < length) {
+    while (counter < 10) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
         counter += 1;
     }
     return result;
 }
+
+stompClient.onConnect = (frame) => {
+
+    switch (userState) {
+        case "join":
+            lobbyHash = document.getElementById("lobbyID").value;
+            stompClient.publish({
+                destination: "/app/join",
+                body: JSON.stringify({
+                    'lobbyHash': lobbyHash,
+                    'userHash': userHash
+                })
+            });
+
+            stompClient.subscribe('/topic/lobby/' + lobbyHash, (message) => {
+                console.log(JSON.parse(message.body))
+            });
+            break;
+        case "create":
+            lobbyHash = createHash();
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/lobby/' + lobbyHash, (message) => {
+                console.log(JSON.parse(message.body))
+            });
+            stompClient.publish({
+                destination: "/app/create",
+                body: JSON.stringify({
+                    'lobbyHash': lobbyHash,
+                    'adminHash': userHash
+                })
+            });
+            break;
+    }
+
+};
 
 stompClient.onWebSocketError = (error) => {
     console.error('Error with websocket', error);
@@ -42,45 +61,28 @@ stompClient.onStompError = (frame) => {
     console.error('Additional details: ' + frame.body);
 };
 
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    } else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
-}
-
-function connect() {
+function createLobby() {
+    userState = "create";
+    console.log("createLobby called")
     stompClient.activate();
+    // event.preventDefault()
 }
 
-function disconnect() {
-    stompClient.deactivate();
-    setConnected(false);
-    console.log("Disconnected");
+function joinLobby() {
+    userState = "join";
+    stompClient.activate();
+    console.log("Join lobby");
+
 }
 
-function sendMessageContent() {
+
+function sendMessage() {
+    console.log("lobby url: " + '/topic/lobby/' + lobbyHash)
     stompClient.publish({
-        destination: "/app/message",
+        destination: "/app/lobby/message/" + lobbyHash,
         body: JSON.stringify({
-            'messageContent': $("#messageContent").val(),
-            'username': username
+            'messageContent': document.getElementById("message").value,
+            'username': userHash
         })
     });
-    console.log("stuff sent")
 }
-
-function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
-}
-
-$(function () {
-    $("form").on('submit', (e) => e.preventDefault());
-    $("#connect").click(() => connect());
-    $("#disconnect").click(() => disconnect());
-    $("#send").click(() => sendMessageContent());
-});
