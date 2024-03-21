@@ -31,14 +31,16 @@ stompClient.onConnect = (frame) => {
             });
 
             stompClient.subscribe('/topic/lobby/' + lobbyHash, (message) => {
-                console.log(JSON.parse(message.body))
+                //console.log("case: join: " + JSON.parse(message.body))
+                showMessage(JSON.parse(message.body))
             });
             break;
         case "create":
             lobbyHash = createHash();
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/lobby/' + lobbyHash, (message) => {
-                console.log(JSON.parse(message.body))
+                //console.log("case: create: " + JSON.parse(message.body).messageContent)
+                showMessage(JSON.parse(message.body))
             });
             stompClient.publish({
                 destination: "/app/create",
@@ -72,17 +74,21 @@ function joinLobby() {
     userState = "join";
     stompClient.activate();
     console.log("Join lobby");
+}
 
+function showMessage(message) {
+    $("#greetings").append(message.username + " wrote: " + message.messageContent + "<br>")
 }
 
 
 function sendMessage() {
-    console.log("lobby url: " + '/topic/lobby/' + lobbyHash)
-    stompClient.publish({
+    const messageObject = {
         destination: "/app/lobby/message/" + lobbyHash,
         body: JSON.stringify({
             'messageContent': document.getElementById("message").value,
             'username': userHash
         })
-    });
+    }
+    //console.log("lobby url: " + '/topic/lobby/' + lobbyHash)
+    stompClient.publish(messageObject);
 }
