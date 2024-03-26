@@ -1,7 +1,6 @@
 <template>
     <!-- TODO: Transition für Alerts einbauen -->
     <!-- TODO: Vielleicht in andere Komponenten auslagern -->
-    <!-- TODO: Link soll automatisch ausgewählt sein -->
 
     <div
         role="alert"
@@ -43,7 +42,11 @@
         </svg>
         <span>Failed to copy link!</span>
     </div>
-    <button class="btn" onclick="my_modal_4.showModal()">
+    <button
+        class="btn"
+        onclick="my_modal_4.showModal()"
+        @click="selectLinkText"
+    >
         <svg
             class="svg-icon"
             style="
@@ -79,7 +82,9 @@
                     class="input input-bordered w-full max-w-xs mt-3"
                     v-model="link"
                     readonly
+                    ref="linkInput"
                 />
+
                 <form method="dialog">
                     <button class="btn mt-3 ml-5" @click="copyLink">
                         <svg
@@ -106,9 +111,13 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
+const linkInput = ref(null);
 let link = ref("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 let success = ref(false);
 let failed = ref(false);
+let showModal = ref(false);
 
 const copyLink = async () => {
     try {
@@ -122,6 +131,13 @@ const copyLink = async () => {
         setTimeout(() => {
             failed.value = false;
         }, 2000);
+    }
+};
+
+// Methode zum Auswählen des Textes
+const selectLinkText = () => {
+    if (linkInput.value) {
+        linkInput.value.select();
     }
 };
 </script>
