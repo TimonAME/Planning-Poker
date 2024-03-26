@@ -31,7 +31,9 @@
                     >Home</router-link
                 >
             </li>
-            <Documentation />
+            <li>
+                <Documentation />
+            </li>
             <ThemeDropdown class="block md:hidden" />
             <li>
                 <router-link
