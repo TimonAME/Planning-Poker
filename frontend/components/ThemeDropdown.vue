@@ -57,7 +57,9 @@ const themes = [
     { label: "Sunset", value: "sunset" },
 ];
 
-const selectedTheme = useCookie("selectedTheme");
+const selectedTheme = useCookie("selectedTheme", {
+    maxAge: 60 * 60 * 24, // 1 Tag,
+});
 
 selectedTheme.value = selectedTheme.value || null;
 </script>
