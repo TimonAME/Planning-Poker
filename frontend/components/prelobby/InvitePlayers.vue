@@ -1,7 +1,11 @@
 <template>
+    <!-- TODO: Transition für Alerts einbauen -->
+    <!-- TODO: Vielleicht in andere Komponenten auslagern -->
+    <!-- TODO: Link soll automatisch ausgewählt sein -->
+
     <div
         role="alert"
-        class="alert alert-success linkSuccess fixed top-2"
+        class="alert alert-success linkSuccess fixed top-2 alertPopup z-50"
         v-if="success"
     >
         <svg
@@ -18,6 +22,26 @@
             />
         </svg>
         <span>Link successfully copied!</span>
+    </div>
+    <div
+        role="alert"
+        class="alert alert-error linkSuccess fixed top-2 alertPopup z-50"
+        v-if="failed"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+        </svg>
+        <span>Failed to copy link!</span>
     </div>
     <button class="btn" onclick="my_modal_4.showModal()">
         <svg
@@ -56,21 +80,23 @@
                     v-model="link"
                     readonly
                 />
-                <button class="btn mt-3 ml-5" @click="copyLink">
-                    <svg
-                        width="24"
-                        height="24"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        style="fill: currentColor; margin-left: -0.33em"
-                    >
-                        <path
-                            d="M14.851 11.923c-.179-.641-.521-1.246-1.025-1.749-1.562-1.562-4.095-1.563-5.657 0l-4.998 4.998c-1.562 1.563-1.563 4.095 0 5.657 1.562 1.563 4.096 1.561 5.656 0l3.842-3.841.333.009c.404 0 .802-.04 1.189-.117l-4.657 4.656c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-1.952-1.951-1.952-5.12 0-7.071l4.998-4.998c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464.493.493.861 1.063 1.105 1.672l-.787.784zm-5.703.147c.178.643.521 1.25 1.026 1.756 1.562 1.563 4.096 1.561 5.656 0l4.999-4.998c1.563-1.562 1.563-4.095 0-5.657-1.562-1.562-4.095-1.563-5.657 0l-3.841 3.841-.333-.009c-.404 0-.802.04-1.189.117l4.656-4.656c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464 1.951 1.951 1.951 5.119 0 7.071l-4.999 4.998c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-.494-.495-.863-1.067-1.107-1.678l.788-.785z"
-                        />
-                    </svg>
-                    Copy link
-                </button>
+                <form method="dialog">
+                    <button class="btn mt-3 ml-5" @click="copyLink">
+                        <svg
+                            width="24"
+                            height="24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            style="fill: currentColor; margin-left: -0.33em"
+                        >
+                            <path
+                                d="M14.851 11.923c-.179-.641-.521-1.246-1.025-1.749-1.562-1.562-4.095-1.563-5.657 0l-4.998 4.998c-1.562 1.563-1.563 4.095 0 5.657 1.562 1.563 4.096 1.561 5.656 0l3.842-3.841.333.009c.404 0 .802-.04 1.189-.117l-4.657 4.656c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-1.952-1.951-1.952-5.12 0-7.071l4.998-4.998c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464.493.493.861 1.063 1.105 1.672l-.787.784zm-5.703.147c.178.643.521 1.25 1.026 1.756 1.562 1.563 4.096 1.561 5.656 0l4.999-4.998c1.563-1.562 1.563-4.095 0-5.657-1.562-1.562-4.095-1.563-5.657 0l-3.841 3.841-.333-.009c-.404 0-.802.04-1.189.117l4.656-4.656c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464 1.951 1.951 1.951 5.119 0 7.071l-4.999 4.998c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-.494-.495-.863-1.067-1.107-1.678l.788-.785z"
+                            />
+                        </svg>
+                        Copy link
+                    </button>
+                </form>
             </div>
         </div>
         <form method="dialog" class="modal-backdrop">
@@ -88,15 +114,24 @@ const copyLink = async () => {
     try {
         await navigator.clipboard.writeText(link.value);
         success.value = true;
-        console.log("Link copied to clipboard");
         setTimeout(() => {
             success.value = false;
-        }, 3000);
+        }, 2000);
     } catch (err) {
-        console.error("Failed to copy link: ", err);
         failed.value = true;
+        setTimeout(() => {
+            failed.value = false;
+        }, 2000);
     }
 };
 </script>
 
-<style></style>
+<style>
+.alertPopup {
+    max-height: calc(100vh - 5em);
+    grid-column-start: 1;
+    grid-row-start: 1;
+    width: 91.666667%;
+    max-width: 32rem;
+}
+</style>

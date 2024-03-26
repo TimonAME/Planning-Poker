@@ -5,14 +5,14 @@
         <div
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
-            <Navbar class="z-20" />
-            <Lobbyname class="z-30" />
+            <Navbar class="z-40" />
+            <Lobbyname class="z-50" />
 
             <div
-                class="relative flex flex-col z-40 justify-center items-center mt-5"
+                class="relative flex flex-col justify-center items-center mt-5"
             >
-                <InvitePlayers />
-                <UserDisplay />
+                <InvitePlayers class="z-50" />
+                <UserDisplay class="z-30" />
             </div>
             <div
                 class="relative z-10 flex flex-col justify-center items-center mt-5"
