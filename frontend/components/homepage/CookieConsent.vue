@@ -1,16 +1,16 @@
 <template>
     <div v-if="showModal" class="modal modal-open">
         <div class="modal-box">
-            <h3 class="font-bold text-lg">Cookies zulassen?</h3>
+            <h3 class="font-bold text-lg">Allow Cookies?</h3>
             <p class="py-4">
-                Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Bitte
-                wählen Sie, ob Sie Cookies akzeptieren möchten.
+                We use cookies to enhance your experience. Please choose whether
+                you want to accept cookies.
             </p>
             <div class="modal-action">
                 <button class="btn btn-primary" @click="acceptCookies">
-                    Akzeptieren
+                    Accept
                 </button>
-                <button class="btn" @click="declineCookies">Ablehnen</button>
+                <button class="btn" @click="declineCookies">Decline</button>
             </div>
         </div>
     </div>
