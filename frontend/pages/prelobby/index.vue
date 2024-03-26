@@ -9,8 +9,9 @@
             <Lobbyname class="z-30" />
 
             <div
-                class="relative z-10 flex flex-col justify-center items-center mt-5"
+                class="relative flex flex-col z-40 justify-center items-center mt-5"
             >
+                <InvitePlayers />
                 <UserDisplay />
             </div>
             <div
@@ -27,6 +28,7 @@ import Navbar from "~/components/prelobby/Navbar.vue";
 import Lobbyname from "~/components/prelobby/Lobbyname.vue";
 import StartGame from "~/components/prelobby/StartGame.vue";
 import UserDisplay from "~/components/prelobby/UserDisplay.vue";
+import InvitePlayers from "~/components/prelobby/InvitePlayers.vue";
 </script>
 
 <style lang="scss" scoped></style>

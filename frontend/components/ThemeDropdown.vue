@@ -1,4 +1,6 @@
 <template>
+    <!-- TODO: Wenn man auf das Dropdown klickt soll es auch wieder schließen -->
+
     <div class="dropdown">
         <div tabindex="0" role="button" class="btn m-1">
             Theme
