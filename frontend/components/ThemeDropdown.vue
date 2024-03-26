@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-//TODO: Cookie fragen ob erlaubt (aus rechtlichen Gründen)
+//TODO: Für CookieConsent.vue eine implementierung einbauen
 
 const themes = [
     { label: "Light", value: "light" },
