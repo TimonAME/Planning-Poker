@@ -29,6 +29,11 @@ onMounted(() => {
 const acceptCookies = () => {
     localStorage.setItem("cookiesAccepted", "true");
     showModal.value = false;
+    const cookiesAccepted = useCookie("cookiesAccepted", {
+        maxAge: 60 * 60 * 24, // 1 Tag,
+    });
+
+    cookiesAccepted.value = "true";
 };
 
 const declineCookies = () => {

@@ -33,8 +33,6 @@
 </template>
 
 <script setup>
-//TODO: Für CookieConsent.vue eine implementierung einbauen
-
 const themes = [
     { label: "Light", value: "light" },
     { label: "Dark", value: "dark" },
@@ -57,9 +55,13 @@ const themes = [
     { label: "Sunset", value: "sunset" },
 ];
 
-const selectedTheme = useCookie("selectedTheme", {
-    maxAge: 60 * 60 * 24, // 1 Tag,
-});
+let selectedTheme = ref(null);
 
-selectedTheme.value = selectedTheme.value || null;
+if (useCookie("cookiesAccepted").value !== undefined) {
+    selectedTheme = useCookie("selectedTheme", {
+        maxAge: 60 * 60 * 24, // 1 Tag,
+    });
+
+    selectedTheme.value = selectedTheme.value || null;
+}
 </script>
