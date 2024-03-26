@@ -11,8 +11,8 @@
             <div
                 class="relative flex flex-col justify-center items-center mt-5"
             >
-                <InvitePlayers class="z-50" />
-                <UserDisplay class="z-30" />
+                <InvitePlayers />
+                <UserDisplay />
             </div>
             <div
                 class="relative z-10 flex flex-col justify-center items-center mt-5"
