@@ -26,6 +26,7 @@
                     :aria-label="theme.label"
                     :value="theme.value"
                     v-model="selectedTheme"
+                    @click="onThemeClick"
                 />
             </li>
         </ul>
@@ -54,15 +55,22 @@ const themes = [
     { label: "Coffee", value: "coffee" },
     { label: "Sunset", value: "sunset" },
 ];
-// TODO: Erste Änderung an Theme muss auch gespeichert werden
 
 let selectedTheme = ref(null);
 
-if (useCookie("cookiesAccepted").value === true) {
-    selectedTheme = useCookie("selectedTheme", {
-        maxAge: 60 * 60 * 24, // 1 Tag,
-    });
-
+function onThemeClick() {
+    if (useCookie("cookiesAccepted").value === true) {
+        selectedTheme = useCookie("selectedTheme", {
+            maxAge: 60 * 60 * 24 * 365, // 1 Jahr
+        });
+    }
     selectedTheme.value = selectedTheme.value || null;
 }
+
+if (useCookie("cookiesAccepted").value === true) {
+    selectedTheme = useCookie("selectedTheme", {
+        maxAge: 60 * 60 * 24 * 365, // 1 Jahr
+    });
+}
+selectedTheme.value = selectedTheme.value || null;
 </script>

@@ -30,9 +30,8 @@ const acceptCookies = () => {
     localStorage.setItem("cookiesAccepted", "true");
     showModal.value = false;
     const cookiesAccepted = useCookie("cookiesAccepted", {
-        maxAge: 60 * 60 * 24, // 1 Tag,
+        maxAge: 60 * 60 * 24 * 365, // 1 Jahr
     });
-
     cookiesAccepted.value = "true";
 };
 
