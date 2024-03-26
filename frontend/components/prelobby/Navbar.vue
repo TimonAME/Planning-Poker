@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import Sidebar from "../Sidebar/Sidebar.vue";
 import { defineComponent } from "vue";
 import ThemeDropdown from "~/components/ThemeDropdown.vue";
 
