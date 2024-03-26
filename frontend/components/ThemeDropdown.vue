@@ -1,8 +1,5 @@
 <template>
-    <div v-if="loading" class="fullscreen-loader">
-        <span class="loading loading-spinner text-primary"></span>
-    </div>
-    <div v-else class="dropdown">
+    <div class="dropdown">
         <div
             tabindex="0"
             role="button"
@@ -23,24 +20,19 @@
         </div>
         <ul
             tabindex="0"
-            class="dropdown-content z-40 bg-base-200 text-base-content rounded-box top-px h-[28.6rem] max-h-[calc(100vh-10rem)] w-56 overflow-y-auto border border-white/5 shadow-2xl outline outline-1 outline-black/5 sm:mt-16 mt-8"
+            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
         >
             <li v-for="(theme, index) in themes" :key="index">
-                <input
-                    type="radio"
-                    name="theme-dropdown"
-                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    :aria-label="theme.label"
-                    :value="theme.value"
-                    v-model="selectedTheme"
-                />
+                <a @click="setTheme(theme.value)">
+                    {{ theme.label }}
+                </a>
             </li>
         </ul>
     </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { useCookie } from "nuxt/app";
 
 const themes = [
     { label: "Light", value: "light" },
@@ -64,36 +56,12 @@ const themes = [
     { label: "Sunset", value: "sunset" },
 ];
 
-let selectedTheme;
-const loading = ref(true);
+const selectedTheme = useCookie("selectedTheme");
 
-onMounted(() => {
-    if (typeof window !== "undefined") {
-        const savedTheme = localStorage.getItem("selectedTheme");
-        selectedTheme = ref(savedTheme || "light");
-        loading.value = false; // Setzen Sie den Ladezustand auf false, wenn das gespeicherte Thema geladen wurde
+selectedTheme.value = null;
 
-        watch(selectedTheme, (newTheme) => {
-            localStorage.setItem("selectedTheme", newTheme);
-        });
-    } else {
-        selectedTheme = ref();
-        loading.value = false;
-    }
-});
+const setTheme = (theme) => {
+    selectedTheme.value = theme;
+    document.documentElement.className = theme;
+};
 </script>
-
-<style>
-.fullscreen-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(29, 35, 42);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999; /* Stellen Sie sicher, dass der Loader über allem anderen liegt */
-}
-</style>
