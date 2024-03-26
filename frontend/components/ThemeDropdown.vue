@@ -54,10 +54,11 @@ const themes = [
     { label: "Coffee", value: "coffee" },
     { label: "Sunset", value: "sunset" },
 ];
+// TODO: Erste Änderung an Theme muss auch gespeichert werden
 
 let selectedTheme = ref(null);
 
-if (useCookie("cookiesAccepted").value !== undefined) {
+if (useCookie("cookiesAccepted").value === true) {
     selectedTheme = useCookie("selectedTheme", {
         maxAge: 60 * 60 * 24, // 1 Tag,
     });
