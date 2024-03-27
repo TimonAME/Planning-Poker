@@ -6,7 +6,7 @@
         Documentation
     </button>
     <dialog id="my_modal_3" class="modal">
-        <div class="modal-box">
+        <div class="modal-box w-11/12 max-w-5xl">
             <form method="dialog">
                 <button
                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"

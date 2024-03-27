@@ -1,5 +1,4 @@
 <template>
-    <!-- TODO: QR-Code einbauen -->
     <SuccessAlert :success="success" />
     <FailureAlert :failed="failed" />
     <button
@@ -64,7 +63,7 @@
                 </form>
             </div>
             <div class="flex justify-center mt-3">
-                <button class="btn w-1/3">
+                <button class="btn w-1/3" @click="createQRCode">
                     <svg
                         width="24"
                         height="24"
@@ -84,6 +83,9 @@
                     QR-Code
                 </button>
             </div>
+            <div class="flex justify-center" :class="{ hidden: !showQRCode }">
+                <canvas ref="qrCodeCanvas" class="mt-3"></canvas>
+            </div>
         </div>
         <form method="dialog" class="modal-backdrop">
             <button>close</button>
@@ -94,6 +96,7 @@
 <script setup>
 import SuccessAlert from "~/components/prelobby/alerts/SuccessAlert.vue";
 import FailureAlert from "~/components/prelobby/alerts/FailureAlert.vue";
+import QRCode from "qrcode";
 
 const linkInput = ref(null);
 let link = ref("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
@@ -121,4 +124,18 @@ const selectLinkText = () => {
         linkInput.value.select();
     }
 };
+
+let showQRCode = ref(false);
+let qrCodeCanvas = ref(null);
+
+// QR-Code Generator: https://www.npmjs.com/package/qrcode
+function createQRCode() {
+    showQRCode.value = !showQRCode.value;
+    if (showQRCode.value) {
+        QRCode.toCanvas(qrCodeCanvas.value, link.value, {
+            width: 200,
+            height: 200,
+        });
+    }
+}
 </script>
