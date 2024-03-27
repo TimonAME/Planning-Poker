@@ -84,7 +84,88 @@
                 </button>
             </div>
             <div class="flex justify-center" :class="{ hidden: !showQRCode }">
-                <canvas ref="qrCodeCanvas" class="mt-3"></canvas>
+                <qrcode-vue
+                    :value="value"
+                    level="M"
+                    render-as="svg"
+                    class="fill-current mt-3"
+                    background="#0000"
+                    foreground="fill-current"
+                    size="150"
+                />
+            </div>
+            <div class="flex justify-center" :class="{ hidden: !showQRCode }">
+                <!-- Open the modal using ID.showModal() method -->
+                <button class="btn mt-2 -mb-3" onclick="my_modal_2.showModal()">
+                    <svg
+                        fill="#000000"
+                        height="24"
+                        width="24"
+                        version="1.1"
+                        id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 512 512"
+                        xml:space="preserve"
+                        class="fill-current"
+                    >
+                        <g>
+                            <g>
+                                <path
+                                    d="M0,0v512h512V0H0z M477.867,477.867H34.133V34.133h443.733V477.867z"
+                                />
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <polygon
+                                    points="126.533,102.4 199.111,102.4 199.111,68.267 68.267,68.267 68.267,199.111 102.4,199.111 102.4,126.538
+			198.422,222.558 222.556,198.423 		"
+                                />
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <polygon
+                                    points="222.557,313.581 198.422,289.445 102.4,385.467 102.4,312.889 68.267,312.889 68.267,443.733 199.111,443.733
+			199.111,409.6 126.538,409.6 		"
+                                />
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <polygon
+                                    points="409.6,312.889 409.6,385.467 313.578,289.444 289.444,313.578 385.462,409.6 312.889,409.6 312.889,443.733
+			443.733,443.733 443.733,312.889 		"
+                                />
+                            </g>
+                        </g>
+                        <g>
+                            <g>
+                                <polygon
+                                    points="312.889,68.267 312.889,102.4 385.467,102.4 289.444,198.423 313.578,222.558 409.6,126.538 409.6,199.111
+			443.733,199.111 443.733,68.267 		"
+                                />
+                            </g>
+                        </g>
+                    </svg>
+                </button>
+                <dialog id="my_modal_2" class="modal">
+                    <div class="modal-box w-fit max-w-5xl">
+                        <qrcode-vue
+                            :value="value"
+                            level="M"
+                            render-as="svg"
+                            class="fill-current mt-3"
+                            background="#0000"
+                            foreground="fill-current"
+                            size="600"
+                        />
+                    </div>
+                    <form method="dialog" class="modal-backdrop">
+                        <button>close</button>
+                    </form>
+                </dialog>
             </div>
         </div>
         <form method="dialog" class="modal-backdrop">
@@ -96,7 +177,7 @@
 <script setup>
 import SuccessAlert from "~/components/prelobby/alerts/SuccessAlert.vue";
 import FailureAlert from "~/components/prelobby/alerts/FailureAlert.vue";
-import QRCode from "qrcode";
+import QrcodeVue from "qrcode.vue";
 
 const linkInput = ref(null);
 let link = ref("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
@@ -126,16 +207,11 @@ const selectLinkText = () => {
 };
 
 let showQRCode = ref(false);
-let qrCodeCanvas = ref(null);
+const value = ref();
 
-// QR-Code Generator: https://www.npmjs.com/package/qrcode
+// QR-Code Generator: https://www.npmjs.com/package/qrcode.vue
 function createQRCode() {
     showQRCode.value = !showQRCode.value;
-    if (showQRCode.value) {
-        QRCode.toCanvas(qrCodeCanvas.value, link.value, {
-            width: 200,
-            height: 200,
-        });
-    }
+    value.value = link.value;
 }
 </script>
