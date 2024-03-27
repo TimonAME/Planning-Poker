@@ -21,7 +21,7 @@
                 />
             </svg>
         </router-link>
-        <ul class="flex items-center gap-6">
+        <ul class="flex items-center gap-6" style="margin-right: 15px">
             <li>
                 <router-link
                     to="#"

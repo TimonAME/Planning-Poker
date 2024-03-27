@@ -7,7 +7,7 @@
             class="text-3xl font-bold leading-none hidden md:block w-32"
         >
         </router-link>
-        <ul class="flex items-center gap-6">
+        <ul class="flex items-center gap-6" style="margin-right: 15px">
             <li>
                 <router-link
                     to="/"

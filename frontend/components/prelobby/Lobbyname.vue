@@ -14,7 +14,7 @@
             </button>
             <button
                 type="button"
-                class="inline-flex justify-center rounded-md px-2 py-2 text-sm font-medium focus:outline-none transition-colors duration-200"
+                class="hover:text-primary transition-colors duration-80"
                 id="options-menu"
                 aria-haspopup="true"
                 aria-expanded="true"
@@ -22,8 +22,8 @@
                 style="border: none"
             >
                 <svg
-                    class="h-5 w-5 hover:text-indigo-500"
-                    :class="{ 'text-indigo-500': isOpen }"
+                    class="h-5 w-5"
+                    :class="{ 'text-primary': isOpen }"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
