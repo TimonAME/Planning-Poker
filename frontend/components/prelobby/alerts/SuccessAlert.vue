@@ -5,7 +5,7 @@
         <div
             role="alert"
             class="alert alert-success linkSuccess alertPopup z-50 fixed top-2"
-            v-if="success"
+            v-if="props.success"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@
     </transition>
 </template>
 <script setup>
-defineProps({
+const props = defineProps({
     success: Boolean,
 });
 </script>

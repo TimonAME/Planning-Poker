@@ -3,7 +3,7 @@
         <div
             role="alert"
             class="alert alert-error linkSuccess alertPopup z-50 fixed top-2"
-            v-if="failed"
+            v-if="props.failed"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
     </transition>
 </template>
 <script setup>
-defineProps({
+const props = defineProps({
     failed: Boolean,
 });
 </script>
