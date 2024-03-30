@@ -112,7 +112,7 @@ const props = defineProps({
     link: String,
 });
 
-console.log(props.link);
+//console.log(props.link);
 
 let showQRCode = ref(false);
 const value = ref();

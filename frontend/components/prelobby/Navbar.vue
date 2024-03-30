@@ -18,7 +18,6 @@
             <li>
                 <Documentation />
             </li>
-            <ThemeDropdown class="block md:hidden" />
             <li>
                 <router-link
                     to="#"
@@ -26,8 +25,9 @@
                     >Settings</router-link
                 >
             </li>
+            <ThemeDropdown class="block md:hidden" :small="true" />
         </ul>
-        <ThemeDropdown class="hidden md:block ml-6 md:ml-0" />
+        <ThemeDropdown class="hidden md:block ml-6 md:ml-0" :small="false" />
         <Sidebar />
     </nav>
 </template>
