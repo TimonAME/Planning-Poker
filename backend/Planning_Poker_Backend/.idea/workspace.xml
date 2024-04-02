@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fbe44889-a0cd-4e0d-97ab-d40a7ccdac41" name="Changes" comment="" />
+    <list default="true" id="8d1a8944-b578-4f5f-876d-cf26e8c9039c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/HashObjectPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/HashObjectPair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/Lobby.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/LobbyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/LobbyJoinRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/Lobby.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/LobbyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/PlanningPokerApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/WebsocketConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/resources/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/resources/static/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/test/java/at/PlaPo/PlanningPoker/PlanningPokerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/Planning_Poker_Backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/workspace.xml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,11 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
-  <component name="ProjectId" id="2drOhtvfAh4EN0ZWOYxhPEXcIkV" />
+  <component name="ProjectId" id="2eY5cjSq3Da4rI7TjkTbxk2mPI7" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -25,19 +45,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "backend",
-    "last_opened_file_path": "C:/Users/Hunor/Documents/Schule/4AI/ITP/Planning-Poker",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fbe44889-a0cd-4e0d-97ab-d40a7ccdac41" name="Changes" comment="" />
-      <created>1710762856520</created>
+      <changelist id="8d1a8944-b578-4f5f-876d-cf26e8c9039c" name="Changes" comment="" />
+      <created>1712068752219</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1710762856520</updated>
-      <workItem from="1710762858232" duration="44000" />
+      <updated>1712068752219</updated>
+      <workItem from="1712068753409" duration="30000" />
     </task>
     <servers />
   </component>

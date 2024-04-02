@@ -3,14 +3,10 @@ package com.example.messagingstompwebsocket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.util.HtmlUtils;
-
+import com.example.messagingstompwebsocket.lobby.Lobby;
+import com.example.messagingstompwebsocket.lobby.LobbyJoinRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,14 +22,15 @@ public class LobbyController {
 
     @MessageMapping("/join")
     public void joinLobby(LobbyJoinRequest lobbyJoinRequest) {
-        System.out.println("User joining: " + lobbyJoinRequest.userHash);
-        lobbies.get(lobbyJoinRequest.lobbyHash).userHashes.add(lobbyJoinRequest.userHash);
+        System.out.println("User joining: " + lobbyJoinRequest.getUserHash());
+        lobbies.get(lobbyJoinRequest.getLobbyHash()).userHashes.add(lobbyJoinRequest.getUserHash());
     }
 
     @MessageMapping("/create")
     public void createLobby(Lobby lobby) {
         System.out.println(lobby.lobbyHash);
         lobbies.put(lobby.getLobbyHash(), lobby);
+        
     }
 
     @MessageMapping("/lobby/message/{id}")
@@ -42,5 +39,4 @@ public class LobbyController {
         System.out.println("URL: " + "/topic/lobby/" + id);
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, message);
     }
-
 }

@@ -1,5 +1,5 @@
 package com.example.messagingstompwebsocket;
-
+import com.example.messagingstompwebsocket.lobby.Lobby;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -10,8 +10,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = Lobby.class, name = "object")
 })
 public class HashObjectPair {
-
-
 
     Object object;
     String key;
