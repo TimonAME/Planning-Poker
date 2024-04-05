@@ -1,5 +1,6 @@
 <template>
     <!-- TODO: Fade-In transition klappt nicht -->
+    <!-- TODO: Progressbar für die Länge des Alerts -->
 
     <transition name="fade">
         <div
