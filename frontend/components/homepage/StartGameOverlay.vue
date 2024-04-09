@@ -18,6 +18,7 @@
                     type="text"
                     placeholder="Type here"
                     class="input input-bordered w-full"
+                    v-model="name"
                 />
             </label>
             <label class="form-control">
@@ -27,18 +28,29 @@
                 <textarea
                     class="textarea textarea-bordered h-24"
                     placeholder="Type here"
+                    v-model="description"
                 ></textarea>
             </label>
             <div class="flex justify-end">
                 <!-- Flexbox Container mit Inhalt rechts -->
                 <router-link to="/prelobby">
-                    <button class="btn btn-primary mt-3">Start Game</button>
+                    <button class="btn btn-primary mt-3" @click="testMethod">
+                        Start Game
+                    </button>
                 </router-link>
             </div>
         </div>
     </dialog>
 </template>
 
-<script setup></script>
+<script setup>
+const name = ref("");
+const description = ref("");
+
+const testMethod = () => {
+    console.log(name.value);
+    console.log(description.value);
+};
+</script>
 
 <style lang="scss" scoped></style>
