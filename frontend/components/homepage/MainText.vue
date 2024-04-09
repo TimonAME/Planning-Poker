@@ -1,4 +1,5 @@
 <template>
+    <StartGameOverlay />
     <!-- TODO: Overlay mit Lobbynamen und Beschreibung -->
     <div class="flex flex-col sm:w-1/3">
         <div class="flex justify-center items-center text-left w-full">
@@ -13,21 +14,23 @@
                     The Planning Poker tool allows teams to estimate the effort
                     for tasks by using special cards collectively.
                 </p>
-                <router-link
+                <button
                     class="mt-5 btn btn-primary flex items-center justify-center w-2/3"
-                    to="/prelobby"
                     @click="createLobby"
                 >
                     Create Lobby
-                </router-link>
+                </button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import StartGameOverlay from "~/components/homepage/StartGameOverlay.vue";
+
 const createLobby = () => {
     console.log("Create Lobby");
+    my_modal_5.showModal();
 };
 </script>
 
