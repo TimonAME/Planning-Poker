@@ -38,7 +38,7 @@ let selectedCard = ref(null);
 
 const handleCardClick = (number) => {
     // Trigger your function for later use here
-    console.log(`Card with number ${number} was clicked`);
+    // console.log(`Card with number ${number} was clicked`);
 
     selectedCard.value = number;
 };
