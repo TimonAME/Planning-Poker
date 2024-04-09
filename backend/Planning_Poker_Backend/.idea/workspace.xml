@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="8d1a8944-b578-4f5f-876d-cf26e8c9039c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/HashObjectPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/HashObjectPair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/Lobby.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/LobbyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messagingstompwebsocket/src/main/java/com/example/messagingstompwebsocket/LobbyJoinRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/Lobby.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/LobbyController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/PlanningPokerApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/java/at/PlaPo/PlanningPoker/WebsocketConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/resources/static/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/main/resources/static/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PlanningPoker/src/test/java/at/PlaPo/PlanningPoker/PlanningPokerApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/Planning_Poker_Backend.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Planning_Poker_Backend/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Planning_Poker_Backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Planning_Poker_Backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +28,34 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "backend",
+    "last_opened_file_path": "C:/Development/Planning-Poker/backend/Planning_Poker_Backend/messagingstompwebsocket",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="MessagingStompWebsocketApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.messagingstompwebsocket.MessagingStompWebsocketApplication" />
+      <module name="Planning_Poker_Backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.messagingstompwebsocket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MessagingStompWebsocketApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,6 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712068752219</updated>
       <workItem from="1712068753409" duration="30000" />
+      <workItem from="1712669572747" duration="1044000" />
     </task>
     <servers />
   </component>

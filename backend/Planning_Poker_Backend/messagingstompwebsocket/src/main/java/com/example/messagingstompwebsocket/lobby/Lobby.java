@@ -10,7 +10,7 @@ public class Lobby {
     public ArrayList<String> userHashes = new ArrayList<>();
 
     public String lobbyName;
-    public String lobbydescription;
+    public String lobbyDescription;
 
     public Lobby(String adminHash, String lobbyHash) {
         this.adminHash = adminHash;
@@ -42,12 +42,12 @@ public class Lobby {
         this.lobbyName = lobbyName;
     }
 
-    public String getLobbydescription() {
-        return lobbydescription;
+    public String getLobbyDescription() {
+        return lobbyDescription;
     }
 
-    public void setLobbydescription(String lobbydescription) {
-        this.lobbydescription = lobbydescription;
+    public void setLobbyDescription(String lobbyDescription) {
+        this.lobbyDescription = lobbyDescription;
     }
 
     @Override

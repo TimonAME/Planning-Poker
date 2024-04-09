@@ -46,9 +46,7 @@ stompClient.onConnect = (frame) => {
                 destination: "/app/create",
                 body: JSON.stringify({
                     'lobbyHash': lobbyHash,
-                    'adminHash': userHash,
-                    'lobbyName': document.getElementById("lobbyName").value,
-                    'lobbyDescription': document.getElementById("lobbyDescription").value
+                    'adminHash': userHash
                 })
             });
             break;

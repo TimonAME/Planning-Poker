@@ -28,7 +28,10 @@ public class LobbyController {
 
     @MessageMapping("/create")
     public void createLobby(Lobby lobby) {
-        System.out.println(lobby.lobbyHash);
+        System.out.println("---Lobby created!---");
+        System.out.println("Lobby hash: " + lobby.lobbyHash);
+        System.out.println("Lobby name: " + lobby.lobbyName);
+        System.out.println("Lobby description: " + lobby.lobbyDescription);
         lobbies.put(lobby.getLobbyHash(), lobby);
         
     }
