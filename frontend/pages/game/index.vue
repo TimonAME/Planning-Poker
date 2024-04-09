@@ -9,14 +9,16 @@
             <DropdownMenu class="z-20" />
 
             <div
-                class="relative z-10 flex flex-col justify-center items-center mt-5"
+                class="relative z-10 flex flex-col items-center flex-grow gap-16 mt-16 mb-5"
             >
-                <div class="mockup-window border bg-base-300 w-1/2 mt-44">
-                    <div class="flex justify-center px-4 py-16 bg-base-200">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
-                    </div>
+                <Board :selectedCard="selectedCard" />
+                <div class="flex justify-center space-x-4">
+                    <Card
+                        v-for="number in fibonacciNumbers"
+                        :key="number"
+                        :number="number"
+                        @cardClicked="handleCardClick"
+                    />
                 </div>
             </div>
         </div>
@@ -26,7 +28,18 @@
 <script setup>
 import DropdownMenu from "~/components/prelobby/Lobbyname.vue";
 import Navbar from "~/components/prelobby/Navbar.vue";
-import UserDisplay from "~/components/prelobby/UserDisplay.vue";
-</script>
+import Board from "~/components/game/Board.vue";
 
-<style lang="scss" scoped></style>
+import { ref } from "vue";
+import Card from "~/components/game/Card.vue";
+
+let fibonacciNumbers = ref([0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]);
+let selectedCard = ref(null);
+
+const handleCardClick = (number) => {
+    // Trigger your function for later use here
+    console.log(`Card with number ${number} was clicked`);
+
+    selectedCard.value = number;
+};
+</script>
