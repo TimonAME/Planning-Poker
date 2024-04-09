@@ -10,7 +10,7 @@
                 @mouseenter="setIsHovered(true)"
                 @mouseleave="setIsHovered(false)"
             >
-                {{ Lobbyname }}
+                {{ lobbyName }}
             </button>
             <button
                 type="button"
@@ -66,14 +66,17 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+import { useLobbyStore } from "~/stores/lobby";
+
+const lobbyStore = useLobbyStore();
+let lobbyName = lobbyStore.lobbyName;
+
 const isOpen = ref(false);
 const isHovered = ref(false);
 const dropdownRef = ref(null);
 const lobbyNameRef = ref(null);
 const lobbyNameWidth = ref(0);
 const lobbyNameHeight = ref(0);
-
-let Lobbyname = "ame.me";
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;

@@ -44,10 +44,15 @@
 </template>
 
 <script setup>
+import { useLobbyStore } from "~/stores/lobby";
+
+const lobbyStore = useLobbyStore();
+
 const name = ref("");
 const description = ref("");
 
 const testMethod = () => {
+    lobbyStore.setLobbyDetails(name.value, description.value);
     console.log(name.value);
     console.log(description.value);
 };
