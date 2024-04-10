@@ -1,5 +1,4 @@
 <template>
-    <!-- TODO: Overlay mit Lobbynamen und Beschreibung -->
     <dialog id="my_modal_5" class="modal">
         <div class="modal-box">
             <form method="dialog">
@@ -31,10 +30,27 @@
                     v-model="description"
                 ></textarea>
             </label>
+            <label class="form-control w-full">
+                <div class="label">
+                    <span class="label-text">Voting system</span>
+                </div>
+                <select class="select select-bordered">
+                    <option selected>Fibonacci</option>
+                    <option>T-shirts</option>
+                    <option>Powers of 2</option>
+                </select>
+            </label>
+            <button
+                class="link link-primary mt-3 ml-1 select-none"
+                @click="advancedSettings = !advancedSettings"
+            >
+                Advanced settings...
+            </button>
+            <AdvancedSettings v-if="advancedSettings" />
             <div class="flex justify-end">
                 <!-- Flexbox Container mit Inhalt rechts -->
                 <router-link to="/prelobby">
-                    <button class="btn btn-primary mt-3" @click="testMethod">
+                    <button class="btn btn-primary mt-3" @click="startGame">
                         Start Game
                     </button>
                 </router-link>
@@ -45,16 +61,17 @@
 
 <script setup>
 import { useLobbyStore } from "~/stores/lobby";
+import AdvancedSettings from "~/components/homepage/StartGameOverlay/AdvancedSettings.vue";
 
 const lobbyStore = useLobbyStore();
+
+const advancedSettings = ref(false);
 
 const name = ref("");
 const description = ref("");
 
-const testMethod = () => {
+const startGame = () => {
     lobbyStore.setLobbyDetails(name.value, description.value);
-    console.log(name.value);
-    console.log(description.value);
 };
 </script>
 

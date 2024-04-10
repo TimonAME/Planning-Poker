@@ -53,7 +53,7 @@
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
                 >
-                    <p class="text-sm -mb-3 -mx-2 -mt-4">
+                    <p class="text-sm -mx-2 -mt-5">
                         {{
                             lobbyDescription !== ""
                                 ? lobbyDescription
