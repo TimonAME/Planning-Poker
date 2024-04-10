@@ -6,7 +6,7 @@
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
             <Navbar class="z-20" />
-            <DropdownMenu class="z-20" />
+            <LobbyName class="z-20" />
 
             <div
                 class="relative z-10 flex flex-col items-center flex-grow gap-16 mt-16 mb-5"
@@ -26,11 +26,9 @@
 </template>
 
 <script setup>
-import DropdownMenu from "~/components/prelobby/Lobbyname.vue";
-import Navbar from "~/components/prelobby/Navbar.vue";
+import LobbyName from "~/components/prelobby/LobbyName.vue";
+import Navbar from "~/components/prelobby_game/navbar/Navbar.vue";
 import Board from "~/components/game/Board.vue";
-
-import { ref } from "vue";
 import Card from "~/components/game/Card.vue";
 
 let fibonacciNumbers = ref([0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]);
