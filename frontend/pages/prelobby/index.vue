@@ -27,7 +27,7 @@
 
 <script setup>
 import Navbar from "~/components/prelobby/Navbar.vue";
-import Lobbyname from "~/components/prelobby/Lobbyname.vue";
+import Lobbyname from "~/components/prelobby/LobbyName.vue";
 import StartGame from "~/components/prelobby/StartGame.vue";
 import UserDisplay from "~/components/prelobby/UserDisplay.vue";
 import InvitePlayers from "~/components/prelobby/InvitePlayers.vue";

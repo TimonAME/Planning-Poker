@@ -4,4 +4,5 @@ export default defineNuxtConfig({
     modules: ["@nuxtjs/tailwindcss", "nuxt-primevue", "@pinia/nuxt"],
     primevue: {},
     css: ["primevue/resources/themes/aura-light-green/theme.css"],
+    ssr: true,
 });

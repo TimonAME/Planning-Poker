@@ -54,8 +54,11 @@
                     aria-labelledby="options-menu"
                 >
                     <p class="text-sm -mb-3 -mx-2 -mt-4">
-                        Diese Lobby gehört AME.me. Wir stimmen heute über unsere
-                        User-Storys ab. Viel Spaß!
+                        {{
+                            lobbyDescription !== ""
+                                ? lobbyDescription
+                                : "No description"
+                        }}
                     </p>
                 </div>
             </div>
@@ -69,7 +72,9 @@ import { ref, onMounted } from "vue";
 import { useLobbyStore } from "~/stores/lobby";
 
 const lobbyStore = useLobbyStore();
-let lobbyName = lobbyStore.lobbyName;
+const lobbyName = ref(lobbyStore.lobbyName);
+const lobbyDescription = ref(lobbyStore.lobbyDescription);
+console.log(lobbyDescription.value);
 
 const isOpen = ref(false);
 const isHovered = ref(false);

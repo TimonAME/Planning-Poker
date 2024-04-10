@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import DropdownMenu from "~/components/prelobby/Lobbyname.vue";
+import DropdownMenu from "~/components/prelobby/LobbyName.vue";
 import Navbar from "~/components/prelobby/Navbar.vue";
 import UserDisplay from "~/components/prelobby/UserDisplay.vue";
 </script>
