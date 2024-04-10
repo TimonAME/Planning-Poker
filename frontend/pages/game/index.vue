@@ -24,9 +24,8 @@
 </template>
 
 <script setup>
+import Navbar from "~/components/prelobby_game/navbar/Navbar.vue";
 import DropdownMenu from "~/components/prelobby/LobbyName.vue";
-import Navbar from "~/components/prelobby/Navbar.vue";
-import UserDisplay from "~/components/prelobby/UserDisplay.vue";
 </script>
 
 <style lang="scss" scoped></style>
