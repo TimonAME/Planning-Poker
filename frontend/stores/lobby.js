@@ -1,4 +1,3 @@
-// stores/lobby.js
 import { defineStore } from "pinia";
 
 export const useLobbyStore = defineStore("lobby", {
@@ -12,4 +11,5 @@ export const useLobbyStore = defineStore("lobby", {
             this.lobbyDescription = description;
         },
     },
+    persist: true,
 });
