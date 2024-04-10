@@ -85,7 +85,7 @@ const name = ref("");
 const description = ref("");
 
 const rules = {
-    name: { required, minLength: minLength(4), $autoDirty: true },
+    name: { required, minLength: minLength(4) },
     description: {},
 };
 
