@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import Untertext from "../components/homepage/Below_text.vue";
+import Untertext from "../components/homepage/BelowText.vue";
 import MainText from "../components/homepage/MainText.vue";
 import Navbar from "../components/homepage/Navbar.vue";
 import SVGImage from "../components/homepage/SVGImage.vue";

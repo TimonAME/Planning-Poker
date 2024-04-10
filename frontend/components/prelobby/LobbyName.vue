@@ -10,7 +10,7 @@
                 @mouseenter="setIsHovered(true)"
                 @mouseleave="setIsHovered(false)"
             >
-                {{ Lobbyname }}
+                {{ lobbyName }}
             </button>
             <button
                 type="button"
@@ -53,9 +53,12 @@
                     aria-orientation="vertical"
                     aria-labelledby="options-menu"
                 >
-                    <p class="text-sm -mb-3 -mx-2 -mt-4">
-                        Diese Lobby gehört AME.me. Wir stimmen heute über unsere
-                        User-Storys ab. Viel Spaß!
+                    <p class="text-sm -mx-2 -mt-3 -mb-2">
+                        {{
+                            lobbyDescription !== ""
+                                ? lobbyDescription
+                                : "No description"
+                        }}
                     </p>
                 </div>
             </div>
@@ -66,14 +69,19 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
+import { useLobbyStore } from "~/stores/lobby";
+
+const lobbyStore = useLobbyStore();
+const lobbyName = ref(lobbyStore.lobbyName);
+const lobbyDescription = ref(lobbyStore.lobbyDescription);
+console.log(lobbyDescription.value);
+
 const isOpen = ref(false);
 const isHovered = ref(false);
 const dropdownRef = ref(null);
 const lobbyNameRef = ref(null);
 const lobbyNameWidth = ref(0);
 const lobbyNameHeight = ref(0);
-
-let Lobbyname = "ame.me";
 
 const toggleDropdown = () => {
     isOpen.value = !isOpen.value;

@@ -1,4 +1,5 @@
 <template>
+    <ReturnToHome />
     <nav
         class="relative px-4 py-4 flex justify-center items-center h-16 lg:gap-48 md:gap-28"
     >
@@ -9,11 +10,12 @@
         </router-link>
         <ul class="flex items-center gap-6" style="margin-right: 15px">
             <li>
-                <router-link
-                    to="/"
+                <button
                     class="text-sm hover:text-primary transition-colors duration-80"
-                    >Home</router-link
+                    @click="returnToHomepage"
                 >
+                    Home
+                </button>
             </li>
             <li>
                 <Documentation />
@@ -32,12 +34,11 @@
     </nav>
 </template>
 
-<script>
-import { defineComponent } from "vue";
+<script setup>
 import ThemeDropdown from "~/components/ThemeDropdown.vue";
-import InvitePlayers from "~/components/prelobby/InvitePlayers.vue";
+import ReturnToHome from "~/components/prelobby_game/navbar/ReturnToHome.vue";
 
-export default defineComponent({
-    components: { InvitePlayers, ThemeDropdown },
-});
+const returnToHomepage = () => {
+    my_modal_1.showModal();
+};
 </script>
