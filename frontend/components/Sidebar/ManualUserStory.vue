@@ -83,8 +83,9 @@ const addUserStory = () => {
         console.log("Title:", userStoryTitle.value);
         console.log("Description:", userStoryDescription.value);
 
-        //userStoryTitle.value = "Name und Beschreibung anzeigen";
-        //userStoryDescription.value = "Als User möchte ich den Lobby-Namen und die Lobby-Beschreibung in der Pre-Lobby sehen können, damit ich die Sitzung korrekt zuordnen kann.";
+        userStoryTitle.value = "Name und Beschreibung anzeigen";
+        userStoryDescription.value =
+            "Als User möchte ich den Lobby-Namen und die Lobby-Beschreibung in der Pre-Lobby sehen können, damit ich die Sitzung korrekt zuordnen kann.";
 
         // Emit a custom event with the new user story
         emit("new-user-story", {

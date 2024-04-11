@@ -1,7 +1,5 @@
 <template>
     <div class="absolute inset-0 -z-10 h-full w-full">
-        <!-- dotted background from: https://bg.ibelick.com/ -->
-        <!-- Punkte im Hintergrund: bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] -->
         <div
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
@@ -9,8 +7,16 @@
             <LobbyName class="z-20" />
 
             <div
-                class="relative z-10 flex flex-col items-center flex-grow gap-16 mt-16 mb-5"
+                class="relative z-10 flex flex-col items-center justify-between flex-grow gap-16 mt-16 mb-5"
             >
+                <div class="flex flex-col items-center">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-2">
+                        {{ firstUserStory.title }}
+                    </h1>
+                    <p class="text-base text-gray-600 leading-relaxed">
+                        {{ firstUserStory.description }}
+                    </p>
+                </div>
                 <Board :selectedCard="selectedCard" />
                 <div class="flex justify-center space-x-4">
                     <Card
@@ -30,6 +36,30 @@ import LobbyName from "~/components/prelobby/LobbyName.vue";
 import Navbar from "~/components/prelobby_game/navbar/Navbar.vue";
 import Board from "~/components/game/Board.vue";
 import Card from "~/components/game/Card.vue";
+
+/*
+
+
+
+
+ */
+//To get User stories from Sidebar.vue
+import { inject, watch } from "vue";
+
+const userStories = inject("userStories");
+const firstUserStory = ref("");
+if (userStories) {
+    firstUserStory.value = userStories.value[0];
+    console.log(firstUserStory.value);
+}
+
+/*
+
+
+
+
+
+ */
 
 let fibonacciNumbers = ref([0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]);
 let selectedCard = ref(null);
