@@ -1,8 +1,8 @@
 <template>
-    <button class="btn btn-outline btn-info" onclick="my_modal_1.showModal()">
+    <button class="btn btn-outline btn-info" onclick="my_modal_5.showModal()">
         Manual
     </button>
-    <dialog id="my_modal_1" class="modal">
+    <dialog id="my_modal_5" class="modal">
         <div class="modal-box">
             <form method="dialog">
                 <button
