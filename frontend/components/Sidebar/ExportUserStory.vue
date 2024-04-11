@@ -1,10 +1,11 @@
 <template>
-  <button class="btn btn-outline btn-error">
-    Export
-  </button>
+    <button class="btn btn-outline btn-error" @click="exportFunction">
+        Export
+    </button>
 </template>
-<script>
-export default {
-  name: 'ExportUserStory'
-}
+<script setup>
+const exportFunction = () => {
+    console.log("Exporting User Story");
+    // Add your export logic here
+};
 </script>

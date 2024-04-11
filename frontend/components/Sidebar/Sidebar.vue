@@ -88,7 +88,7 @@
                     </div>
                     <!-- Sidebar Content -->
                     <div class="mt-4 px-4 h-full overflow-auto">
-                        <div class="grid sm:grid-cols-2 grid-cols-2 gap-4">
+                        <div class="flex flex-wrap gap-4">
                             <UserStory
                                 v-for="(userStory, index) in userStories"
                                 :key="index"
