@@ -4,6 +4,7 @@ export const useLobbyStore = defineStore("lobby", {
     state: () => ({
         lobbyName: "",
         lobbyDescription: "",
+        name: "",
     }),
     actions: {
         setLobbyDetails(name, description) {

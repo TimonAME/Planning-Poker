@@ -1,6 +1,5 @@
 <template>
     <!-- TODO: Errors sollen nicht reactive sein sondern nur beim submit angezeigt werden -->
-
     <dialog id="my_modal_5" class="modal">
         <div class="modal-box">
             <form method="dialog">

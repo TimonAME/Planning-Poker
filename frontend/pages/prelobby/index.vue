@@ -7,6 +7,7 @@
         <div
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
+            <Username />
             <Navbar class="z-40" />
             <Lobbyname class="z-50" />
 
@@ -31,6 +32,7 @@ import Lobbyname from "~/components/prelobby/LobbyName.vue";
 import StartGame from "~/components/prelobby/StartGame.vue";
 import UserDisplay from "~/components/prelobby/UserDisplay.vue";
 import InvitePlayers from "~/components/prelobby/InvitePlayers.vue";
+import Username from "~/components/prelobby/Username.vue";
 </script>
 
 <style lang="scss" scoped></style>
