@@ -74,7 +74,6 @@ import { useLobbyStore } from "~/stores/lobby";
 const lobbyStore = useLobbyStore();
 const lobbyName = ref(lobbyStore.lobbyName);
 const lobbyDescription = ref(lobbyStore.lobbyDescription);
-console.log(lobbyDescription.value);
 
 const isOpen = ref(false);
 const isHovered = ref(false);
