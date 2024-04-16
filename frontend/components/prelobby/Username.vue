@@ -2,10 +2,8 @@
     <!-- TODO: Overlay darf nicht mit Esc geschlossen werden -->
     <dialog id="my_modal_7" class="modal">
         <div class="modal-box">
+            <h3 class="font-bold text-lg mb-1">Username</h3>
             <label class="form-control w-full">
-                <div class="label">
-                    <span class="label-text">Username</span>
-                </div>
                 <div :class="{ error: v$.username.$errors.length }">
                     <input
                         type="text"
@@ -25,7 +23,7 @@
                 </div>
             </label>
             <div class="flex justify-end">
-                <button class="btn btn-primary mt-3" @click="enterName">
+                <button class="btn btn-primary mt-2" @click="enterName">
                     Submit
                 </button>
             </div>
