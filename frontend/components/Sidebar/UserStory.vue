@@ -108,6 +108,7 @@ const props = defineProps({
 });
 
 const deleteUserStory = () => {
-    userStoryStore.deleteUserStory(props.userStory.id);
+    const index = userStoryStore.userStories.indexOf(props.userStory);
+    userStoryStore.deleteUserStory(index);
 };
 </script>
