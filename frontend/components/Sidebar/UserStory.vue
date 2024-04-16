@@ -55,6 +55,7 @@
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                @click="deleteUserStory"
             >
                 <path
                     d="M10 12V17"
@@ -95,12 +96,18 @@
         </div>
     </div>
 </template>
+
 <script setup>
-// Define props for the UserStory component
+import { useUserStoryStore } from "~/stores/userstory";
+const userStoryStore = useUserStoryStore();
 const props = defineProps({
     userStory: {
         type: Object,
         required: true,
     },
 });
+
+const deleteUserStory = () => {
+    userStoryStore.deleteUserStory(props.userStory.id);
+};
 </script>

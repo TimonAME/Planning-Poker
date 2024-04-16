@@ -110,11 +110,9 @@ import ManualUserStory from "~/components/Sidebar/ManualUserStory.vue";
 import ExportUserStory from "~/components/Sidebar/ExportUserStory.vue";
 import ImportUserStory from "~/components/Sidebar/ImportUserStory.vue";
 
-const userStories = ref([]);
-
-const addUserStory = (newUserStory) => {
-    userStories.value.push(newUserStory);
-};
+import { useUserStoryStore } from "~/stores/userstory";
+const userStoryStore = useUserStoryStore();
+const userStories = ref(userStoryStore.userStories);
 
 import { onMounted, onUnmounted, ref } from "vue";
 import UserStory from "~/components/Sidebar/UserStory.vue";
