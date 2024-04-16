@@ -4,10 +4,10 @@
     >
         <div>
             <h3 class="text-lg font-bold text-primary mb-2 break-words">
-                {{ userStories.title }}
+                {{ userStory.title }}
             </h3>
             <p class="text-base-content overflow-y-auto max-h-24 break-words">
-                {{ userStories.description }}
+                {{ userStory.description }}
             </p>
         </div>
         <div class="flex flex-col justify-between gap-1 ml-1">
@@ -55,6 +55,7 @@
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                @click="deleteUserStory"
             >
                 <path
                     d="M10 12V17"
@@ -97,22 +98,16 @@
 </template>
 
 <script setup>
-// Importieren Sie den Store
 import { useUserStoryStore } from "~/stores/userstory";
-
-// Verwenden Sie den Store
 const userStoryStore = useUserStoryStore();
-
-// Zugriff auf die User Stories im Store
-const userStories = ref(userStoryStore.userStories);
-
-// Definieren Sie die Props für die UserStory Komponente
-/*
 const props = defineProps({
-  userStory: {
-    type: Object,
-    required: true,
-  },
+    userStory: {
+        type: Object,
+        required: true,
+    },
 });
- */
+
+const deleteUserStory = () => {
+    userStoryStore.deleteUserStory(props.userStory.id);
+};
 </script>

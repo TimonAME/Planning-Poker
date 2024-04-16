@@ -36,30 +36,12 @@ import LobbyName from "~/components/prelobby/LobbyName.vue";
 import Navbar from "~/components/prelobby_game/navbar/Navbar.vue";
 import Board from "~/components/game/Board.vue";
 import Card from "~/components/game/Card.vue";
+import { computed } from "vue";
 
-/*
-
-
-
-
- */
-//To get User stories from Sidebar.vue
-import { inject, watch } from "vue";
-
-const userStories = inject("userStories");
-const firstUserStory = ref("");
-if (userStories) {
-    firstUserStory.value = userStories.value[0];
-    console.log(firstUserStory.value);
-}
-
-/*
-
-
-
-
-
- */
+import { useUserStoryStore } from "~/stores/userstory";
+const userStoryStore = useUserStoryStore();
+const userStories = ref(userStoryStore.userStories);
+const firstUserStory = computed(() => userStories.value[0]);
 
 let fibonacciNumbers = ref([0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]);
 let selectedCard = ref(null);

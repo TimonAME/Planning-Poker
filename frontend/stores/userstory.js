@@ -9,6 +9,10 @@ export const useUserStoryStore = defineStore("userstory", {
             // neue Aktion zum Hinzufügen einer User Story
             this.userStories.push(userStory);
         },
+        deleteUserStory(index) {
+            // neue Aktion zum Löschen einer User Story
+            this.userStories.splice(index, 1);
+        },
     },
     persist: true,
 });

@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f964cbd-e254-40d3-9f4c-430b3970b35d" name="Changes" comment="pinia">
+    <list default="true" id="2f964cbd-e254-40d3-9f4c-430b3970b35d" name="Changes" comment="name anders 🤞">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Sidebar/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Sidebar/Sidebar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/components/Sidebar/UserStory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Sidebar/UserStory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/game/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/game/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/stores/userstory.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/stores/userstory.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -398,7 +402,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713275035301</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="name anders 🤞">
+      <option name="closed" value="true" />
+      <created>1713275179651</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1713275179651</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +428,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="TODO Added" />
     <MESSAGE value="overflow-hidden" />
     <MESSAGE value="overflow-hidden TODO removed" />
     <MESSAGE value="Dateistruktur, prelobby und game erstellt&#10;Prelobby Seite erstellt mit Navbar" />
@@ -441,6 +452,7 @@
     <MESSAGE value="console log auskommentiert" />
     <MESSAGE value="Sidebar update" />
     <MESSAGE value="pinia" />
-    <option name="LAST_COMMIT_MESSAGE" value="pinia" />
+    <MESSAGE value="name anders " />
+    <option name="LAST_COMMIT_MESSAGE" value="name anders " />
   </component>
 </project>

@@ -109,36 +109,10 @@
 import ManualUserStory from "~/components/Sidebar/ManualUserStory.vue";
 import ExportUserStory from "~/components/Sidebar/ExportUserStory.vue";
 import ImportUserStory from "~/components/Sidebar/ImportUserStory.vue";
-/*
 
-
-
-
-
- */
-// Provide the userStories to index.vue / global scope
-import { provide } from "vue";
-
-const userStories = ref([
-    {
-        title: "User Story 1",
-        description: "Description 1",
-    },
-]);
-provide("userStories", userStories);
-
-/*
-
-
-
-
-
-
- */
-
-const addUserStory = (newUserStory) => {
-    userStories.value.push(newUserStory);
-};
+import { useUserStoryStore } from "~/stores/userstory";
+const userStoryStore = useUserStoryStore();
+const userStories = ref(userStoryStore.userStories);
 
 import { onMounted, onUnmounted, ref } from "vue";
 import UserStory from "~/components/Sidebar/UserStory.vue";
