@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f964cbd-e254-40d3-9f4c-430b3970b35d" name="Changes" comment="name anders 🤞">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/Sidebar/UserStory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Sidebar/UserStory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Sidebar/ManualUserStory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Sidebar/ManualUserStory.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +40,7 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2czCmUoHBcus12eBiBxg9tbSCEK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,9 +59,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\xampp\\htdocs\\AME\\Planning-Poker\\frontend\\node_modules\\prettier",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Planning-Poker\\frontend\\node_modules\\prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
