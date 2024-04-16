@@ -4,10 +4,10 @@
     >
         <div>
             <h3 class="text-lg font-bold text-primary mb-2 break-words">
-                {{ userStory.title }}
+                {{ userStories.title }}
             </h3>
             <p class="text-base-content overflow-y-auto max-h-24 break-words">
-                {{ userStory.description }}
+                {{ userStories.description }}
             </p>
         </div>
         <div class="flex flex-col justify-between gap-1 ml-1">
