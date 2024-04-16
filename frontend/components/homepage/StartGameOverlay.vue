@@ -46,7 +46,7 @@
                 <div class="label">
                     <span class="label-text">Voting system</span>
                 </div>
-                <select class="select select-bordered">
+                <select class="select select-bordered" v-model="votingSystem">
                     <option selected>Fibonacci</option>
                     <option>T-shirts</option>
                     <option>Powers of 2</option>
@@ -80,8 +80,10 @@ const router = useRouter();
 
 const lobbyStore = useLobbyStore();
 const advancedSettings = ref(false);
+
 const name = ref("");
 const description = ref("");
+const votingSystem = ref("Fibonacci");
 
 const rules = {
     name: { required, minLength: minLength(4) },
