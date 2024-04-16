@@ -50,7 +50,7 @@
                         <div class="flex gap-4">
                             <ImportUserStory />
                             <ExportUserStory />
-                            <ManualUserStory @new-user-story="addUserStory" />
+                            <ManualUserStory />
                         </div>
                         <button
                             @click="open = false"

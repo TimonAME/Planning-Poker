@@ -47,7 +47,7 @@
                 ></textarea>
             </label>
             <div class="flex justify-end">
-                <button class="btn btn-primary mt-3" @click="addUserStory">
+                <button class="btn btn-primary mt-3" @click="addTheUserStory">
                     Add
                 </button>
             </div>
@@ -77,16 +77,16 @@ const rules = {
 
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 
-const addUserStory = () => {
+const addTheUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        // Erstellen Sie ein neues User Story-Objekt
+        // Create a new User Story object
         const newUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
         };
 
-        // Fügen Sie die neue User Story zum Store hinzu
+        // Add the new User Story to the store
         userstoryStore.addUserStory(newUserStory);
 
         // Clear the input fields
