@@ -109,6 +109,7 @@ const props = defineProps({
 });
 
 const deleteUserStory = () => {
+    // get index of user story
     const index = userStoryStore.userStories.indexOf(props.userStory);
     userStoryStore.deleteUserStory(index);
 };
