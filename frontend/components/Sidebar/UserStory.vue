@@ -95,12 +95,24 @@
         </div>
     </div>
 </template>
+
 <script setup>
-// Define props for the UserStory component
+// Importieren Sie den Store
+import { useUserStoryStore } from "~/stores/userstory";
+
+// Verwenden Sie den Store
+const userStoryStore = useUserStoryStore();
+
+// Zugriff auf die User Stories im Store
+const userStories = ref(userStoryStore.userStories);
+
+// Definieren Sie die Props für die UserStory Komponente
+/*
 const props = defineProps({
-    userStory: {
-        type: Object,
-        required: true,
-    },
+  userStory: {
+    type: Object,
+    required: true,
+  },
 });
+ */
 </script>

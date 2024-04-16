@@ -61,9 +61,10 @@
 import { ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
+import { useUserStoryStore } from "~/stores/userstory.js";
 
+const userstoryStore = useUserStoryStore();
 const router = useRouter();
-
 const emit = defineEmits(["new-user-story"]);
 
 const userStoryTitle = ref("");
@@ -79,18 +80,14 @@ const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 const addUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        // Log the title and description to the console
-        console.log("Title:", userStoryTitle.value);
-        console.log("Description:", userStoryDescription.value);
-
-        //userStoryTitle.value = "Name und Beschreibung anzeigen";
-        //userStoryDescription.value = "Als User möchte ich den Lobby-Namen und die Lobby-Beschreibung in der Pre-Lobby sehen können, damit ich die Sitzung korrekt zuordnen kann.";
-
-        // Emit a custom event with the new user story
-        emit("new-user-story", {
+        // Erstellen Sie ein neues User Story-Objekt
+        const newUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
-        });
+        };
+
+        // Fügen Sie die neue User Story zum Store hinzu
+        userstoryStore.addUserStory(newUserStory);
 
         // Clear the input fields
         userStoryTitle.value = "";
