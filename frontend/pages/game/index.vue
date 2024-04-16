@@ -10,10 +10,19 @@
                 class="relative z-10 flex flex-col items-center justify-between flex-grow gap-16 mt-16 mb-5"
             >
                 <div class="flex flex-col items-center">
-                    <h1 class="text-2xl font-bold text-gray-800 mb-2">
+                    <h1
+                        class="text-2xl font-bold text-gray-800 mb-2"
+                        v-if="firstUserStory"
+                    >
                         {{ firstUserStory.title }}
                     </h1>
-                    <p class="text-base text-gray-600 leading-relaxed">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-2" v-else>
+                        Add new User Stories
+                    </h1>
+                    <p
+                        class="text-base text-gray-600 leading-relaxed"
+                        v-if="firstUserStory"
+                    >
                         {{ firstUserStory.description }}
                     </p>
                 </div>
