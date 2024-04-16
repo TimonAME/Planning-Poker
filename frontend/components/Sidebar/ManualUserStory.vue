@@ -77,7 +77,7 @@ const rules = {
 
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 
-const addUserStoryaaaa = () => {
+const addUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
         // Erstellen Sie ein neues User Story-Objekt

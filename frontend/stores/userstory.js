@@ -10,7 +10,7 @@ export const useUserStoryStore = defineStore("userstory", {
             this.userStories.push(userStory);
         },
         deleteUserStory(index) {
-            // neue Aktion zum Löschen einer User Story lol
+            // neue Aktion zum Löschen einer User Story
             this.userStories.splice(index, 1);
         },
     },
