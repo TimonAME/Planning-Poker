@@ -2,12 +2,13 @@ const userHash = createHash();
 let userState = "empty";
 let lobbyHash = "";
 const stompClient = new StompJs.Client({
-    brokerURL: 'ws://localhost:8080/gs-guide-websocket'
+    brokerURL: "ws://localhost:8080/ws-endpoint",
 });
 
 function createHash() {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = "";
+    const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const charactersLength = characters.length;
     let counter = 0;
     while (counter < 10) {
@@ -19,78 +20,81 @@ function createHash() {
 
 stompClient.onConnect = (frame) => {
 
-    switch (userState) {
-        case "join":
-            lobbyHash = document.getElementById("lobbyID").value;
-            stompClient.publish({
-                destination: "/app/join",
-                body: JSON.stringify({
-                    'lobbyHash': lobbyHash,
-                    'userHash': userHash
-                })
-            });
-
-            stompClient.subscribe('/topic/lobby/' + lobbyHash, (message) => {
-                //console.log("case: join: " + JSON.parse(message.body))
-                showMessage(JSON.parse(message.body));
-                console.log(message.body);
-            });
-            break;
-        case "create":
-            lobbyHash = createHash();
-            console.log('Connected: ' + frame);
-            stompClient.subscribe('/topic/lobby/' + lobbyHash, (message) => {
-                //console.log("case: create: " + JSON.parse(message.body).messageContent)
-                console.log(message.body);
-                showMessage(JSON.parse(message.body))
-            });
-            stompClient.publish({
-                destination: "/app/create",
-                body: JSON.stringify({
-                    'lobbyHash': lobbyHash,
-                    'adminHash': userHash
-                })
-            });
-            break;
-    }
+    stompClient.subscribe("/topic/lobby/" + lobbyHash, (message) => {
+        //console.log("case: create: " + JSON.parse(message.body).messageContent)
+        console.log(message.body);
+        showMessage(JSON.parse(message.body));
+    });
+    document.getElementById("lobbyIdDisplay").innerText = lobbyHash;
 
 };
 
 stompClient.onWebSocketError = (error) => {
-    console.error('Error with websocket', error);
+    console.error("Error with websocket", error);
 };
 
 stompClient.onStompError = (frame) => {
-    console.error('Broker reported error: ' + frame.headers['message']);
-    console.error('Additional details: ' + frame.body);
+    console.error("Broker reported error: " + frame.headers["message"]);
+    console.error("Additional details: " + frame.body);
 };
 
-function createLobby() {
-    userState = "create";
-    console.log("createLobby called")
-    stompClient.activate();
-    // event.preventDefault()
+async function createLobby() {
+    lobbyHash = createHash();
+
+    fetch("http://localhost:8080/create", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            lobbyHash: lobbyHash,
+            userHash: userHash,
+        }),
+    }).then((response) => response.json())
+        .then((response) => {
+            console.log(response);
+            console.log("createLobby called");
+            stompClient.activate();
+        });
+
 }
 
 function joinLobby() {
-    userState = "join";
+    lobbyHash = document.getElementById("lobbyID").value;
+    fetch("http://localhost:8080/join", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            lobbyHash: lobbyHash,
+            userHash: userHash,
+        }),
+    }).then((response) => response.json())
+        .then((response) => {
+            console.log(response);
+            console.log("joinLobby called");
+            stompClient.activate();
+        });
+
     stompClient.activate();
     console.log("Join lobby");
 }
 
 function showMessage(message) {
-    $("#greetings").append(message.username + " wrote: " + message.messageContent + "<br>")
+    $("#greetings").append(
+        message.username + " wrote: " + message.messageContent + "<br>"
+    );
 }
-
 
 function sendMessage() {
     const messageObject = {
         destination: "/app/lobby/message/" + lobbyHash,
         body: JSON.stringify({
-            'messageContent': document.getElementById("message").value,
-            'username': userHash
-        })
-    }
+            messageContent: document.getElementById("message").value,
+            username: userHash,
+        }),
+    };
     //console.log("lobby url: " + '/topic/lobby/' + lobbyHash)
     stompClient.publish(messageObject);
 }

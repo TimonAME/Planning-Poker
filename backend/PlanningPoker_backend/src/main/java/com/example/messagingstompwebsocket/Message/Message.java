@@ -1,4 +1,4 @@
-package com.example.messagingstompwebsocket;
+package com.example.messagingstompwebsocket.Message;
 
 public class Message extends BasicMessage {
 

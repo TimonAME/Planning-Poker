@@ -1,29 +1,25 @@
 package com.example.messagingstompwebsocket.lobby;
 
+import com.example.messagingstompwebsocket.User;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Lobby {
 
     public String adminHash;
-    public String lobbyHash;
+    Map<String, User> users = new HashMap<>();
 
     public ArrayList<String> userHashes = new ArrayList<>();
 
     public String lobbyName;
     public String lobbyDescription;
 
-    public Lobby(String adminHash, String lobbyHash) {
+    public String lobbyStatus = "preLobby";
+
+    public Lobby(String adminHash) {
         this.adminHash = adminHash;
-        this.lobbyHash = lobbyHash;
-    }
-
-
-    public String getLobbyHash() {
-        return lobbyHash;
-    }
-
-    public void setLobbyHash(String lobbyHash) {
-        this.lobbyHash = lobbyHash;
     }
 
     public String getAdminHash() {
@@ -50,10 +46,4 @@ public class Lobby {
         this.lobbyDescription = lobbyDescription;
     }
 
-    @Override
-    public String toString() {
-        return "Lobby{" +
-                "lobbyHash='" + lobbyHash + '\'' +
-                '}';
-    }
 }
