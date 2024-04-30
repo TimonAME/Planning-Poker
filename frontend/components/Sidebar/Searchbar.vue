@@ -22,7 +22,7 @@ const emit = defineEmits(["update:searchUserStories"]);
 
 watch(search, (newVal) => {
     newVal = newVal.toLowerCase();
-    console.log(newVal);
+    //console.log(newVal);
     searchUserStories.value = userStoryStore.searchUserStory(newVal);
     emit("update:searchUserStories", searchUserStories.value);
 });
