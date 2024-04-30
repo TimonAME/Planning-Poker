@@ -77,7 +77,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from 'vue';
+import { ref } from 'vue';
 import {required} from "@vuelidate/validators";
 import {useVuelidate} from "@vuelidate/core";
 import {useUserStoryStore} from "~/stores/userstory.js";
@@ -100,7 +100,6 @@ const modalId = ref(`my_modal_${props.index+100}`);
 
 function showModal() {
     index.value = userStoryStore.userStories.indexOf(props.userStory);
-    console.log(index.value);
     userStoryTitle.value = userStoryStore.userStories[index.value].title;
     userStoryDescription.value = userStoryStore.userStories[index.value].description;
     const modal = document.getElementById(modalId.value);

@@ -13,7 +13,7 @@
         </button>
         <div
             :class="{ 'translate-x-full': !open }"
-            class="fixed right-0 top-0 h-full w-96 transform transition-transform duration-200 ease-in-out shadow-xl "
+            class="fixed right-0 top-0 h-full w-96 transform transition-transform duration-200 ease-in-out shadow-xl"
             ref="sidebar"
         >
             <div
@@ -77,10 +77,10 @@
                     </div>
                     <!-- Search Input -->
                     <div class="mt-5 px-4">
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            class="w-full p-2 bg-base-300 border border-transparent rounded-md focus:border-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary transition-colors duration-300"
+                        <Searchbar
+                            @update:searchUserStories="
+                                searchUserStories = $event
+                            "
                         />
                     </div>
                     <div class="mt-4 px-4">
@@ -112,12 +112,20 @@ import ExportUserStory from "~/components/Sidebar/ExportUserStory.vue";
 import ImportUserStory from "~/components/Sidebar/ImportUserStory.vue";
 
 import { useUserStoryStore } from "~/stores/userstory";
-const userStoryStore = useUserStoryStore();
-const userStories = ref(userStoryStore.userStories);
-
 import { onMounted, onUnmounted, ref } from "vue";
 import UserStory from "~/components/Sidebar/UserStory.vue";
 import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
+import Searchbar from "~/components/Sidebar/Searchbar.vue";
+
+const userStoryStore = useUserStoryStore();
+const searchUserStories = ref();
+const userStories = ref(userStoryStore.userStories);
+
+//schaut wenn sich die searchUserStories ändern und setzt die userStories auf den neuen Wert
+watch(searchUserStories, (newVal) => {
+    //console.log(newVal);
+    userStories.value = newVal;
+});
 
 const open = ref(false);
 const sidebar = ref(null);
