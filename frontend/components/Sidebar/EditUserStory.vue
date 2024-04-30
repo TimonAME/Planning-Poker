@@ -24,7 +24,7 @@
             />
         </svg>
     </button>
-    <dialog :id="`my_modal_${index+100}`" class="modal">
+    <dialog :id="`my_modal_${index + 100}`" class="modal">
         <div class="modal-box">
             <form method="dialog">
                 <button
@@ -33,7 +33,7 @@
                     ✕
                 </button>
             </form>
-            <h3 class="font-bold text-lg">Edit UserStory</h3>
+            <h3 class="font-bold text-lg">Edit User Story</h3>
             <label class="form-control w-full">
                 <div class="label">
                     <span class="label-text">Title</span>
@@ -67,7 +67,9 @@
                 ></textarea>
             </label>
             <div class="flex justify-end">
-                <button class="btn btn-primary mt-3" @click="editUserStory">Edit</button>
+                <button class="btn btn-primary mt-3" @click="editUserStory">
+                    Edit
+                </button>
             </div>
         </div>
         <form method="dialog" class="modal-backdrop">
@@ -77,17 +79,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import {required} from "@vuelidate/validators";
-import {useVuelidate} from "@vuelidate/core";
-import {useUserStoryStore} from "~/stores/userstory.js";
+import { ref } from "vue";
+import { required } from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
+import { useUserStoryStore } from "~/stores/userstory.js";
 
 const props = defineProps({
     userStory: {
         type: Object,
-        required: true
+        required: true,
     },
-    index: Number
+    index: Number,
 });
 
 const index = ref(props.index);
@@ -96,12 +98,13 @@ const currentUserStory = props.userStory;
 
 const userStoryStore = useUserStoryStore();
 
-const modalId = ref(`my_modal_${props.index+100}`);
+const modalId = ref(`my_modal_${props.index + 100}`);
 
 function showModal() {
     index.value = userStoryStore.userStories.indexOf(props.userStory);
     userStoryTitle.value = userStoryStore.userStories[index.value].title;
-    userStoryDescription.value = userStoryStore.userStories[index.value].description;
+    userStoryDescription.value =
+        userStoryStore.userStories[index.value].description;
     const modal = document.getElementById(modalId.value);
     if (modal) modal.showModal();
 }
@@ -131,5 +134,5 @@ const editUserStory = () => {
         const modal = document.getElementById(modalId.value);
         if (modal) modal.close();
     }
-}
+};
 </script>

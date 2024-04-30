@@ -11,7 +11,7 @@
                     ✕
                 </button>
             </form>
-            <h3 class="font-bold text-lg">Add new UserStory</h3>
+            <h3 class="font-bold text-lg">Add new User Story</h3>
             <label class="form-control w-full">
                 <div class="label">
                     <span class="label-text">Title</span>
