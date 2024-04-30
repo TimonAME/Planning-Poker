@@ -1,6 +1,7 @@
 package com.example.messagingstompwebsocket;
-import com.example.messagingstompwebsocket.lobby.Lobby;
+import com.example.messagingstompwebsocket.Assets.Lobby;
 
+import com.example.messagingstompwebsocket.Assets.User;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 

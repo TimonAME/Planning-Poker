@@ -1,22 +1,20 @@
-package com.example.messagingstompwebsocket.lobby;
+package com.example.messagingstompwebsocket.Assets;
 
-import com.example.messagingstompwebsocket.User;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Lobby {
 
     public String adminHash;
-    Map<String, User> users = new HashMap<>();
-
-    public ArrayList<String> userHashes = new ArrayList<>();
+    Map<String, String> users = new HashMap<String, String>();
 
     public String lobbyName;
     public String lobbyDescription;
 
     public String lobbyStatus = "preLobby";
+
+
+    public String cardType = "Fibonacci";
 
     public Lobby(String adminHash) {
         this.adminHash = adminHash;
@@ -46,4 +44,26 @@ public class Lobby {
         this.lobbyDescription = lobbyDescription;
     }
 
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public void addUser(String key, String user) {
+        users.put(key, user);
+    }
+
+    @Override
+    public String toString() {
+        return "Lobby{" +
+                "adminHash='" + adminHash + '\'' +
+                ", lobbyName='" + lobbyName + '\'' +
+                ", lobbyDescription='" + lobbyDescription + '\'' +
+                ", lobbyStatus='" + lobbyStatus + '\'' +
+                ", cardType='" + cardType + '\'' +
+                '}';
+    }
 }

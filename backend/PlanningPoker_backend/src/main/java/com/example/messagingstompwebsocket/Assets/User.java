@@ -1,8 +1,13 @@
-package com.example.messagingstompwebsocket;
+package com.example.messagingstompwebsocket.Assets;
 
 public class User {
 
     String userName;
+
+
+    public User(String userName) {
+        this.userName = userName;
+    }
 
     public String getUserName() {
         return userName;

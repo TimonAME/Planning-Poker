@@ -1,5 +1,7 @@
 package com.example.messagingstompwebsocket.Message;
 
+import com.example.messagingstompwebsocket.Assets.Lobby;
+
 public class LobbyJoinResponse {
     public boolean isSuccess() {
         return success;
@@ -11,7 +13,7 @@ public class LobbyJoinResponse {
 
     boolean success;
 
-    public LobbyJoinResponse(boolean success) {
+    public LobbyJoinResponse(boolean success, Lobby lobby) {
         this.success = success;
     }
 

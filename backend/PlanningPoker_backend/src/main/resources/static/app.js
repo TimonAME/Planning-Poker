@@ -49,6 +49,8 @@ async function createLobby() {
         body: JSON.stringify({
             lobbyHash: lobbyHash,
             userHash: userHash,
+            lobbyName: document.getElementById("lobbyName").value,
+            lobbyDescription: document.getElementById("lobbyDescription").value
         }),
     }).then((response) => response.json())
         .then((response) => {
@@ -68,7 +70,7 @@ function joinLobby() {
         },
         body: JSON.stringify({
             lobbyHash: lobbyHash,
-            userHash: userHash,
+            userHash: userHash
         }),
     }).then((response) => response.json())
         .then((response) => {

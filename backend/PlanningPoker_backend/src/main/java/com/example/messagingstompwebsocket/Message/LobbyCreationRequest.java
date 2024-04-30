@@ -1,11 +1,13 @@
 package com.example.messagingstompwebsocket.Message;
 
-import com.example.messagingstompwebsocket.User;
-
 public class LobbyCreationRequest extends BasicMessage {
 
-
+    String lobbyName;
+    String lobbyDescription;
     String lobbyHash;
+
+
+    String userName;
 
     public String getLobbyName() {
         return lobbyName;
@@ -15,8 +17,6 @@ public class LobbyCreationRequest extends BasicMessage {
         this.lobbyName = lobbyName;
     }
 
-    String lobbyName;
-
     public String getLobbyDescription() {
         return lobbyDescription;
     }
@@ -25,7 +25,6 @@ public class LobbyCreationRequest extends BasicMessage {
         this.lobbyDescription = lobbyDescription;
     }
 
-    String lobbyDescription;
 
     public String getLobbyHash() {
         return lobbyHash;
@@ -35,6 +34,13 @@ public class LobbyCreationRequest extends BasicMessage {
         this.lobbyHash = lobbyHash;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     @Override
     public String toString() {
