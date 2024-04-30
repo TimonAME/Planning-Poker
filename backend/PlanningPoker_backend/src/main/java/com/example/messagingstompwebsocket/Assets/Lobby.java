@@ -14,7 +14,13 @@ public class Lobby {
     public String lobbyStatus = "preLobby";
 
 
-    public String cardType = "Fibonacci";
+    public String cardType = "fibonacci";
+    /**
+    cardType options:
+     * 1. fibonacci
+     * 2. powersOfTwo
+     * 3. t-shirt
+     */
 
     public Lobby(String adminHash) {
         this.adminHash = adminHash;
