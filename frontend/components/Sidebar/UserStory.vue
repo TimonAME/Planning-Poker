@@ -27,7 +27,7 @@
                     stroke-linejoin="round"
                 />
             </svg>
-            <EditUserStory :userStory="userStory" />
+            <EditUserStory :userStory="userStory" :index="index" />
             <svg
                 width="24"
                 height="24"
@@ -86,6 +86,7 @@ const props = defineProps({
         type: Object,
         required: true,
     },
+    index: Number,
 });
 
 const deleteUserStory = () => {
