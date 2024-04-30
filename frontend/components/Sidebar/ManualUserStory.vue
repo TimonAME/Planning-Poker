@@ -23,7 +23,6 @@
                         class="input input-bordered w-full"
                         v-model="userStoryTitle"
                     />
-                    <!--
                     <div
                         class="input-errors"
                         v-for="error of v$.userStoryTitle.$errors"
@@ -33,7 +32,6 @@
                             {{ error.$message }}
                         </div>
                     </div>
-                    -->
                 </div>
             </label>
             <label class="form-control">
@@ -47,7 +45,7 @@
                 ></textarea>
             </label>
             <div class="flex justify-end">
-                <button class="btn btn-primary mt-3" @click="addUserStory">
+                <button class="btn btn-primary mt-3" @click="addTheUserStory">
                     Add
                 </button>
             </div>
@@ -63,7 +61,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 import { useUserStoryStore } from "~/stores/userstory.js";
 
-const userstoryStore = useUserStoryStore();
+const userStoryStore = useUserStoryStore();
 const router = useRouter();
 const emit = defineEmits(["new-user-story"]);
 
@@ -71,23 +69,23 @@ const userStoryTitle = ref("");
 const userStoryDescription = ref("");
 
 const rules = {
-    userStoryTitle: { required, $autoDirty: true },
+    userStoryTitle: { required },
     userStoryDescription: {},
 };
 
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 
-const addUserStory = () => {
+const addTheUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        // Erstellen Sie ein neues User Story-Objekt
+        // Create a new User Story object
         const newUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
         };
 
-        // Fügen Sie die neue User Story zum Store hinzu
-        userstoryStore.addUserStory(newUserStory);
+        // Add the new User Story to the store
+        userStoryStore.addUserStory(newUserStory);
 
         // Clear the input fields
         userStoryTitle.value = "";

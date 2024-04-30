@@ -50,7 +50,7 @@
                         <div class="flex gap-4">
                             <ImportUserStory />
                             <ExportUserStory />
-                            <ManualUserStory @new-user-story="addUserStory" />
+                            <ManualUserStory />
                         </div>
                         <button
                             @click="open = false"
@@ -92,6 +92,7 @@
                             <UserStory
                                 v-for="(userStory, index) in userStories"
                                 :key="index"
+                                :index="index"
                                 :userStory="userStory"
                             />
                         </div>

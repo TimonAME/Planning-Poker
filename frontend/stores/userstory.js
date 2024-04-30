@@ -13,6 +13,9 @@ export const useUserStoryStore = defineStore("userstory", {
             // neue Aktion zum Löschen einer User Story
             this.userStories.splice(index, 1);
         },
+        editUserStory(index, userStory) {
+            this.userStories.splice(index, 1, userStory);
+        }
     },
     persist: true,
 });
