@@ -1,6 +1,5 @@
 <template>
-    <!-- TODO: Wenn es 2 UserStories gibt: Uncaught TypeError: my_modal_6.showModal is not a function at HTMLButtonElement.onclick -->
-    <button onclick="my_modal_6.showModal()">
+    <button @click="showModal">
         <svg
             width="24"
             height="24"
@@ -24,7 +23,7 @@
             />
         </svg>
     </button>
-    <dialog id="my_modal_6" class="modal">
+    <dialog :id="`my_modal_${index+100}`" class="modal">
         <div class="modal-box">
             <form method="dialog">
                 <button
@@ -33,6 +32,7 @@
                     ✕
                 </button>
             </form>
+            <!--
             <h3 class="font-bold text-lg">Add new UserStory</h3>
             <label class="form-control w-full">
                 <div class="label">
@@ -45,7 +45,7 @@
                         class="input input-bordered w-full"
                         v-model="userStoryTitle"
                     />
-                    <!--
+                    <.!--
                     <div
                         class="input-errors"
                         v-for="error of v$.userStoryTitle.$errors"
@@ -55,7 +55,7 @@
                             {{ error.$message }}
                         </div>
                     </div>
-                    -->
+                    -.->
                 </div>
             </label>
             <label class="form-control">
@@ -68,10 +68,9 @@
                     v-model="userStoryDescription"
                 ></textarea>
             </label>
+            -->
             <div class="flex justify-end">
-                <button class="btn btn-primary mt-3" @click="">
-                    Add
-                </button>
+                <button class="btn btn-primary mt-3" @click="">Add</button>
             </div>
         </div>
         <form method="dialog" class="modal-backdrop">
@@ -79,46 +78,22 @@
         </form>
     </dialog>
 </template>
+
 <script setup>
-import { ref } from "vue";
-import { useVuelidate } from "@vuelidate/core";
-import { required } from "@vuelidate/validators";
-import { useUserStoryStore } from "~/stores/userstory.js";
+import { defineProps, ref } from 'vue';
 
 const props = defineProps({
     userStory: {
         type: Object,
-        required: true,
+        required: true
     },
+    index: Number
 });
 
-const userstoryStore = useUserStoryStore();
+const modalId = ref(`my_modal_${props.index+100}`);
 
-const userStoryTitle = ref("");
-const userStoryDescription = ref("");
-
-const rules = {
-    userStoryTitle: { required, $autoDirty: true },
-    userStoryDescription: {},
-};
-
-const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
-
-const editTheUserStory = () => {
-    v$.value.$touch();
-    if (!v$.value.$error) {
-        // Create a new User Story object
-        const newUserStory = {
-            title: userStoryTitle.value,
-            description: userStoryDescription.value,
-        };
-
-        // Add the new User Story to the store
-        userstoryStore.addUserStory(newUserStory);
-
-        // Clear the input fields
-        userStoryTitle.value = "";
-        userStoryDescription.value = "";
-    }
-};
+function showModal() {
+    const modal = document.getElementById(modalId.value);
+    if (modal) modal.showModal();
+}
 </script>
