@@ -95,7 +95,6 @@ const currentUserStory = props.userStory;
 const userStoryStore = useUserStoryStore();
 
 const modalId = ref(`my_modal_${props.index+100}`);
-console.log(modalId.value)
 
 function showModal() {
     const modal = document.getElementById(modalId.value);
