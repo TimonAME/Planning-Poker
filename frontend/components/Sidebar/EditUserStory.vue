@@ -1,5 +1,5 @@
 <template>
-    <!-- TODO: Uncaught TypeError: my_modal_6.showModal is not a function at HTMLButtonElement.onclick -->
+    <!-- TODO: Wenn es 2 UserStories gibt: Uncaught TypeError: my_modal_6.showModal is not a function at HTMLButtonElement.onclick -->
     <button onclick="my_modal_6.showModal()">
         <svg
             width="24"
@@ -84,6 +84,13 @@ import { ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required } from "@vuelidate/validators";
 import { useUserStoryStore } from "~/stores/userstory.js";
+
+const props = defineProps({
+    userStory: {
+        type: Object,
+        required: true,
+    },
+});
 
 const userstoryStore = useUserStoryStore();
 
