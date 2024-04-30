@@ -15,6 +15,11 @@ export const useUserStoryStore = defineStore("userstory", {
         },
         editUserStory(index, userStory) {
             this.userStories.splice(index, 1, userStory);
+        },
+        moveUserStory(from, to ) {
+            // neue Aktion zum Verschieben einer User Story
+            const [removed] = this.userStories.splice(from, 1);
+            this.userStories.splice(to, 0, removed);
         }
     },
     persist: true,
