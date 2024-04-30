@@ -90,6 +90,8 @@ const props = defineProps({
     index: Number
 });
 
+const index = ref(props.index);
+
 const currentUserStory = props.userStory;
 
 const userStoryStore = useUserStoryStore();
@@ -97,6 +99,10 @@ const userStoryStore = useUserStoryStore();
 const modalId = ref(`my_modal_${props.index+100}`);
 
 function showModal() {
+    index.value = userStoryStore.userStories.indexOf(props.userStory);
+    console.log(index.value);
+    userStoryTitle.value = userStoryStore.userStories[index.value].title;
+    userStoryDescription.value = userStoryStore.userStories[index.value].description;
     const modal = document.getElementById(modalId.value);
     if (modal) modal.showModal();
 }
