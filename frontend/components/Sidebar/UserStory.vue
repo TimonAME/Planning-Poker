@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-base-300 hover:opacity-100 opacity-75 p-4 cursor-pointer rounded-md shadow-md transition-all duration-200 flex"
+        class="bg-base-300 hover:opacity-100 opacity-75 p-4 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
         <div>
             <h3 class="text-lg font-bold text-primary mb-2 break-words">
@@ -11,7 +11,6 @@
             </p>
         </div>
         <div class="flex flex-col justify-between gap-1 ml-6">
-          <!-- TODO: dropdown wird abgschnitten an der grenze der Sidebar -->
           <div class="dropdown dropdown-end">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +124,6 @@ const deleteUserStory = () => {
 };
 
 const dropdownOpen = ref(true); // Neue Referenz für den Zustand des Dropdowns
-
 const toggleDropdown = (overwrite) => {
   //wenn overwrite false ist, kann der Zustand nur auf true gesetzt werden
   if (overwrite) {

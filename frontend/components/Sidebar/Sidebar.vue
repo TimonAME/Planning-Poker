@@ -13,7 +13,7 @@
         </button>
         <div
             :class="{ 'translate-x-full': !open }"
-            class="fixed right-0 top-0 h-full w-96 transform transition-transform duration-200 ease-in-out shadow-xl"
+            class="fixed right-0 top-0 h-full w-96 transform transition-transform duration-200 ease-in-out shadow-xl "
             ref="sidebar"
         >
             <div
