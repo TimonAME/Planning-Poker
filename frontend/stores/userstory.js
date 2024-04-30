@@ -20,6 +20,12 @@ export const useUserStoryStore = defineStore("userstory", {
             // neue Aktion zum Verschieben einer User Story
             const [removed] = this.userStories.splice(from, 1);
             this.userStories.splice(to, 0, removed);
+        },
+        searchUserStory(searchTerm) {
+            // neue Aktion zum Suchen einer User Story
+            return this.userStories.filter((userStory) =>
+                userStory.title.includes(searchTerm)
+            );
         }
     },
     persist: true,
