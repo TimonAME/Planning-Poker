@@ -27,7 +27,7 @@
                     stroke-linejoin="round"
                 />
             </svg>
-            <EditUserStory :userStory="userStory" :index="index" />
+            <EditUserStory :userStory="userStory" :index="props.index" />
             <svg
                 width="24"
                 height="24"

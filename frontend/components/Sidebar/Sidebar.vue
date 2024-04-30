@@ -92,6 +92,7 @@
                             <UserStory
                                 v-for="(userStory, index) in userStories"
                                 :key="index"
+                                :index="index"
                                 :userStory="userStory"
                             />
                         </div>

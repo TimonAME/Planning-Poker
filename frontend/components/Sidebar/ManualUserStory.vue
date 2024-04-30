@@ -23,7 +23,6 @@
                         class="input input-bordered w-full"
                         v-model="userStoryTitle"
                     />
-                    <!--
                     <div
                         class="input-errors"
                         v-for="error of v$.userStoryTitle.$errors"
@@ -33,7 +32,6 @@
                             {{ error.$message }}
                         </div>
                     </div>
-                    -->
                 </div>
             </label>
             <label class="form-control">
@@ -63,7 +61,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 import { useUserStoryStore } from "~/stores/userstory.js";
 
-const userstoryStore = useUserStoryStore();
+const userStoryStore = useUserStoryStore();
 const router = useRouter();
 const emit = defineEmits(["new-user-story"]);
 
@@ -71,7 +69,7 @@ const userStoryTitle = ref("");
 const userStoryDescription = ref("");
 
 const rules = {
-    userStoryTitle: { required, $autoDirty: true },
+    userStoryTitle: { required },
     userStoryDescription: {},
 };
 
@@ -87,7 +85,7 @@ const addTheUserStory = () => {
         };
 
         // Add the new User Story to the store
-        userstoryStore.addUserStory(newUserStory);
+        userStoryStore.addUserStory(newUserStory);
 
         // Clear the input fields
         userStoryTitle.value = "";

@@ -32,8 +32,7 @@
                     ✕
                 </button>
             </form>
-            <!--
-            <h3 class="font-bold text-lg">Add new UserStory</h3>
+            <h3 class="font-bold text-lg">Edit UserStory</h3>
             <label class="form-control w-full">
                 <div class="label">
                     <span class="label-text">Title</span>
@@ -45,7 +44,6 @@
                         class="input input-bordered w-full"
                         v-model="userStoryTitle"
                     />
-                    <.!--
                     <div
                         class="input-errors"
                         v-for="error of v$.userStoryTitle.$errors"
@@ -55,7 +53,6 @@
                             {{ error.$message }}
                         </div>
                     </div>
-                    -.->
                 </div>
             </label>
             <label class="form-control">
@@ -68,7 +65,6 @@
                     v-model="userStoryDescription"
                 ></textarea>
             </label>
-            -->
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="">Add</button>
             </div>
@@ -81,6 +77,9 @@
 
 <script setup>
 import { defineProps, ref } from 'vue';
+import {required} from "@vuelidate/validators";
+import {useVuelidate} from "@vuelidate/core";
+import {useUserStoryStore} from "~/stores/userstory.js";
 
 const props = defineProps({
     userStory: {
@@ -90,10 +89,24 @@ const props = defineProps({
     index: Number
 });
 
+const currentUserStory = props.userStory;
+console.log(currentUserStory)
+
 const modalId = ref(`my_modal_${props.index+100}`);
+console.log(modalId.value)
 
 function showModal() {
     const modal = document.getElementById(modalId.value);
     if (modal) modal.showModal();
 }
+
+const userStoryTitle = ref(currentUserStory.title);
+const userStoryDescription = ref(currentUserStory.description);
+
+const rules = {
+    userStoryTitle: { required },
+    userStoryDescription: {},
+};
+
+const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 </script>
