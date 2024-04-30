@@ -95,7 +95,7 @@ const v$ = useVuelidate(rules, { name, description });
 const startGame = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        lobbyStore.setLobbyDetails(name.value, description.value);
+        lobbyStore.setLobbyDetails(name.value, description.value, votingSystem.value);
         router.push("/prelobby");
     }
 };

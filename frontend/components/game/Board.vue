@@ -18,7 +18,7 @@
 <script setup>
 const props = defineProps({
     selectedCard: {
-        type: Number,
+        type: [Number, String],
         default: null,
     },
 });

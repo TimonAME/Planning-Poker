@@ -5,11 +5,13 @@ export const useLobbyStore = defineStore("lobby", {
         lobbyName: "",
         lobbyDescription: "",
         name: "",
+        votingSystem: "",
     }),
     actions: {
-        setLobbyDetails(name, description) {
+        setLobbyDetails(name, description, votingSystem) {
             this.lobbyName = name;
             this.lobbyDescription = description;
+            this.votingSystem = votingSystem;
         },
     },
     persist: true,
