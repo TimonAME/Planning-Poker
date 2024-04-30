@@ -1,4 +1,5 @@
 <template>
+    <!-- TODO: wenn das modal geschlossen wird, scheint es ganz kurz über der sidebar auf -->
     <button @click="showModal">
         <svg
             width="24"

@@ -27,6 +27,7 @@
                     stroke-linejoin="round"
                 />
             </svg>
+            <!-- TODO: bei den svgs einen hover effect einbauen -->
             <EditUserStory :userStory="userStory" :index="props.index" />
             <svg
                 width="24"
