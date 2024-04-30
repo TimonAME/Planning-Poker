@@ -8,7 +8,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch } from "vue";
 import { useUserStoryStore } from "~/stores/userstory";
 
 const search = ref("");
@@ -16,13 +16,14 @@ const searchUserStories = ref();
 
 const userStoryStore = useUserStoryStore();
 
-const emit = defineEmits(['update:searchUserStories']);
+const emit = defineEmits(["update:searchUserStories"]);
 
 //TODO: maybe debouncen
 
 watch(search, (newVal) => {
     newVal = newVal.toLowerCase();
+    console.log(newVal);
     searchUserStories.value = userStoryStore.searchUserStory(newVal);
-    emit('update:searchUserStories', searchUserStories.value);
+    emit("update:searchUserStories", searchUserStories.value);
 });
 </script>

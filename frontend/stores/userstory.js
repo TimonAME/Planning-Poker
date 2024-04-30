@@ -16,7 +16,7 @@ export const useUserStoryStore = defineStore("userstory", {
         editUserStory(index, userStory) {
             this.userStories.splice(index, 1, userStory);
         },
-        moveUserStory(from, to ) {
+        moveUserStory(from, to) {
             // neue Aktion zum Verschieben einer User Story
             const [removed] = this.userStories.splice(from, 1);
             this.userStories.splice(to, 0, removed);
@@ -24,9 +24,9 @@ export const useUserStoryStore = defineStore("userstory", {
         searchUserStory(searchTerm) {
             // neue Aktion zum Suchen einer User Story
             return this.userStories.filter((userStory) =>
-                userStory.title.includes(searchTerm)
+                userStory.title.toLowerCase().includes(searchTerm),
             );
-        }
+        },
     },
     persist: true,
 });
