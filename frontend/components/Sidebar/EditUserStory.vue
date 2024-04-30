@@ -66,7 +66,7 @@
                 ></textarea>
             </label>
             <div class="flex justify-end">
-                <button class="btn btn-primary mt-3" @click="">Add</button>
+                <button class="btn btn-primary mt-3" @click="editUserStory">Edit</button>
             </div>
         </div>
         <form method="dialog" class="modal-backdrop">
@@ -90,7 +90,8 @@ const props = defineProps({
 });
 
 const currentUserStory = props.userStory;
-console.log(currentUserStory)
+
+const userStoryStore = useUserStoryStore();
 
 const modalId = ref(`my_modal_${props.index+100}`);
 console.log(modalId.value)
@@ -109,4 +110,21 @@ const rules = {
 };
 
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
+
+const editUserStory = () => {
+    v$.value.$touch();
+    if (!v$.value.$error) {
+        // Create a new User Story object
+        const editedUserStory = {
+            title: userStoryTitle.value,
+            description: userStoryDescription.value,
+        };
+
+        // Add the edited User Story to the store
+        userStoryStore.editUserStory(props.index, editedUserStory);
+
+        const modal = document.getElementById(modalId.value);
+        if (modal) modal.close();
+    }
+}
 </script>
