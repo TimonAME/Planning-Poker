@@ -18,6 +18,8 @@ const userStoryStore = useUserStoryStore();
 
 const emit = defineEmits(['update:searchUserStories']);
 
+//TODO: maybe debouncen
+
 watch(search, (newVal) => {
     newVal = newVal.toLowerCase();
     searchUserStories.value = userStoryStore.searchUserStory(newVal);
