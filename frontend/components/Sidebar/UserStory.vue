@@ -1,8 +1,9 @@
 <template>
+    <UserStoryFullScreen :userStory="props.userStory" :index="props.index" />
     <div
-        class="bg-base-300 hover:opacity-100 opacity-75 p-4 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
+        class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
-        <div>
+        <div @click="userStoryFullscreen" class="py-4 pl-4">
             <h3 class="text-lg font-bold text-primary mb-2 break-words">
                 {{ userStory.title }}
             </h3>
@@ -10,7 +11,7 @@
                 {{ userStory.description }}
             </p>
         </div>
-        <div class="flex flex-col justify-between gap-1 ml-6">
+        <div class="flex flex-col justify-between gap-1 ml-6 pr-4 py-4">
             <div class="dropdown dropdown-end">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,6 +94,7 @@
 <script setup>
 import { useUserStoryStore } from "~/stores/userstory";
 import EditUserStory from "~/components/Sidebar/EditUserStory.vue";
+import UserStoryFullScreen from "~/components/Sidebar/UserStoryFullScreen.vue";
 
 const userStoryStore = useUserStoryStore();
 const props = defineProps({
@@ -127,5 +129,11 @@ const move = (location) => {
     }
     userStoryStore.moveUserStory(index, location);
     toggleDropdown(true);
+};
+
+const userStoryFullscreen = () => {
+    const modalId = `my_modal_${props.index + 10000}`;
+    const modal = document.getElementById(modalId);
+    if (modal) modal.showModal();
 };
 </script>
