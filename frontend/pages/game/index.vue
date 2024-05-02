@@ -27,6 +27,8 @@
                     </p>
                 </div>
                 <Board :selectedCard="selectedCard" />
+                <!-- TODO: Ready button = wenn gedruückt wird, dann wird der User auf ready gesetzt und Cards werden gelocked -->
+                <button class="btn btn-wide">Ready</button>
                 <div class="flex justify-center space-x-4">
                     <Card
                         v-for="number in votingSystem"
@@ -36,6 +38,7 @@
                     />
                 </div>
             </div>
+            <NameTable />
         </div>
     </div>
 </template>
@@ -45,6 +48,7 @@ import LobbyName from "~/components/prelobby/LobbyName.vue";
 import Navbar from "~/components/prelobby_game/navbar/Navbar.vue";
 import Board from "~/components/game/Board.vue";
 import Card from "~/components/game/Card.vue";
+import NameTable from "~/components/game/NameTable.vue";
 import { computed } from "vue";
 
 import { useLobbyStore } from "~/stores/lobby";
@@ -58,13 +62,12 @@ let powersOfTwo = ref([1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
 // Ausgewähltes Voting System
 let votingSystem = fibonacciNumbers;
 if (lobbyStore.votingSystem === "Fibonacci") {
-  votingSystem = fibonacciNumbers;
+    votingSystem = fibonacciNumbers;
 } else if (lobbyStore.votingSystem === "T-shirts") {
-  votingSystem = tShirtSizes;
+    votingSystem = tShirtSizes;
 } else if (lobbyStore.votingSystem === "Powers of 2") {
-  votingSystem = powersOfTwo;
+    votingSystem = powersOfTwo;
 }
-
 
 import { useUserStoryStore } from "~/stores/userstory";
 const userStoryStore = useUserStoryStore();
