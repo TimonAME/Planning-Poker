@@ -32,11 +32,11 @@
 
 <script setup>
 import { ref } from "vue";
+import { useUserStore } from "~/stores/user.js";
 
-const users = ref([
-    { id: 1, name: "Lobby Admin" },
-    { id: 2, name: "Timon Amesmann" },
-]);
+const userStore = useUserStore();
+
+const users = ref(userStore.userList);
 
 const hoveredIndex = ref(null);
 
@@ -47,7 +47,6 @@ function toggleOpacity(index, isHovered) {
         hoveredIndex.value = null;
     }
 }
-
 function getInitials(name) {
     let ret = "";
     name = name.split(" ");
@@ -59,6 +58,7 @@ function getInitials(name) {
         return ret;
     }
 }
+//TODO: fixen
 
 onMounted(() => {
     setInterval(() => {
