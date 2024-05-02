@@ -83,18 +83,35 @@
                             "
                         />
                     </div>
+                    <!--
                     <div class="mt-4 px-4">
                         <p class="ml-2 text-base-content">User Stories:</p>
                     </div>
+                    -->
                     <!-- Sidebar Content -->
-                    <div class="mt-4 px-4 h-full overflow-auto">
-                        <div class="flex flex-wrap gap-4">
-                            <UserStory
-                                v-for="(userStory, index) in filteredUserStories"
-                                :key="index"
-                                :index="index"
-                                :userStory="userStory"
-                            />
+                    <div class="collapse collapse-plus bg-base-200">
+                        <input type="radio" name="my-accordion-3" checked="checked" />
+                        <div class="collapse-title text-m font-medium">
+                            User Stories 1
+                        </div>
+                        <div class="collapse-content">
+                            <div class="flex flex-wrap gap-4 h-full">
+                                <UserStory
+                                    v-for="(userStory, index) in filteredUserStories"
+                                    :key="index"
+                                    :index="index"
+                                    :userStory="userStory"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="collapse collapse-plus bg-base-200">
+                        <input type="radio" name="my-accordion-3" />
+                        <div class="collapse-title text-m font-medium">
+                            User Stories 2
+                        </div>
+                        <div class="collapse-content">
+                            <p>hello</p>
                         </div>
                     </div>
 
