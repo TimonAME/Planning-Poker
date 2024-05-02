@@ -77,11 +77,7 @@
                     </div>
                     <!-- Search Input -->
                     <div class="mt-5 px-4">
-                        <Searchbar
-                            @update:searchTerm="
-                                searchTerm = $event
-                            "
-                        />
+                        <Searchbar @update:searchTerm="searchTerm = $event" />
                     </div>
                     <!--
                     <div class="mt-4 px-4">
@@ -90,28 +86,36 @@
                     -->
                     <!-- Sidebar Content -->
                     <div class="collapse collapse-plus bg-base-200">
-                        <input type="radio" name="my-accordion-3" checked="checked" />
+                        <input
+                            type="radio"
+                            name="my-accordion-3"
+                            checked="checked"
+                        />
                         <div class="collapse-title text-m font-medium">
-                            User Stories 1
+                            Unvoted Stories
                         </div>
-                        <div class="collapse-content">
-                            <div class="flex flex-wrap gap-4 h-full">
-                                <UserStory
-                                    v-for="(userStory, index) in filteredUserStories"
-                                    :key="index"
-                                    :index="index"
-                                    :userStory="userStory"
-                                />
+                        <div class="collapse-content -mt-3">
+                            <div class="mt-3 h-full overflow-auto pr-3">
+                                <div class="flex flex-wrap gap-4">
+                                    <UserStory
+                                        v-for="(
+                                            userStory, index
+                                        ) in filteredUserStories"
+                                        :key="index"
+                                        :index="index"
+                                        :userStory="userStory"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="collapse collapse-plus bg-base-200">
+                    <div class="collapse collapse-plus bg-base-200 mb-10">
                         <input type="radio" name="my-accordion-3" />
                         <div class="collapse-title text-m font-medium">
-                            User Stories 2
+                            Completed Votes
                         </div>
                         <div class="collapse-content">
-                            <p>hello</p>
+                            <p>ame.me</p>
                         </div>
                     </div>
 
@@ -135,13 +139,14 @@ import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
 
 const userStoryStore = useUserStoryStore();
-const searchTerm = ref('');
+const searchTerm = ref("");
 
 const filteredUserStories = computed(() => {
     //console.log(searchTerm.value)
     return searchTerm.value
-        ? userStoryStore.userStories.filter(u =>
-            u.title.toLowerCase().includes(searchTerm.value.toLowerCase()))
+        ? userStoryStore.userStories.filter((u) =>
+              u.title.toLowerCase().includes(searchTerm.value.toLowerCase()),
+          )
         : userStoryStore.userStories;
 });
 

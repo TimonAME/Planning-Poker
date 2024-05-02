@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-6 px-4 py-4 absolute left-0 bottom-0">
+    <div class="px-4 py-4 absolute left-0 bottom-0">
         <button
             class="flex justify-center items-center bg-base-300 text-base-content rounded-md text-sm p-2 gap-1"
         >
