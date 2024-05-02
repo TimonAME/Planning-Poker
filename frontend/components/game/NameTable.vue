@@ -6,6 +6,13 @@ import { useUserStore } from "~/stores/user.js";
 const userStore = useUserStore();
 const userList = ref(userStore.userList);
 
+watch(
+    () => userStore.userList,
+    (newList) => {
+        userList.value = newList;
+    },
+);
+
 //delete all Users
 userStore.deleteAllUsers();
 
@@ -20,9 +27,9 @@ for (let i = 0; i < 6; i++) {
 let intervalId = null;
 // Function to set a random user to ready
 const setRandomUserReady = () => {
-    // Get all users who are not ready
+    // Get all users who are not ready and are not user 0
     const notReadyUsers = userList.value.filter(
-        (user) => user.status !== "ready",
+        (user, index) => user.status !== "ready" && index !== 0,
     );
     // If all users are ready, clear the interval
     if (notReadyUsers.length === 0) {

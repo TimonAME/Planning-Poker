@@ -9,11 +9,6 @@ export const useUserStore = defineStore("user", {
         addUser(user) {
             this.userList.push(user);
         },
-        // Remove a user from the list
-        removeUser(user) {
-            const index = this.userList.indexOf(user);
-            this.userList.splice(index, 1);
-        },
         deleteAllUsers() {
             this.userList = [];
         },

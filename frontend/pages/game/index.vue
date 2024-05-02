@@ -30,7 +30,10 @@
                 <!-- TODO: Ready button = wenn gedruückt wird, dann wird der User auf ready gesetzt und Cards werden gelocked -->
                 <button
                     class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
-                    @click="readyButton = !readyButton"
+                    @click="
+                        readyButton = !readyButton;
+                        setStatus();
+                    "
                     :class="readyButton ? 'btn-error' : 'btn-neutral'"
                 >
                     {{ readyButton ? "Not Ready" : "Ready" }}
@@ -89,4 +92,15 @@ const handleCardClick = (number) => {
 };
 
 const readyButton = ref(false);
+
+import { useUserStore } from "~/stores/user.js";
+const userStore = useUserStore();
+const setStatus = () => {
+    const user = userStore.userList[0];
+    if (readyButton.value) {
+        userStore.setUserStatus(user, "ready");
+    } else {
+        userStore.setUserStatus(user, "not ready");
+    }
+};
 </script>
