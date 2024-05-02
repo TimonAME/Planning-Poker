@@ -23,6 +23,7 @@
                         class="input input-bordered w-full"
                         v-model="userStoryTitle"
                     />
+                    <!--
                     <div
                         class="input-errors"
                         v-for="error of v$.userStoryTitle.$errors"
@@ -32,6 +33,7 @@
                             {{ error.$message }}
                         </div>
                     </div>
+                    -->
                 </div>
             </label>
             <label class="form-control">
