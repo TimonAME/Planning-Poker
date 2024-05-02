@@ -1,8 +1,9 @@
 <template>
+    <!-- TODO: bessere settings fürs reinpasten -->
     <button class="btn btn-outline btn-info" onclick="my_modal_5.showModal()">
         Manual
     </button>
-    <dialog id="my_modal_5" class="modal">
+    <dialog id="my_modal_5" class="modal transition-none">
         <div class="modal-box">
             <form method="dialog">
                 <button

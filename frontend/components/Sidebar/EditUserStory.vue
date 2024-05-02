@@ -24,7 +24,7 @@
             />
         </svg>
     </button>
-    <dialog :id="`my_modal_${index + 100}`" class="modal">
+    <dialog :id="`my_modal_${index + 100}`" class="modal transition-none">
         <div class="modal-box">
             <form method="dialog">
                 <button

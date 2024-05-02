@@ -1,5 +1,4 @@
 <template>
-    <!-- TODO: Errors sollen nicht reactive sein sondern nur beim submit angezeigt werden -->
     <dialog id="my_modal_5" class="modal">
         <div class="modal-box">
             <form method="dialog">
@@ -95,7 +94,11 @@ const v$ = useVuelidate(rules, { name, description });
 const startGame = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        lobbyStore.setLobbyDetails(name.value, description.value, votingSystem.value);
+        lobbyStore.setLobbyDetails(
+            name.value,
+            description.value,
+            votingSystem.value,
+        );
         router.push("/prelobby");
     }
 };
