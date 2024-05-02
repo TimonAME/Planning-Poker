@@ -11,7 +11,7 @@
             >
                 <div class="flex flex-col items-center">
                     <h1
-                        class="text-2xl font-bold text-gray-800 mb-2"
+                        class="text-2xl font-bold text-primary mb-2"
                         v-if="firstUserStory"
                     >
                         {{ firstUserStory.title }}
@@ -20,7 +20,7 @@
                         Add new User Stories
                     </h1>
                     <p
-                        class="text-base text-gray-600 leading-relaxed"
+                        class="text-base text-base-content leading-relaxed"
                         v-if="firstUserStory"
                     >
                         {{ firstUserStory.description }}
@@ -28,7 +28,13 @@
                 </div>
                 <Board :selectedCard="selectedCard" />
                 <!-- TODO: Ready button = wenn gedruückt wird, dann wird der User auf ready gesetzt und Cards werden gelocked -->
-                <button class="btn btn-wide">Ready</button>
+                <button
+                    class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                    @click="readyButton = !readyButton"
+                    :class="readyButton ? 'btn-error' : 'btn-neutral'"
+                >
+                    {{ readyButton ? "Not Ready" : "Ready" }}
+                </button>
                 <div class="flex justify-center space-x-4">
                     <Card
                         v-for="number in votingSystem"
@@ -81,4 +87,6 @@ const handleCardClick = (number) => {
 
     selectedCard.value = number;
 };
+
+const readyButton = ref(false);
 </script>
