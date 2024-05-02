@@ -34,6 +34,7 @@
 <script setup>
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import { useUserStore } from "~/stores/user.js";
 
 onMounted(() => {
     my_modal_7.showModal();
@@ -47,10 +48,20 @@ const rules = {
 
 const v$ = useVuelidate(rules, { username });
 
+const userStore = useUserStore();
+
 const enterName = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
         my_modal_7.close();
+
+        // Set the username in the user store
+        // TODO: wenn nicht Lobbyersteller -> admin auf false setzen
+        userStore.addUser({
+            name: username.value,
+            status: "not ready",
+            admin: true,
+        });
     }
 };
 </script>

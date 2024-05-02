@@ -5,9 +5,9 @@ export const useUserStore = defineStore("user", {
         userList: [], // Array of users
     }),
     actions: {
-        // Add a user to the list
-        addUser(user) {
-            this.userList.push(user);
+        // Add a user with name, status and admin
+        addUser(name, status, admin) {
+            this.userList.push({ name, status, admin });
         },
         deleteAllUsers() {
             this.userList = [];
