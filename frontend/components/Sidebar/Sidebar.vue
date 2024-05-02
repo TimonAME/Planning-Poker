@@ -78,8 +78,8 @@
                     <!-- Search Input -->
                     <div class="mt-5 px-4">
                         <Searchbar
-                            @update:searchUserStories="
-                                searchUserStories = $event
+                            @update:searchTerm="
+                                searchTerm = $event
                             "
                         />
                     </div>
@@ -90,7 +90,7 @@
                     <div class="mt-4 px-4 h-full overflow-auto">
                         <div class="flex flex-wrap gap-4">
                             <UserStory
-                                v-for="(userStory, index) in userStories"
+                                v-for="(userStory, index) in filteredUserStories"
                                 :key="index"
                                 :index="index"
                                 :userStory="userStory"
@@ -118,13 +118,14 @@ import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
 
 const userStoryStore = useUserStoryStore();
-const searchUserStories = ref();
-const userStories = ref(userStoryStore.userStories);
+const searchTerm = ref('');
 
-//schaut wenn sich die searchUserStories ändern und setzt die userStories auf den neuen Wert
-watch(searchUserStories, (newVal) => {
-    //console.log(newVal);
-    userStories.value = newVal;
+const filteredUserStories = computed(() => {
+    //console.log(searchTerm.value)
+    return searchTerm.value
+        ? userStoryStore.userStories.filter(u =>
+            u.title.toLowerCase().includes(searchTerm.value.toLowerCase()))
+        : userStoryStore.userStories;
 });
 
 const open = ref(false);

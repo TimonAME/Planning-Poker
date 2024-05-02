@@ -1,5 +1,4 @@
 <template>
-    <!-- TODO: nachdem man gesucht hat, funktioniert garnichts mehr -->
     <div
         class="bg-base-300 hover:opacity-100 opacity-75 p-4 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
