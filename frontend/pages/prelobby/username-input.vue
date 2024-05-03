@@ -6,30 +6,38 @@
     <dialog id="my_modal_7" class="modal">
         <div class="modal-box">
             <h3 class="font-bold text-lg mb-1">Username</h3>
-            <label class="form-control w-full">
-                <div :class="{ error: v$.username.$errors.length }">
-                    <input
-                        type="text"
-                        placeholder="Type here"
-                        class="input input-bordered w-full"
-                        v-model="username"
-                    />
-                    <div
-                        class="input-errors"
-                        v-for="error of v$.username.$errors"
-                        :key="error.$uid"
-                    >
-                        <div class="error-msg text-sm ml-1 mt-1 text-red-600">
-                            {{ error.$message }}
+            <form @submit.prevent="enterName">
+                <label class="form-control w-full">
+                    <div :class="{ error: v$.username.$errors.length }">
+                        <input
+                            type="text"
+                            placeholder="Type here"
+                            class="input input-bordered w-full"
+                            v-model="username"
+                        />
+                        <div
+                            class="input-errors"
+                            v-for="error of v$.username.$errors"
+                            :key="error.$uid"
+                        >
+                            <div
+                                class="error-msg text-sm ml-1 mt-1 text-red-600"
+                            >
+                                {{ error.$message }}
+                            </div>
                         </div>
                     </div>
+                </label>
+                <div class="flex justify-end">
+                    <button
+                        type="submit"
+                        class="btn btn-primary mt-2"
+                        @click="enterName"
+                    >
+                        Submit
+                    </button>
                 </div>
-            </label>
-            <div class="flex justify-end">
-                <button class="btn btn-primary mt-2" @click="enterName">
-                    Submit
-                </button>
-            </div>
+            </form>
         </div>
     </dialog>
 </template>
