@@ -84,7 +84,7 @@ const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 const addTheUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        // Create a new User Story object
+        // Create a new User Story object .
         const newUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
