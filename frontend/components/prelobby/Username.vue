@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { required } from "@vuelidate/validators";
+import { required, maxLength, minLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { useUserStore } from "~/stores/user.js";
 
@@ -43,7 +43,7 @@ onMounted(() => {
 const username = ref("");
 
 const rules = {
-    username: { required },
+    username: { required, minLength: minLength(1), maxLength: maxLength(20) },
 };
 
 const v$ = useVuelidate(rules, { username });
@@ -53,15 +53,10 @@ const userStore = useUserStore();
 const enterName = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        my_modal_7.close();
-
         // Set the username in the user store
         // TODO: wenn nicht Lobbyersteller -> admin auf false setzen
-        userStore.addUser({
-            name: username.value,
-            status: "not ready",
-            admin: true,
-        });
+        userStore.addUser(username.value, "not ready", true);
+        my_modal_7.close();
     }
 };
 </script>

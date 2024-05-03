@@ -3,7 +3,7 @@
         class="md:w-1/2 sm:w-2/3 w-full mx-2 mt-8 flex flex-wrap justify-center items-center"
     >
         <!-- Loop through users and display them -->
-        <transition-group name="list">
+        <transition-group name="list" v-if="users.length">
             <div
                 v-for="(user, index) in users"
                 :key="index"
@@ -48,6 +48,8 @@ function toggleOpacity(index, isHovered) {
     }
 }
 function getInitials(name) {
+    if (name === "" || typeof name !== "string") return "";
+
     let ret = "";
     name = name.split(" ");
     if (name.length === 1) {
@@ -58,15 +60,27 @@ function getInitials(name) {
         return ret;
     }
 }
-//TODO: fixen
 
+// ****** TEMPORARY CODE ******
+// only for demonstation purposes
+//
+// zum hinzufügen von Usern
+//
+// wenn erster eintrag in users gemacht wurde dann starte interval
+let intervalId = null;
 onMounted(() => {
-    setInterval(() => {
-        if (users.value.length < 20) {
-            users.value.push({
-                id: users.value.length + 1,
-                name: Math.random().toString(36).substring(7),
-            });
+    intervalId = setInterval(() => {
+        if (users.value.length > 0) {
+            clearInterval(intervalId);
+            intervalId = setInterval(() => {
+                if (users.value.length < 8) {
+                    userStore.addUser(
+                        "User " + (users.value.length + 1) + " Test",
+                        "not ready",
+                        false,
+                    );
+                }
+            }, 2000);
         }
     }, 1000);
 });

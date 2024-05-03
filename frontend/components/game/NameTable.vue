@@ -13,16 +13,9 @@ watch(
     },
 );
 
-/* delete this code block after implementing the user store
-userStore.deleteAllUsers();
-for (let i = 1; i < 6; i++) {
-    userStore.addUser({ name: `User ${i}`, status: "not ready" });
-}
- */
-
 // ****** TEMPORARY CODE ******
 // only for demonstation purposes
-/*
+
 let intervalId = null;
 // Function to set a random user to ready
 const setRandomUserReady = () => {
@@ -52,7 +45,6 @@ onMounted(() => {
 onUnmounted(() => {
     clearInterval(intervalId);
 });
- */
 </script>
 
 <template>
