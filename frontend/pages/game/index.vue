@@ -28,17 +28,28 @@
                 </div>
                 <Board :selectedCard="selectedCard" />
                 <!-- TODO: Ready button = wenn gedruückt wird, dann wird der User auf ready gesetzt und Cards werden gelocked -->
-                <button
-                    class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
-                    @click="
-                        readyButton = !readyButton;
-                        setStatus();
-                    "
-                    :class="readyButton ? 'btn-error' : 'btn-neutral'"
-                    :disabled="selectedCard === null"
-                >
-                    {{ readyButton ? "Not Ready" : "Ready" }}
-                </button>
+                <div class="flex gap-4">
+                    <button
+                        class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                        @click="
+                            readyButton = !readyButton;
+                            setStatus();
+                        "
+                        :class="readyButton ? 'btn-neutral' : 'btn-error'"
+                        :disabled="selectedCard === null"
+                    >
+                        {{ readyButton ? "Not Ready" : "Ready" }}
+                    </button>
+                    <!-- TODO: Button nur anzeigen wenn man admin ist -->
+                    <button
+                        class="btn btn-active btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                        @click="endVote()"
+                        :class="readyButton ? 'btn-success' : 'btn-neutral'"
+                        :disabled="!readyButton"
+                    >
+                        End Vote
+                    </button>
+                </div>
                 <div class="flex justify-center space-x-4">
                     <Card
                         v-for="number in votingSystem"
@@ -104,5 +115,9 @@ const setStatus = () => {
     } else {
         userStore.setUserStatus(user, "not ready");
     }
+};
+
+const endVote = () => {
+    console.log("End Vote");
 };
 </script>
