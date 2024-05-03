@@ -40,7 +40,7 @@
             <div class="label">
                 <span class="label-text">Description</span>
             </div>
-            <RichTextEditor />
+            <RichTextEditor @update:content="handleEditorContent" :resetTrigger="resetCounter" />
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="addTheUserStory">
                     Add
@@ -65,6 +65,7 @@ const emit = defineEmits(["new-user-story"]);
 
 const userStoryTitle = ref("");
 const userStoryDescription = ref("");
+const resetCounter = ref(0);
 
 const rules = {
     userStoryTitle: { required },
@@ -74,10 +75,14 @@ const rules = {
 
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 
+const handleEditorContent = (htmlContent) => {
+    userStoryDescription.value = htmlContent;  // Update the userStoryDescription with the HTML from the editor
+};
+
 const addTheUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        // Create a new User Story object .
+        // Create a new User Story object
         const newUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
@@ -89,6 +94,7 @@ const addTheUserStory = () => {
         // Clear the input fields
         userStoryTitle.value = "";
         userStoryDescription.value = "";
+        resetCounter.value += 1;  // Reset the RichTextEditor
     }
 };
 </script>

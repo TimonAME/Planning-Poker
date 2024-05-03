@@ -130,20 +130,30 @@ import RedoIcon from 'vue-material-design-icons/Redo.vue'
 
 const content = ref('')
 
+const props = defineProps({
+    resetTrigger: Number
+});
+
+const emit = defineEmits(['update:content']);
 const editor = useEditor({
     content: content.value,
-    extensions: [
-        StarterKit,
-        Underline,
-        BulletList,
-        ListItem
-    ],
+    onUpdate: ({ editor }) => {
+        const html = editor.getHTML();
+        emit('update:content', html);  // Emit the current HTML content
+    },
+    extensions: [StarterKit, Underline, BulletList, ListItem],
     editorProps: {
         attributes: {
-            class: 'border border-gray-400 p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto outline-none prose max-w-none',
+            class: 'prose max-w-none outline-none overflow-y-auto min-h-[12rem] max-h-[12rem] border p-4 border-gray-400',
         },
     },
-})
+});
+
+watch(() => props.resetTrigger, (newVal, oldVal) => {
+    if (newVal !== oldVal) {
+        editor.commands.clearContent()  // Setzt den Inhalt des Editors zurück
+    }
+});
 </script>
 
 <style lang="scss">
