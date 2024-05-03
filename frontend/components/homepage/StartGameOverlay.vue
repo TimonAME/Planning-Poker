@@ -75,11 +75,14 @@ import { required, minLength } from "@vuelidate/validators";
 import AdvancedSettings from "~/components/homepage/StartGameOverlay/AdvancedSettings.vue";
 import { useLobbyStore } from "~/stores/lobby";
 import { useRouter } from "vue-router";
+import { useUserStore } from "~/stores/user.js";
 
 const router = useRouter();
 
 const lobbyStore = useLobbyStore();
 const advancedSettings = ref(false);
+
+const userStore = useUserStore();
 
 const name = ref("");
 const description = ref("");
@@ -95,8 +98,14 @@ const v$ = useVuelidate(rules, { name, description });
 const startGame = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        lobbyStore.setLobbyDetails(name.value, description.value, votingSystem.value);
-        router.push("/prelobby");
+        lobbyStore.setLobbyDetails(
+            name.value,
+            description.value,
+            votingSystem.value,
+        );
+        userStore.deleteAllUsers();
+        //router.push("/prelobby");
+        router.push("/prelobby/username-input");
     }
 };
 </script>

@@ -1,4 +1,7 @@
 <template>
+    <!-- ThemeDropdown muss eingebunden werden damit Styles funktionieren -->
+    <ThemeDropdown v-show="false" />
+
     <!-- TODO: Overlay darf nicht mit Esc geschlossen werden -->
     <dialog id="my_modal_7" class="modal">
         <div class="modal-box">
@@ -35,6 +38,9 @@
 import { required, maxLength, minLength } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { useUserStore } from "~/stores/user.js";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 onMounted(() => {
     my_modal_7.showModal();
@@ -56,6 +62,7 @@ const enterName = () => {
         // Set the username in the user store
         // TODO: wenn nicht Lobbyersteller -> admin auf false setzen
         userStore.addUser(username.value, "not ready", true);
+        router.push("/prelobby");
         my_modal_7.close();
     }
 };
