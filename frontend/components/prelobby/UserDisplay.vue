@@ -37,6 +37,12 @@ import { useUserStore } from "~/stores/user.js";
 const userStore = useUserStore();
 
 const users = ref(userStore.userList);
+watch(
+    () => userStore.userList,
+    (newList) => {
+        users.value = newList;
+    },
+);
 
 const hoveredIndex = ref(null);
 
