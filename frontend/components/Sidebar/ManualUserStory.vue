@@ -47,6 +47,7 @@
                     v-model="userStoryDescription"
                 ></textarea>
             </label>
+            <RichTextEditor />
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="addTheUserStory">
                     Add
@@ -63,6 +64,7 @@ import { ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 import { useUserStoryStore } from "~/stores/userstory.js";
+import RichTextEditor from "~/components/Sidebar/RichTextEditor.vue";
 
 const userStoryStore = useUserStoryStore();
 const router = useRouter();
