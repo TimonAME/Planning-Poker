@@ -6,6 +6,8 @@ public class LobbyCreationRequest extends BasicMessage {
     String lobbyDescription;
     String lobbyHash;
 
+    String lobbyCardType;
+
 
     String userName;
 
@@ -23,6 +25,12 @@ public class LobbyCreationRequest extends BasicMessage {
 
     public void setLobbyDescription(String lobbyDescription) {
         this.lobbyDescription = lobbyDescription;
+    }
+
+    public String getLobbyCardType() { return lobbyCardType; }
+
+    public void setLobbyCardType(String lobbyCardType) {
+        this.lobbyCardType = lobbyCardType;
     }
 
 

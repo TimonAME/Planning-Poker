@@ -57,6 +57,7 @@ public class LobbyController {
         Lobby lobby = new Lobby(lobbyCreationRequest.getUserHash());
         lobby.setLobbyName(lobbyCreationRequest.getLobbyName());
         lobby.setLobbyDescription(lobbyCreationRequest.getLobbyDescription());
+        lobby.setCardType(lobbyCreationRequest.getLobbyCardType());
         //add admin to lobby
         lobby.addUser(lobbyCreationRequest.getUserHash(), lobbyCreationRequest.getUserName());
 
