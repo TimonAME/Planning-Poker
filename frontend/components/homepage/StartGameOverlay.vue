@@ -104,7 +104,8 @@ const startGame = () => {
             votingSystem.value,
         );
         userStore.deleteAllUsers();
-        router.push("/prelobby");
+        //router.push("/prelobby");
+        router.push("/prelobby/username-input");
     }
 };
 </script>

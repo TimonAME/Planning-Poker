@@ -7,7 +7,7 @@
         <div
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
-            <Username />
+            <!--<Username />-->
             <Navbar class="z-40" />
             <Lobbyname class="z-50" />
 
