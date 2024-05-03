@@ -85,6 +85,7 @@
                     </div>
                     -->
                     <!-- Sidebar Content -->
+                    <!-- TODO: zweiter teil vom akkordion rutscht nach unten -->
                     <div class="collapse collapse-plus bg-base-200">
                         <input
                             type="radio"

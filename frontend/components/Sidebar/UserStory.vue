@@ -1,15 +1,17 @@
 <template>
+    <!-- TODO: der button zum fullscreen ist noch nicht gut positioniert -->
     <UserStoryFullScreen :userStory="props.userStory" :index="props.index" />
     <div
         class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
         <div @click="userStoryFullscreen" class="py-4 pl-4">
             <h3 class="text-lg font-bold text-primary mb-2 break-words">
-                {{ userStory.title }}
+                {{ props.userStory.title }}
             </h3>
-            <p class="text-base-content overflow-y-auto max-h-24 break-words">
-                {{ userStory.description }}
-            </p>
+            <p
+                class="overflow-y-auto max-h-24 break-words"
+                v-html="styledDescription"
+            ></p>
         </div>
         <div class="flex flex-col justify-between gap-1 ml-6 pr-4 py-4">
             <div class="dropdown dropdown-end">
@@ -110,6 +112,23 @@ const deleteUserStory = () => {
     const index = userStoryStore.userStories.indexOf(props.userStory);
     userStoryStore.deleteUserStory(index);
 };
+
+//TODO: erste lösung um styles für die html tags zu applyen. für alle die im rich text editor benutzt werden customizen
+
+const styledDescription = computed(() => {
+    let htmlContent = props.userStory.description;
+
+    // Applying styles to <h1> tags
+    htmlContent = htmlContent.replace(/<h1>/g, '<h1 class="text-xl font-bold text-primary mt-2 mb-4">');
+
+    // Applying styles to <ul> tags
+    htmlContent = htmlContent.replace(/<ul>/g, '<ul class="list-disc pl-5">');
+
+    // Applying styles to <li> tags
+    htmlContent = htmlContent.replace(/<li>/g, '<li class="mb-1">');
+
+    return htmlContent;
+});
 
 const dropdownOpen = ref(true); // Neue Referenz für den Zustand des Dropdowns
 const toggleDropdown = (overwrite) => {
