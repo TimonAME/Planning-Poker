@@ -35,6 +35,7 @@
                         setStatus();
                     "
                     :class="readyButton ? 'btn-error' : 'btn-neutral'"
+                    :disabled="selectedCard === null"
                 >
                     {{ readyButton ? "Not Ready" : "Ready" }}
                 </button>
@@ -43,6 +44,7 @@
                         v-for="number in votingSystem"
                         :key="number"
                         :number="number"
+                        :blocked="readyButton"
                         @cardClicked="handleCardClick"
                     />
                 </div>
