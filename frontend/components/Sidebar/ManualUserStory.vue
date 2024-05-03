@@ -65,13 +65,12 @@ const emit = defineEmits(["new-user-story"]);
 
 const userStoryTitle = ref("");
 const userStoryDescription = ref("");
-const resetCounter = ref(0);
+const resetCounter = ref(false);
 
 const rules = {
     userStoryTitle: { required },
     userStoryDescription: {},
 };
-//test
 
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 
@@ -94,7 +93,7 @@ const addTheUserStory = () => {
         // Clear the input fields
         userStoryTitle.value = "";
         userStoryDescription.value = "";
-        resetCounter.value += 1;  // Reset the RichTextEditor
+        resetCounter.value = !resetCounter.value  // Reset the RichTextEditor
     }
 };
 </script>

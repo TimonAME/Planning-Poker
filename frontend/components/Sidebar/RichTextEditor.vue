@@ -131,13 +131,14 @@ import RedoIcon from 'vue-material-design-icons/Redo.vue'
 const content = ref('')
 
 const props = defineProps({
-    resetTrigger: Number
+    resetTrigger: Boolean
 });
 
 const emit = defineEmits(['update:content']);
 const editor = useEditor({
     content: content.value,
     onUpdate: ({ editor }) => {
+        //console.log(editor)
         const html = editor.getHTML();
         emit('update:content', html);  // Emit the current HTML content
     },
@@ -151,7 +152,7 @@ const editor = useEditor({
 
 watch(() => props.resetTrigger, (newVal, oldVal) => {
     if (newVal !== oldVal) {
-        editor.commands.clearContent()  // Setzt den Inhalt des Editors zurück
+        editor.value.commands.clearContent();
     }
 });
 </script>
