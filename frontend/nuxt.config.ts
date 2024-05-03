@@ -5,7 +5,6 @@ export default defineNuxtConfig({
         "@nuxtjs/tailwindcss",
         "nuxt-primevue",
         "@pinia/nuxt",
-        "nuxt-tiptap-editor"
     ],
     primevue: {},
     css: ["primevue/resources/themes/aura-light-green/theme.css"],

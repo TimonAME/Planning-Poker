@@ -37,16 +37,9 @@
                     -->
                 </div>
             </label>
-            <label class="form-control">
-                <div class="label">
-                    <span class="label-text">Description</span>
-                </div>
-                <textarea
-                    class="textarea textarea-bordered h-24"
-                    placeholder="Type here"
-                    v-model="userStoryDescription"
-                ></textarea>
-            </label>
+            <div class="label">
+                <span class="label-text">Description</span>
+            </div>
             <RichTextEditor />
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="addTheUserStory">

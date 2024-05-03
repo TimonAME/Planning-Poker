@@ -1,161 +1,161 @@
 <template>
-    <!-- TODO: alles mit daisyui und tailwind stylen -->
     <div>
-        <div v-if="editor">
+        <section
+            v-if="editor"
+            class="buttons text-gray-700 flex items-center flex-wrap gap-x-4 border-t border-l border-r border-gray-400 p-4"
+        >
             <button
+                type="button"
                 @click="editor.chain().focus().toggleBold().run()"
-                :disabled="!editor.can().chain().focus().toggleBold().run()"
-                :class="{ 'is-active': editor.isActive('bold') }"
+                :class="{ 'bg-gray-200 rounded': editor.isActive('bold') }"
+                class="p-1"
             >
-                bold
+                <BoldIcon title="Bold" />
             </button>
             <button
+                type="button"
                 @click="editor.chain().focus().toggleItalic().run()"
-                :disabled="!editor.can().chain().focus().toggleItalic().run()"
-                :class="{ 'is-active': editor.isActive('italic') }"
+                :class="{ 'bg-gray-200 rounded': editor.isActive('italic') }"
+                class="p-1"
             >
-                italic
+                <ItalicIcon title="Italic" />
             </button>
             <button
-                @click="editor.chain().focus().toggleStrike().run()"
-                :disabled="!editor.can().chain().focus().toggleStrike().run()"
-                :class="{ 'is-active': editor.isActive('strike') }"
+                type="button"
+                @click="editor.chain().focus().toggleUnderline().run()"
+                :class="{ 'bg-gray-200 rounded': editor.isActive('underline') }"
+                class="p-1"
             >
-                strike
+                <UnderlineIcon title="Underline" />
             </button>
             <button
-                @click="editor.chain().focus().toggleCode().run()"
-                :disabled="!editor.can().chain().focus().toggleCode().run()"
-                :class="{ 'is-active': editor.isActive('code') }"
-            >
-                code
-            </button>
-            <button @click="editor.chain().focus().unsetAllMarks().run()">
-                clear marks
-            </button>
-            <button @click="editor.chain().focus().clearNodes().run()">
-                clear nodes
-            </button>
-            <button
-                @click="editor.chain().focus().setParagraph().run()"
-                :class="{ 'is-active': editor.isActive('paragraph') }"
-            >
-                paragraph
-            </button>
-            <button
-                @click="
-                    editor.chain().focus().toggleHeading({ level: 1 }).run()
-                "
+                type="button"
+                @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
                 :class="{
-                    'is-active': editor.isActive('heading', { level: 1 }),
-                }"
+          'bg-gray-200 rounded': editor.isActive('heading', { level: 1 }),
+        }"
+                class="p-1"
             >
-                h1
+                <H1Icon title="H1" />
             </button>
             <button
-                @click="
-                    editor.chain().focus().toggleHeading({ level: 2 }).run()
-                "
+                type="button"
+                @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
                 :class="{
-                    'is-active': editor.isActive('heading', { level: 2 }),
-                }"
+          'bg-gray-200 rounded': editor.isActive('heading', { level: 2 }),
+        }"
+                class="p-1"
             >
-                h2
+                <H2Icon title="H2" />
             </button>
             <button
-                @click="
-                    editor.chain().focus().toggleHeading({ level: 3 }).run()
-                "
-                :class="{
-                    'is-active': editor.isActive('heading', { level: 3 }),
-                }"
-            >
-                h3
-            </button>
-            <button
-                @click="
-                    editor.chain().focus().toggleHeading({ level: 4 }).run()
-                "
-                :class="{
-                    'is-active': editor.isActive('heading', { level: 4 }),
-                }"
-            >
-                h4
-            </button>
-            <button
-                @click="
-                    editor.chain().focus().toggleHeading({ level: 5 }).run()
-                "
-                :class="{
-                    'is-active': editor.isActive('heading', { level: 5 }),
-                }"
-            >
-                h5
-            </button>
-            <button
-                @click="
-                    editor.chain().focus().toggleHeading({ level: 6 }).run()
-                "
-                :class="{
-                    'is-active': editor.isActive('heading', { level: 6 }),
-                }"
-            >
-                h6
-            </button>
-            <button
+                type="button"
                 @click="editor.chain().focus().toggleBulletList().run()"
-                :class="{ 'is-active': editor.isActive('bulletList') }"
+                :class="{ 'bg-gray-200 rounded': editor.isActive('bulletList') }"
+                class="p-1"
             >
-                bullet list
+                <ListIcon title="Bullet List" />
             </button>
             <button
+                type="button"
                 @click="editor.chain().focus().toggleOrderedList().run()"
-                :class="{ 'is-active': editor.isActive('orderedList') }"
+                :class="{ 'bg-gray-200 rounded': editor.isActive('orderedList') }"
+                class="p-1"
             >
-                ordered list
+                <OrderedListIcon title="Ordered List" />
             </button>
             <button
-                @click="editor.chain().focus().toggleCodeBlock().run()"
-                :class="{ 'is-active': editor.isActive('codeBlock') }"
-            >
-                code block
-            </button>
-            <button
+                type="button"
                 @click="editor.chain().focus().toggleBlockquote().run()"
-                :class="{ 'is-active': editor.isActive('blockquote') }"
+                :class="{ 'bg-gray-200 rounded': editor.isActive('blockquote') }"
+                class="p-1"
             >
-                blockquote
-            </button>
-            <button @click="editor.chain().focus().setHorizontalRule().run()">
-                horizontal rule
-            </button>
-            <button @click="editor.chain().focus().setHardBreak().run()">
-                hard break
+                <BlockquoteIcon title="Blockquote" />
             </button>
             <button
+                type="button"
+                @click="editor.chain().focus().toggleCode().run()"
+                :class="{ 'bg-gray-200 rounded': editor.isActive('code') }"
+                class="p-1"
+            >
+                <CodeIcon title="Code" />
+            </button>
+            <button
+                type="button"
+                @click="editor.chain().focus().setHorizontalRule().run()"
+                class="p-1"
+            >
+                <HorizontalRuleIcon title="Horizontal Rule" />
+            </button>
+            <button
+                type="button"
+                class="p-1 disabled:text-gray-400"
                 @click="editor.chain().focus().undo().run()"
                 :disabled="!editor.can().chain().focus().undo().run()"
             >
-                undo
+                <UndoIcon title="Undo" />
             </button>
             <button
+                type="button"
                 @click="editor.chain().focus().redo().run()"
                 :disabled="!editor.can().chain().focus().redo().run()"
+                class="p-1 disabled:text-gray-400"
             >
-                redo
+                <RedoIcon title="Redo" />
             </button>
-        </div>
-        <TiptapEditorContent :editor="editor" />
+        </section>
+        <EditorContent :editor="editor" />
     </div>
 </template>
 
 <script setup>
-const editor = useEditor({
-    content: "<p>I'm running Tiptap with Vue.js. 🎉</p>",
-    extensions: [TiptapStarterKit],
-});
+import { useEditor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+import BulletList from '@tiptap/extension-bullet-list'
+import ListItem from '@tiptap/extension-list-item'
 
-onBeforeUnmount(() => {
-    unref(editor).destroy();
-});
+import BoldIcon from 'vue-material-design-icons/FormatBold.vue'
+import ItalicIcon from 'vue-material-design-icons/FormatItalic.vue'
+import UnderlineIcon from 'vue-material-design-icons/FormatUnderline.vue'
+import H1Icon from 'vue-material-design-icons/FormatHeader1.vue'
+import H2Icon from 'vue-material-design-icons/FormatHeader2.vue'
+import ListIcon from 'vue-material-design-icons/FormatListBulleted.vue'
+import OrderedListIcon from 'vue-material-design-icons/FormatListNumbered.vue'
+import BlockquoteIcon from 'vue-material-design-icons/FormatQuoteClose.vue'
+import CodeIcon from 'vue-material-design-icons/CodeTags.vue'
+import HorizontalRuleIcon from 'vue-material-design-icons/Minus.vue'
+import UndoIcon from 'vue-material-design-icons/Undo.vue'
+import RedoIcon from 'vue-material-design-icons/Redo.vue'
+
+const content = ref('')
+
+const editor = useEditor({
+    content: content.value,
+    extensions: [
+        StarterKit,
+        Underline,
+        BulletList,
+        ListItem
+    ],
+    editorProps: {
+        attributes: {
+            class: 'border border-gray-400 p-4 min-h-[12rem] max-h-[12rem] overflow-y-auto outline-none prose max-w-none',
+        },
+    },
+})
 </script>
+
+<style lang="scss">
+/* Basic editor styles */
+.tiptap {
+    > * + * {
+        margin-top: 0.75em;
+    }
+
+    ul,
+    ol {
+        padding: 0 1rem;
+    }
+}
+</style>

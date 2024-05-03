@@ -4,6 +4,24 @@ module.exports = {
         `./src/pages/**/*.{js,jsx,ts,tsx}`,
         `./src/components/**/*.{js,jsx,ts,tsx}`,
     ],
+    extend: {
+        typography: {
+            DEFAULT: {
+                css: {
+                    ul: {
+                        listStyleType: 'disc',
+                    },
+                    ol: {
+                        listStyleType: 'decimal',
+                    },
+                    li: {
+                        marginTop: '0.5rem',
+                        marginBottom: '0.5rem',
+                    },
+                },
+            },
+        },
+    },
     theme: {
         
         extend: {
@@ -20,7 +38,7 @@ module.exports = {
         },
         
     },
-    plugins: [require("daisyui")],
+    plugins: [require("daisyui"), require('@tailwindcss/typography'),],
 
     // daisyUI config (optional - here are the default values)
     daisyui: {
