@@ -1,5 +1,5 @@
 <template>
-    <Transition>
+    <Transition name="full">
         <UserStoryFullScreen
             :userStory="props.userStory"
             v-if="showUserStoryFullscreen"
@@ -8,7 +8,7 @@
         />
     </Transition>
     <!-- TODO: beim fade out wird was abgeschnitten -->
-    <Transition>
+    <Transition name="edit">
         <EditUserStory
             :userStory="userStory"
             :index="props.index"
@@ -203,13 +203,29 @@ const move = (location) => {
 
 <style scoped>
 /* TODO: daisyui transitions nehmen */
-.v-enter-active,
-.v-leave-active {
+.full-enter-active,
+.full-leave-active {
     transition: opacity 150ms ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.full-enter-from,
+.full-leave-to {
     opacity: 0;
+}
+
+.edit-enter-active {
+    transition: opacity 150ms ease;
+}
+
+.edit-enter-from {
+    opacity: 0;
+}
+
+.edit-enter-to {
+    opacity: 1;
+}
+
+.edit-leave-active {
+    transition: opacity 0ms;
 }
 </style>

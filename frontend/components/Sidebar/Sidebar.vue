@@ -206,14 +206,19 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* TODO: daisyui transitions nehmen */
-.v-enter-active,
-.v-leave-active {
+.v-enter-active {
     transition: opacity 150ms ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.v-enter-from {
     opacity: 0;
+}
+
+.v-enter-to {
+    opacity: 1;
+}
+
+.v-leave-active {
+    transition: opacity 0ms;
 }
 </style>
