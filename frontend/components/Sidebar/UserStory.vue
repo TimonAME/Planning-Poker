@@ -5,7 +5,7 @@
         class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
         <div @click="userStoryFullscreen" class="py-4 pl-4">
-            <h3 class="text-lg font-bold text-primary mb-2 break-words">
+            <h3 class="text-xl font-bold text-primary mb-2 break-words">
                 {{ props.userStory.title }}
             </h3>
             <p
@@ -118,14 +118,19 @@ const deleteUserStory = () => {
 const styledDescription = computed(() => {
     let htmlContent = props.userStory.description;
 
-    // Applying styles to <h1> tags
-    htmlContent = htmlContent.replace(/<h1>/g, '<h1 class="text-xl font-bold text-primary mt-2 mb-4">');
+    htmlContent = htmlContent.replace(
+        /<h1>/g,
+        '<h1 class="text-xl font-bold mt-2 mb-4">',
+    );
 
-    // Applying styles to <ul> tags
     htmlContent = htmlContent.replace(/<ul>/g, '<ul class="list-disc pl-5">');
 
-    // Applying styles to <li> tags
     htmlContent = htmlContent.replace(/<li>/g, '<li class="mb-1">');
+
+    htmlContent = htmlContent.replace(
+        /<h2>/g,
+        '<h2 class="text-lg font-bold mt-2 mb-4">',
+    );
 
     return htmlContent;
 });
