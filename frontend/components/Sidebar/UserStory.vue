@@ -132,6 +132,8 @@ const styledDescription = computed(() => {
         '<h2 class="text-lg font-bold mt-2 mb-4">',
     );
 
+    htmlContent = htmlContent.replace(/<p>/g, '<p class="break-all">');
+
     return htmlContent;
 });
 

@@ -97,7 +97,7 @@
                                 Unvoted Stories
                             </div>
                             <div class="collapse-content -mt-3">
-                                <div class="mt-3 h-full pr-3">
+                                <div class="mt-3 h-full">
                                     <div class="flex flex-wrap gap-4">
                                         <UserStory
                                             v-for="(

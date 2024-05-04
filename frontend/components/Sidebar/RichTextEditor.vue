@@ -126,8 +126,6 @@
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
-import BulletList from "@tiptap/extension-bullet-list";
-import ListItem from "@tiptap/extension-list-item";
 
 import BoldIcon from "vue-material-design-icons/FormatBold.vue";
 import ItalicIcon from "vue-material-design-icons/FormatItalic.vue";
