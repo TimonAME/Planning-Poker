@@ -1,10 +1,26 @@
 <template>
-    <!-- TODO: der button zum fullscreen ist noch nicht gut positioniert -->
-    <UserStoryFullScreen :userStory="props.userStory" :index="props.index" />
+    <Transition>
+        <UserStoryFullScreen
+            :userStory="props.userStory"
+            v-if="showUserStoryFullscreen"
+            @close="showUserStoryFullscreen = false"
+            class="h-screen w-screen"
+        />
+    </Transition>
+    <!-- TODO: beim fade out wird was abgeschnitten -->
+    <Transition>
+        <EditUserStory
+            :userStory="userStory"
+            :index="props.index"
+            v-if="showEditUserStory"
+            @close="showEditUserStory = false"
+            class=""
+        />
+    </Transition>
     <div
         class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
-        <div @click="userStoryFullscreen" class="py-4 pl-4 w-full">
+        <div @click="showUserStoryFullscreen = true" class="py-4 pl-4 w-full">
             <h3 class="text-xl font-bold text-primary mb-2 break-words">
                 {{ props.userStory.title }}
             </h3>
@@ -44,7 +60,31 @@
                 </ul>
             </div>
             <!-- TODO: bei den svgs einen hover effect einbauen -->
-            <EditUserStory :userStory="userStory" :index="props.index" />
+            <button>
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    @click="showEditUserStory = true"
+                >
+                    <path
+                        d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z"
+                        stroke="#000000"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13"
+                        stroke="#000000"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </button>
             <svg
                 width="24"
                 height="24"
@@ -107,6 +147,9 @@ const props = defineProps({
     index: Number,
 });
 
+const showUserStoryFullscreen = ref(false);
+const showEditUserStory = ref(false);
+
 const deleteUserStory = () => {
     // get index of user story
     const index = userStoryStore.userStories.indexOf(props.userStory);
@@ -156,10 +199,17 @@ const move = (location) => {
     userStoryStore.moveUserStory(index, location);
     toggleDropdown(true);
 };
-
-const userStoryFullscreen = () => {
-    const modalId = `my_modal_${props.index + 10000}`;
-    const modal = document.getElementById(modalId);
-    if (modal) modal.showModal();
-};
 </script>
+
+<style scoped>
+/* TODO: daisyui transitions nehmen */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 150ms ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+</style>
