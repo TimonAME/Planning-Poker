@@ -1,5 +1,4 @@
 <template>
-    <!-- TODO: wenn das modal geschlossen wird, scheint es ganz kurz über der sidebar auf -->
     <dialog id="my_modal_100" class="modal transition-none">
         <div class="modal-box">
             <form method="dialog" @submit.prevent="closeModal">

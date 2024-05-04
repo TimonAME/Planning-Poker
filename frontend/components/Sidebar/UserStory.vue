@@ -7,7 +7,7 @@
             class="h-screen w-screen"
         />
     </Transition>
-    <!-- TODO: beim fade out wird was abgeschnitten -->
+    <!-- TODO: fade out unsmooth da etwas abgeschnitten wird sonst vom richtexteditor -->
     <Transition name="edit">
         <EditUserStory
             :userStory="userStory"
@@ -155,8 +155,6 @@ const deleteUserStory = () => {
     const index = userStoryStore.userStories.indexOf(props.userStory);
     userStoryStore.deleteUserStory(index);
 };
-
-//TODO: erste lösung um styles für die html tags zu applyen. für alle die im rich text editor benutzt werden customizen
 
 const styledDescription = computed(() => {
     let htmlContent = props.userStory.description;
