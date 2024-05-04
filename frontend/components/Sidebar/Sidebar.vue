@@ -1,4 +1,10 @@
 <template>
+    <Transition>
+        <ManualUserStory
+            v-if="showManualUserStory"
+            @close="showManualUserStory = false"
+        />
+    </Transition>
     <div class="fixed right-0 sm:top-0 top-14 m-2">
         <button @click="open = !open" class="btn">
             <svg
@@ -50,7 +56,12 @@
                         <div class="flex gap-4">
                             <ImportUserStory />
                             <ExportUserStory />
-                            <ManualUserStory />
+                            <button
+                                class="btn btn-outline btn-info"
+                                @click="showManualUserStory = true"
+                            >
+                                Manual
+                            </button>
                         </div>
                         <button
                             @click="open = false"
@@ -144,6 +155,8 @@ import Searchbar from "~/components/Sidebar/Searchbar.vue";
 const userStoryStore = useUserStoryStore();
 const searchTerm = ref("");
 
+const showManualUserStory = ref(false);
+
 const filteredUserStories = computed(() => {
     //console.log(searchTerm.value)
     return searchTerm.value
@@ -191,3 +204,16 @@ onUnmounted(() => {
     document.removeEventListener("mouseup", stopResize);
 });
 </script>
+
+<style scoped>
+/* TODO: daisyui transitions nehmen */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 150ms ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+</style>

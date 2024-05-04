@@ -1,11 +1,7 @@
 <template>
-    <!-- TODO: bessere settings fürs reinpasten -->
-    <button class="btn btn-outline btn-info" onclick="my_modal_5.showModal()">
-        Manual
-    </button>
     <dialog id="my_modal_5" class="modal transition-none">
         <div class="modal-box">
-            <form method="dialog">
+            <form method="dialog" @submit.prevent="closeModal">
                 <button
                     class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                 >
@@ -40,14 +36,21 @@
             <div class="label">
                 <span class="label-text">Description</span>
             </div>
-            <RichTextEditor @update:content="handleEditorContent" :resetTrigger="resetCounter" />
+            <RichTextEditor
+                @update:content="handleEditorContent"
+                :resetTrigger="resetCounter"
+            />
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="addTheUserStory">
                     Add
                 </button>
             </div>
         </div>
-        <form method="dialog" class="modal-backdrop">
+        <form
+            method="dialog"
+            class="modal-backdrop"
+            @submit.prevent="closeModal"
+        >
             <button>close</button>
         </form>
     </dialog>
@@ -60,12 +63,31 @@ import { useUserStoryStore } from "~/stores/userstory.js";
 import RichTextEditor from "~/components/Sidebar/RichTextEditor.vue";
 
 const userStoryStore = useUserStoryStore();
-const router = useRouter();
-const emit = defineEmits(["new-user-story"]);
 
 const userStoryTitle = ref("");
 const userStoryDescription = ref("");
 const resetCounter = ref(false);
+
+const emit = defineEmits(["close"]);
+
+const onEscapePress = (event) => {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+};
+
+onMounted(() => {
+    my_modal_5.showModal();
+    window.addEventListener("keydown", onEscapePress);
+});
+
+onUnmounted(() => {
+    window.removeEventListener("keydown", onEscapePress);
+});
+
+const closeModal = () => {
+    emit("close"); // Emitting the close event
+};
 
 const rules = {
     userStoryTitle: { required },
@@ -75,7 +97,7 @@ const rules = {
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 
 const handleEditorContent = (htmlContent) => {
-    userStoryDescription.value = htmlContent;  // Update the userStoryDescription with the HTML from the editor
+    userStoryDescription.value = htmlContent; // Update the userStoryDescription with the HTML from the editor
 };
 
 const addTheUserStory = () => {
@@ -93,7 +115,9 @@ const addTheUserStory = () => {
         // Clear the input fields
         userStoryTitle.value = "";
         userStoryDescription.value = "";
-        resetCounter.value = !resetCounter.value  // Reset the RichTextEditor
+        resetCounter.value = !resetCounter.value; // Reset the RichTextEditor
+
+        closeModal();
     }
 };
 </script>
