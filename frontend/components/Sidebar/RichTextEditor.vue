@@ -30,20 +30,28 @@
             </button>
             <button
                 type="button"
-                @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+                @click="
+                    editor.chain().focus().toggleHeading({ level: 1 }).run()
+                "
                 :class="{
-          'bg-gray-200 rounded': editor.isActive('heading', { level: 1 }),
-        }"
+                    'bg-gray-200 rounded': editor.isActive('heading', {
+                        level: 1,
+                    }),
+                }"
                 class="p-1"
             >
                 <H1Icon title="H1" />
             </button>
             <button
                 type="button"
-                @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+                @click="
+                    editor.chain().focus().toggleHeading({ level: 2 }).run()
+                "
                 :class="{
-          'bg-gray-200 rounded': editor.isActive('heading', { level: 2 }),
-        }"
+                    'bg-gray-200 rounded': editor.isActive('heading', {
+                        level: 2,
+                    }),
+                }"
                 class="p-1"
             >
                 <H2Icon title="H2" />
@@ -51,7 +59,9 @@
             <button
                 type="button"
                 @click="editor.chain().focus().toggleBulletList().run()"
-                :class="{ 'bg-gray-200 rounded': editor.isActive('bulletList') }"
+                :class="{
+                    'bg-gray-200 rounded': editor.isActive('bulletList'),
+                }"
                 class="p-1"
             >
                 <ListIcon title="Bullet List" />
@@ -59,7 +69,9 @@
             <button
                 type="button"
                 @click="editor.chain().focus().toggleOrderedList().run()"
-                :class="{ 'bg-gray-200 rounded': editor.isActive('orderedList') }"
+                :class="{
+                    'bg-gray-200 rounded': editor.isActive('orderedList'),
+                }"
                 class="p-1"
             >
                 <OrderedListIcon title="Ordered List" />
@@ -67,7 +79,9 @@
             <button
                 type="button"
                 @click="editor.chain().focus().toggleBlockquote().run()"
-                :class="{ 'bg-gray-200 rounded': editor.isActive('blockquote') }"
+                :class="{
+                    'bg-gray-200 rounded': editor.isActive('blockquote'),
+                }"
                 class="p-1"
             >
                 <BlockquoteIcon title="Blockquote" />
@@ -109,52 +123,64 @@
 </template>
 
 <script setup>
-import { useEditor, EditorContent } from '@tiptap/vue-3'
-import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
-import BulletList from '@tiptap/extension-bullet-list'
-import ListItem from '@tiptap/extension-list-item'
+import { useEditor, EditorContent } from "@tiptap/vue-3";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import BulletList from "@tiptap/extension-bullet-list";
+import ListItem from "@tiptap/extension-list-item";
 
-import BoldIcon from 'vue-material-design-icons/FormatBold.vue'
-import ItalicIcon from 'vue-material-design-icons/FormatItalic.vue'
-import UnderlineIcon from 'vue-material-design-icons/FormatUnderline.vue'
-import H1Icon from 'vue-material-design-icons/FormatHeader1.vue'
-import H2Icon from 'vue-material-design-icons/FormatHeader2.vue'
-import ListIcon from 'vue-material-design-icons/FormatListBulleted.vue'
-import OrderedListIcon from 'vue-material-design-icons/FormatListNumbered.vue'
-import BlockquoteIcon from 'vue-material-design-icons/FormatQuoteClose.vue'
-import CodeIcon from 'vue-material-design-icons/CodeTags.vue'
-import HorizontalRuleIcon from 'vue-material-design-icons/Minus.vue'
-import UndoIcon from 'vue-material-design-icons/Undo.vue'
-import RedoIcon from 'vue-material-design-icons/Redo.vue'
+import BoldIcon from "vue-material-design-icons/FormatBold.vue";
+import ItalicIcon from "vue-material-design-icons/FormatItalic.vue";
+import UnderlineIcon from "vue-material-design-icons/FormatUnderline.vue";
+import H1Icon from "vue-material-design-icons/FormatHeader1.vue";
+import H2Icon from "vue-material-design-icons/FormatHeader2.vue";
+import ListIcon from "vue-material-design-icons/FormatListBulleted.vue";
+import OrderedListIcon from "vue-material-design-icons/FormatListNumbered.vue";
+import BlockquoteIcon from "vue-material-design-icons/FormatQuoteClose.vue";
+import CodeIcon from "vue-material-design-icons/CodeTags.vue";
+import HorizontalRuleIcon from "vue-material-design-icons/Minus.vue";
+import UndoIcon from "vue-material-design-icons/Undo.vue";
+import RedoIcon from "vue-material-design-icons/Redo.vue";
 
-const content = ref('')
+const content = ref("");
 
 const props = defineProps({
-    resetTrigger: Boolean
+    resetTrigger: Boolean,
+    existingDescription: String,
 });
 
-const emit = defineEmits(['update:content']);
+const existingDescription = props.existingDescription;
+
+const emit = defineEmits(["update:content"]);
 const editor = useEditor({
     content: content.value,
     onUpdate: ({ editor }) => {
         //console.log(editor)
         const html = editor.getHTML();
-        emit('update:content', html);  // Emit the current HTML content
+        emit("update:content", html); // Emit the current HTML content
     },
-    extensions: [StarterKit, Underline, BulletList, ListItem],
+    extensions: [StarterKit, Underline],
     editorProps: {
         attributes: {
-            class: 'prose max-w-none outline-none overflow-y-auto min-h-[12rem] max-h-[12rem] border p-4 border-gray-400',
+            class: "prose max-w-none outline-none overflow-y-auto min-h-[12rem] max-h-[12rem] border p-4 border-gray-400",
         },
     },
 });
 
-watch(() => props.resetTrigger, (newVal, oldVal) => {
-    if (newVal !== oldVal) {
-        editor.value.commands.clearContent();
+onMounted(() => {
+    if (existingDescription) {
+        editor.value.commands.setContent(existingDescription);
     }
 });
+
+watch(
+    () => props.resetTrigger,
+    (newVal, oldVal) => {
+        if (newVal !== oldVal) {
+            editor.value.commands.clearContent();
+        }
+    },
+);
 </script>
 
 <style lang="scss">
