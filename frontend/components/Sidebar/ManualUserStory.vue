@@ -1,8 +1,9 @@
 <template>
+    <!-- TODO: bessere settings fürs reinpasten -->
     <button class="btn btn-outline btn-info" onclick="my_modal_5.showModal()">
         Manual
     </button>
-    <dialog id="my_modal_5" class="modal">
+    <dialog id="my_modal_5" class="modal transition-none">
         <div class="modal-box">
             <form method="dialog">
                 <button
@@ -36,16 +37,10 @@
                     -->
                 </div>
             </label>
-            <label class="form-control">
-                <div class="label">
-                    <span class="label-text">Description</span>
-                </div>
-                <textarea
-                    class="textarea textarea-bordered h-24"
-                    placeholder="Type here"
-                    v-model="userStoryDescription"
-                ></textarea>
-            </label>
+            <div class="label">
+                <span class="label-text">Description</span>
+            </div>
+            <RichTextEditor @update:content="handleEditorContent" :resetTrigger="resetCounter" />
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="addTheUserStory">
                     Add
@@ -62,6 +57,7 @@ import { ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 import { useUserStoryStore } from "~/stores/userstory.js";
+import RichTextEditor from "~/components/Sidebar/RichTextEditor.vue";
 
 const userStoryStore = useUserStoryStore();
 const router = useRouter();
@@ -69,6 +65,7 @@ const emit = defineEmits(["new-user-story"]);
 
 const userStoryTitle = ref("");
 const userStoryDescription = ref("");
+const resetCounter = ref(false);
 
 const rules = {
     userStoryTitle: { required },
@@ -76,6 +73,10 @@ const rules = {
 };
 
 const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
+
+const handleEditorContent = (htmlContent) => {
+    userStoryDescription.value = htmlContent;  // Update the userStoryDescription with the HTML from the editor
+};
 
 const addTheUserStory = () => {
     v$.value.$touch();
@@ -92,6 +93,7 @@ const addTheUserStory = () => {
         // Clear the input fields
         userStoryTitle.value = "";
         userStoryDescription.value = "";
+        resetCounter.value = !resetCounter.value  // Reset the RichTextEditor
     }
 };
 </script>

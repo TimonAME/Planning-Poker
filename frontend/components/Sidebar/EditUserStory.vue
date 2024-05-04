@@ -24,7 +24,7 @@
             />
         </svg>
     </button>
-    <dialog :id="`my_modal_${index + 100}`" class="modal">
+    <dialog :id="`my_modal_${index + 100}`" class="modal transition-none">
         <div class="modal-box">
             <form method="dialog">
                 <button
@@ -58,16 +58,13 @@
                     -->
                 </div>
             </label>
-            <label class="form-control">
-                <div class="label">
-                    <span class="label-text">Description</span>
-                </div>
-                <textarea
-                    class="textarea textarea-bordered h-24"
-                    placeholder="Type here"
-                    v-model="userStoryDescription"
-                ></textarea>
-            </label>
+            <div class="label">
+                <span class="label-text">Description</span>
+            </div>
+            <RichTextEditor
+                @update:content="handleEditorContent"
+                :existingDescription="userStoryDescription"
+            />
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="editUserStory">
                     Edit
@@ -85,6 +82,7 @@ import { ref } from "vue";
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import { useUserStoryStore } from "~/stores/userstory.js";
+import RichTextEditor from "~/components/Sidebar/RichTextEditor.vue";
 
 const props = defineProps({
     userStory: {
@@ -114,6 +112,10 @@ function showModal() {
 
 const userStoryTitle = ref(currentUserStory.title);
 const userStoryDescription = ref(currentUserStory.description);
+
+const handleEditorContent = (htmlContent) => {
+    userStoryDescription.value = htmlContent;
+};
 
 const rules = {
     userStoryTitle: { required },

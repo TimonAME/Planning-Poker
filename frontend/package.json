@@ -11,6 +11,11 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@tiptap/extension-bullet-list": "^2.3.1",
+    "@tiptap/extension-list-item": "^2.3.1",
+    "@tiptap/extension-underline": "^2.3.1",
+    "@tiptap/starter-kit": "^2.3.1",
+    "@tiptap/vue-3": "^2.3.1",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "nuxt": "^3.10.3",
@@ -19,13 +24,16 @@
     "primevue": "^3.51.0",
     "qrcode.vue": "^3.4.1",
     "vue": "^3.4.19",
+    "vue-material-design-icons": "^5.3.0",
     "vue-router": "^4.3.0",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@tailwindcss/typography": "^0.5.13",
     "daisyui": "^4.7.2",
     "nuxt-primevue": "^0.3.1",
-    "prettier": "3.2.5"
+    "prettier": "3.2.5",
+    "sass": "^1.76.0"
   }
 }

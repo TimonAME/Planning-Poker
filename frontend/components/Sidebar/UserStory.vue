@@ -1,16 +1,19 @@
 <template>
+    <!-- TODO: der button zum fullscreen ist noch nicht gut positioniert -->
+    <UserStoryFullScreen :userStory="props.userStory" :index="props.index" />
     <div
-        class="bg-base-300 hover:opacity-100 opacity-75 p-4 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
+        class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
-        <div>
-            <h3 class="text-lg font-bold text-primary mb-2 break-words">
-                {{ userStory.title }}
+        <div @click="userStoryFullscreen" class="py-4 pl-4">
+            <h3 class="text-xl font-bold text-primary mb-2 break-words">
+                {{ props.userStory.title }}
             </h3>
-            <p class="text-base-content overflow-y-auto max-h-24 break-words">
-                {{ userStory.description }}
-            </p>
+            <p
+                class="overflow-y-auto max-h-24 break-words"
+                v-html="styledDescription"
+            ></p>
         </div>
-        <div class="flex flex-col justify-between gap-1 ml-6">
+        <div class="flex flex-col justify-between gap-1 ml-6 pr-4 py-4">
             <div class="dropdown dropdown-end">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,6 +96,7 @@
 <script setup>
 import { useUserStoryStore } from "~/stores/userstory";
 import EditUserStory from "~/components/Sidebar/EditUserStory.vue";
+import UserStoryFullScreen from "~/components/Sidebar/UserStoryFullScreen.vue";
 
 const userStoryStore = useUserStoryStore();
 const props = defineProps({
@@ -108,6 +112,28 @@ const deleteUserStory = () => {
     const index = userStoryStore.userStories.indexOf(props.userStory);
     userStoryStore.deleteUserStory(index);
 };
+
+//TODO: erste lösung um styles für die html tags zu applyen. für alle die im rich text editor benutzt werden customizen
+
+const styledDescription = computed(() => {
+    let htmlContent = props.userStory.description;
+
+    htmlContent = htmlContent.replace(
+        /<h1>/g,
+        '<h1 class="text-xl font-bold mt-2 mb-4">',
+    );
+
+    htmlContent = htmlContent.replace(/<ul>/g, '<ul class="list-disc pl-5">');
+
+    htmlContent = htmlContent.replace(/<li>/g, '<li class="mb-1">');
+
+    htmlContent = htmlContent.replace(
+        /<h2>/g,
+        '<h2 class="text-lg font-bold mt-2 mb-4">',
+    );
+
+    return htmlContent;
+});
 
 const dropdownOpen = ref(true); // Neue Referenz für den Zustand des Dropdowns
 const toggleDropdown = (overwrite) => {
@@ -127,5 +153,11 @@ const move = (location) => {
     }
     userStoryStore.moveUserStory(index, location);
     toggleDropdown(true);
+};
+
+const userStoryFullscreen = () => {
+    const modalId = `my_modal_${props.index + 10000}`;
+    const modal = document.getElementById(modalId);
+    if (modal) modal.showModal();
 };
 </script>

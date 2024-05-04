@@ -1,6 +1,5 @@
 <template>
     <StartGameOverlay />
-    <!-- TODO: Overlay mit Lobbynamen und Beschreibung -->
     <div class="flex flex-col sm:w-1/3">
         <div class="flex justify-center items-center text-left w-full">
             <div>

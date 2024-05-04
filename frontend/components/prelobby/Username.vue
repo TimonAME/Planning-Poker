@@ -1,5 +1,6 @@
 <template>
     <!-- TODO: Overlay darf nicht mit Esc geschlossen werden -->
+    <!-- TODO: Overlay soll mit Enter submitted werden -->
     <dialog id="my_modal_7" class="modal">
         <div class="modal-box">
             <h3 class="font-bold text-lg mb-1">Username</h3>
