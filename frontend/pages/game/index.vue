@@ -41,14 +41,16 @@
                         {{ readyButton ? "Not Ready" : "Ready" }}
                     </button>
                     <!-- TODO: Button nur anzeigen wenn man admin ist -->
-                    <button
-                        class="btn btn-active btn-wide sm:btn-sm md:btn-md lg:btn-lg"
-                        @click="endVote()"
-                        :class="readyButton ? 'btn-success' : 'btn-neutral'"
-                        :disabled="!readyButton"
-                    >
-                        End Vote
-                    </button>
+                    <a href="#my_modal_50">
+                        <button
+                            class="btn btn-active btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                            @click="tryEndVote()"
+                            :class="readyButton ? 'btn-success' : 'btn-neutral'"
+                            :disabled="!readyButton"
+                        >
+                            End Vote
+                        </button>
+                    </a>
                 </div>
                 <div class="flex justify-center space-x-4">
                     <Card
@@ -60,7 +62,26 @@
                     />
                 </div>
             </div>
-            <NameTable />
+            <NameTable class="z-20" />
+
+            <!-- Modal -->
+            <div class="modal" role="dialog" id="my_modal_50">
+                <div class="modal-box">
+                    <div v-if="!allReady">
+                        <h3 class="font-bold text-lg">STOP</h3>
+                        <p class="py-4">Not all users are ready!</p>
+                    </div>
+                    <div v-else>
+                        <h3 class="font-bold text-lg">End Vote</h3>
+                        <p class="py-4">All users voted!</p>
+                    </div>
+
+                    <div class="modal-action">
+                        <a href="#" class="btn">Wait!</a>
+                        <a href="#" class="btn">Next -></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -74,6 +95,9 @@ import NameTable from "~/components/game/NameTable.vue";
 import { computed } from "vue";
 
 import { useLobbyStore } from "~/stores/lobby";
+import { useUserStoryStore } from "~/stores/userstory";
+import { useUserStore } from "~/stores/user.js";
+
 const lobbyStore = useLobbyStore();
 
 // Kartenarten:
@@ -91,7 +115,6 @@ if (lobbyStore.votingSystem === "Fibonacci") {
     votingSystem = powersOfTwo;
 }
 
-import { useUserStoryStore } from "~/stores/userstory";
 const userStoryStore = useUserStoryStore();
 const userStories = ref(userStoryStore.userStories);
 const firstUserStory = computed(() => userStories.value[0]);
@@ -106,7 +129,6 @@ const handleCardClick = (number) => {
 
 const readyButton = ref(false);
 
-import { useUserStore } from "~/stores/user.js";
 const userStore = useUserStore();
 const setStatus = () => {
     const user = userStore.userList[0];
@@ -117,7 +139,24 @@ const setStatus = () => {
     }
 };
 
+let allReady = ref(true);
+const tryEndVote = () => {
+    allReady.value = true;
+
+    // prüfen ob alle User ready sind
+    userStore.userList.forEach((user) => {
+        if (user.status !== "ready") {
+            allReady.value = false;
+        }
+    });
+    if (allReady.value) {
+        endVote();
+    } else {
+        console.log("Not all users are ready");
+    }
+};
 const endVote = () => {
-    console.log("End Vote");
+    // Vote beenden
+    console.log("Vote ended");
 };
 </script>
