@@ -1,8 +1,13 @@
 <template>
     <!-- TODO: Wenn man auf das Dropdown klickt soll es auch wieder schließen -->
 
-    <div class="dropdown">
-        <div tabindex="0" role="button" class="btn m-1">
+    <div class="dropdown" ref="dropdown">
+        <div
+            tabindex="0"
+            role="button"
+            class="btn m-1"
+            @click="isOpen = !isOpen"
+        >
             Theme
             <svg
                 width="12px"
@@ -17,26 +22,48 @@
                 ></path>
             </svg>
         </div>
-        <ul
-            tabindex="0"
-            class="dropdown-content bg-base-200 text-base-content rounded-box top-px h-[28.6rem] max-h-[calc(100vh-10rem)] w-56 overflow-y-auto border border-white/5 shadow-2xl outline outline-1 outline-black/5 mt-16"
-        >
-            <li v-for="(theme, index) in themes" :key="index">
-                <input
-                    type="radio"
-                    name="theme-dropdown"
-                    class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                    :aria-label="theme.label"
-                    :value="theme.value"
-                    v-model="selectedTheme"
-                    @click="onThemeClick"
-                />
-            </li>
-        </ul>
+        <Transition>
+            <ul
+                tabindex="0"
+                class="dropdown-content bg-base-200 text-base-content rounded-box top-px h-[28.6rem] max-h-[calc(100vh-10rem)] w-56 overflow-y-auto border border-white/5 shadow-2xl outline outline-1 outline-black/5 mt-16"
+                v-show="isOpen"
+            >
+                <li v-for="(theme, index) in themes" :key="index">
+                    <input
+                        type="radio"
+                        name="theme-dropdown"
+                        class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                        :aria-label="theme.label"
+                        :value="theme.value"
+                        v-model="selectedTheme"
+                        @click="onThemeClick"
+                    />
+                </li>
+            </ul>
+        </Transition>
     </div>
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+
+const isOpen = ref(false);
+const dropdown = ref(null);
+
+const handleClickOutside = (event) => {
+    if (dropdown.value && !dropdown.value.contains(event.target)) {
+        isOpen.value = false;
+    }
+};
+
+onMounted(() => {
+    window.addEventListener("click", handleClickOutside);
+});
+
+onUnmounted(() => {
+    window.removeEventListener("click", handleClickOutside);
+});
+
 const props = defineProps({
     small: Boolean,
 });
@@ -81,3 +108,15 @@ if (useCookie("cookiesAccepted").value === true) {
 }
 selectedTheme.value = selectedTheme.value || null;
 </script>
+
+<style>
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 150ms ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+</style>
