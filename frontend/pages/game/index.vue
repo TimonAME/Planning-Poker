@@ -41,7 +41,7 @@
                         {{ readyButton ? "Not Ready" : "Ready" }}
                     </button>
                     <!-- TODO: Button nur anzeigen wenn man admin ist -->
-                    <a href="#my_modal_50">
+                    <a :href="readyButton ? '#endVote' : null">
                         <button
                             class="btn btn-active btn-wide sm:btn-sm md:btn-md lg:btn-lg"
                             @click="tryEndVote()"
@@ -63,25 +63,10 @@
                 </div>
             </div>
             <NameTable class="z-20" />
-
-            <!-- Modal -->
-            <div class="modal" role="dialog" id="my_modal_50">
-                <div class="modal-box">
-                    <div v-if="!allReady">
-                        <h3 class="font-bold text-lg">STOP</h3>
-                        <p class="py-4">Not all users are ready!</p>
-                    </div>
-                    <div v-else>
-                        <h3 class="font-bold text-lg">End Vote</h3>
-                        <p class="py-4">All users voted!</p>
-                    </div>
-
-                    <div class="modal-action">
-                        <a href="#" class="btn">Wait!</a>
-                        <a href="#" class="btn">Next -></a>
-                    </div>
-                </div>
-            </div>
+            <EndVoteModal
+                :allReady="allReady"
+                @update-all-ready="allReady = $event"
+            />
         </div>
     </div>
 </template>
@@ -97,6 +82,7 @@ import { computed } from "vue";
 import { useLobbyStore } from "~/stores/lobby";
 import { useUserStoryStore } from "~/stores/userstory";
 import { useUserStore } from "~/stores/user.js";
+import EndVoteModal from "~/components/game/EndVoteModal.vue";
 
 const lobbyStore = useLobbyStore();
 
@@ -149,14 +135,5 @@ const tryEndVote = () => {
             allReady.value = false;
         }
     });
-    if (allReady.value) {
-        endVote();
-    } else {
-        console.log("Not all users are ready");
-    }
-};
-const endVote = () => {
-    // Vote beenden
-    console.log("Vote ended");
 };
 </script>
