@@ -82,8 +82,12 @@ public class LobbyController {
         if (lobby.getAdminHash().equals(lobbyStartRequest.getUserHash())) {
             lobby.lobbyStatus = "lobby";
         }
-        LobbyStartResponse lobbyStartResponse = new LobbyStartResponse();
-        simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartResponse);
+
+        System.out.println(lobbies.get(lobbyStartRequest.getLobbyHash()));
+        LobbyStartBroadcast lobbyStartBroadcast = new LobbyStartBroadcast();
+
+
+        simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartBroadcast);
     }
 
     @MessageMapping("/lobby/{id}/addUserStory")
