@@ -57,9 +57,9 @@ public class LobbyController {
         }
 
         System.out.println(lobbies.get(lobbyStartRequest.getLobbyHash()));
-        LobbyStartResponse lobbyStartResponse = new LobbyStartResponse();
+        LobbyStartBroadcast lobbyStartBroadcast = new LobbyStartBroadcast();
 
 
-        simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartResponse);
+        simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartBroadcast);
     }
 }
