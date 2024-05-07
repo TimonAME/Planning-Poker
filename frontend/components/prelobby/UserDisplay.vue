@@ -79,16 +79,16 @@ onMounted(() => {
         if (users.value.length > 0) {
             clearInterval(intervalId);
             intervalId = setInterval(() => {
-                if (users.value.length < 8) {
+                if (users.value.length < 7) {
                     userStore.addUser(
                         "User " + (users.value.length + 1) + " Test",
                         "not ready",
                         false,
                     );
                 }
-            }, 2000);
+            }, 500);
         }
-    }, 1000);
+    }, 200);
 });
 </script>
 

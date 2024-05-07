@@ -50,8 +50,9 @@ onUnmounted(() => {
 <template>
     <!-- https://daisyui.com/components/table/ -->
     <div class="fixed bottom-0 left-0 ml-3 mb-3">
-        <div class="overflow-x-auto">
-            <table class="table table-sm table-zebra">
+        <!-- TODO: max höhe dynamisch machen -->
+        <div class="overflow-x-auto max-h-96">
+            <table class="table table-sm table-zebra table-pin-rows">
                 <thead>
                     <tr>
                         <th></th>

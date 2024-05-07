@@ -28,26 +28,45 @@
                 </div>
                 <Board :selectedCard="selectedCard" />
                 <!-- TODO: Ready button = wenn gedruückt wird, dann wird der User auf ready gesetzt und Cards werden gelocked -->
-                <button
-                    class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
-                    @click="
-                        readyButton = !readyButton;
-                        setStatus();
-                    "
-                    :class="readyButton ? 'btn-error' : 'btn-neutral'"
-                >
-                    {{ readyButton ? "Not Ready" : "Ready" }}
-                </button>
+                <div class="flex gap-4">
+                    <button
+                        class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                        @click="
+                            readyButton = !readyButton;
+                            setStatus();
+                        "
+                        :class="readyButton ? 'btn-neutral' : 'btn-error'"
+                        :disabled="selectedCard === null"
+                    >
+                        {{ readyButton ? "Not Ready" : "Ready" }}
+                    </button>
+                    <!-- TODO: Button nur anzeigen wenn man admin ist -->
+                    <a :href="readyButton ? '#endVote' : null">
+                        <button
+                            class="btn btn-active btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                            @click="tryEndVote()"
+                            :class="readyButton ? 'btn-success' : 'btn-neutral'"
+                            :disabled="!readyButton"
+                        >
+                            End Vote
+                        </button>
+                    </a>
+                </div>
                 <div class="flex justify-center space-x-4">
                     <Card
                         v-for="number in votingSystem"
                         :key="number"
                         :number="number"
+                        :blocked="readyButton"
                         @cardClicked="handleCardClick"
                     />
                 </div>
             </div>
-            <NameTable />
+            <NameTable class="z-20" />
+            <EndVoteModal
+                :allReady="allReady"
+                @update-all-ready="allReady = $event"
+            />
         </div>
     </div>
 </template>
@@ -61,6 +80,10 @@ import NameTable from "~/components/game/NameTable.vue";
 import { computed } from "vue";
 
 import { useLobbyStore } from "~/stores/lobby";
+import { useUserStoryStore } from "~/stores/userstory";
+import { useUserStore } from "~/stores/user.js";
+import EndVoteModal from "~/components/game/EndVoteModal.vue";
+
 const lobbyStore = useLobbyStore();
 
 // Kartenarten:
@@ -78,7 +101,6 @@ if (lobbyStore.votingSystem === "Fibonacci") {
     votingSystem = powersOfTwo;
 }
 
-import { useUserStoryStore } from "~/stores/userstory";
 const userStoryStore = useUserStoryStore();
 const userStories = ref(userStoryStore.userStories);
 const firstUserStory = computed(() => userStories.value[0]);
@@ -93,7 +115,6 @@ const handleCardClick = (number) => {
 
 const readyButton = ref(false);
 
-import { useUserStore } from "~/stores/user.js";
 const userStore = useUserStore();
 const setStatus = () => {
     const user = userStore.userList[0];
@@ -102,5 +123,17 @@ const setStatus = () => {
     } else {
         userStore.setUserStatus(user, "not ready");
     }
+};
+
+let allReady = ref(true);
+const tryEndVote = () => {
+    allReady.value = true;
+
+    // prüfen ob alle User ready sind
+    userStore.userList.forEach((user) => {
+        if (user.status !== "ready") {
+            allReady.value = false;
+        }
+    });
 };
 </script>

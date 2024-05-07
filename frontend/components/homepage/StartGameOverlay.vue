@@ -1,5 +1,7 @@
 <template>
     <!-- TODO: Errors sollen nicht reactive sein sondern nur beim submit angezeigt werden -->
+    <!-- TODO: In LobbyName und Description, wenn nach mind. 3 Zeichen Leerzeichen eingegeben, dann kommt Fehlermeldung -->
+    <!-- content.js:2  Error: <svg> attribute viewBox: Expected number, "0 0 100% 4". -->
     <dialog id="my_modal_5" class="modal">
         <div class="modal-box">
             <form method="dialog">
@@ -104,7 +106,6 @@ const startGame = () => {
             votingSystem.value,
         );
         userStore.deleteAllUsers();
-        //router.push("/prelobby");
         router.push("/prelobby/username-input");
     }
 };
