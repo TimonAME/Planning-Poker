@@ -85,6 +85,7 @@ import { useUserStore } from "~/stores/user.js";
 import EndVoteModal from "~/components/game/EndVoteModal.vue";
 
 const lobbyStore = useLobbyStore();
+const userStore = useUserStore();
 
 // Kartenarten:
 let fibonacciNumbers = ref([0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]);
@@ -115,14 +116,16 @@ const handleCardClick = (number) => {
 
 const readyButton = ref(false);
 
-const userStore = useUserStore();
 const setStatus = () => {
     const user = userStore.userList[0];
     if (readyButton.value) {
         userStore.setUserStatus(user, "ready");
+        user.selectedCard = selectedCard.value;
     } else {
         userStore.setUserStatus(user, "not ready");
     }
+
+    console.log(user.selectedCard);
 };
 
 let allReady = ref(true);

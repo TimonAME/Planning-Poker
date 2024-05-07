@@ -12,7 +12,9 @@
             <div class="modal-action">
                 <a v-if="!allReady" href="#" class="btn">Wait!</a>
                 <a v-if="!allReady" @click="skipReady()" class="btn">Next -></a>
-                <a v-if="allReady" href="#" class="btn">Next Vote</a>
+                <a v-if="allReady" @click="nextVote()" href="#" class="btn"
+                    >Next Vote</a
+                >
             </div>
         </div>
     </div>
@@ -32,5 +34,8 @@ const skipReady = () => {
     if (!props.allReady) {
         emit("update-all-ready", true);
     }
+};
+const nextVote = () => {
+    //TODO user.selectedCard auf null setzen
 };
 </script>
