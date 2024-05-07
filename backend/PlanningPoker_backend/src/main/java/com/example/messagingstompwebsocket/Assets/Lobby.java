@@ -1,10 +1,12 @@
 package com.example.messagingstompwebsocket.Assets;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Lobby {
 
+    public ArrayList<UserStory> userStories = new ArrayList<>();
     public String adminHash;
     Map<String, String> users = new HashMap<String, String>();
 
@@ -15,8 +17,9 @@ public class Lobby {
 
 
     public String cardType = "fibonacci";
+
     /**
-    cardType options:
+     * cardType options:
      * 1. fibonacci
      * 2. powersOfTwo
      * 3. t-shirt
@@ -60,6 +63,11 @@ public class Lobby {
 
     public void addUser(String key, String user) {
         users.put(key, user);
+    }
+
+    public int addUserStory(UserStory userStory) {
+        this.userStories.add(userStory);
+        return userStories.size() - 1;
     }
 
     @Override
