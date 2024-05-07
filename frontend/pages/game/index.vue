@@ -27,7 +27,7 @@
                     </p>
                 </div>
                 <Board :selectedCard="selectedCard" />
-                <!-- TODO: Ready button = wenn gedruückt wird, dann wird der User auf ready gesetzt und Cards werden gelocked -->
+                <!-- TODO: Ready button = wenn gedruückt wird dann wird der User auf ready gesetzt und Cards werden gelocked -->
                 <div class="flex gap-4">
                     <button
                         class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
