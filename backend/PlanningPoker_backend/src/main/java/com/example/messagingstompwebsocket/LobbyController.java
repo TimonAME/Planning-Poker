@@ -31,7 +31,7 @@ public class LobbyController {
     @CrossOrigin
     public LobbyJoinResponse joinLobby(@RequestBody LobbyJoinRequest lobbyJoinRequest) {
         //if the lobby, the user tries to join, exists
-        if (lobbies.containsKey(lobbyJoinRequest.getLobbyHash()) && !lobbyJoinRequest.getUserHash().equals("")) {
+        if (lobbies.containsKey(lobbyJoinRequest.getLobbyHash()) && !lobbyJoinRequest.getUserHash().isEmpty()) {
             System.out.println("Lobby Join succeeded on Key " + lobbyJoinRequest.getLobbyHash() + " from User " + lobbyJoinRequest.getUserHash());
 
 
@@ -76,17 +76,15 @@ public class LobbyController {
     }
 
 
-    @MessageMapping("/lobby/{id}/start")
+    @MessageMapping("/lobby/{id}/startGame")
     public void startLobby(@DestinationVariable String id, LobbyStartRequest lobbyStartRequest) {
-        Lobby lobby = lobbies.get(lobbyStartRequest.getLobbyHash());
+        Lobby lobby = lobbies.get(id);
         if (lobby.getAdminHash().equals(lobbyStartRequest.getUserHash())) {
             lobby.lobbyStatus = "lobby";
         }
-
-        System.out.println(lobbies.get(lobbyStartRequest.getLobbyHash()));
         LobbyStartBroadcast lobbyStartBroadcast = new LobbyStartBroadcast();
 
-
+        System.out.println("Lobby " + id + "started by " + lobbyStartRequest.getUserHash());
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartBroadcast);
     }
 
