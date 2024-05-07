@@ -90,8 +90,8 @@ public class LobbyController {
 
     @MessageMapping("/lobby/{id}/addUserStory")
     public void addUserStory(@DestinationVariable String id, UserStory userStory) {
-
-        UserStoryBroadCast userStoryBroadCast = new UserStoryBroadCast(userStory);
+        int userStoryIndex = lobbies.get(id).addUserStory(userStory);
+        UserStoryBroadcast userStoryBroadCast = new UserStoryBroadcast(userStory, userStoryIndex);
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, userStoryBroadCast);
     }
 }

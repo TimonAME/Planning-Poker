@@ -1,6 +1,6 @@
 package com.example.messagingstompwebsocket.Message;
 
-public class LobbyJoinBroadcast {
+public class LobbyJoinBroadcast extends BasicBroadcast {
     public String getUserName() {
         return userName;
     }
@@ -13,6 +13,7 @@ public class LobbyJoinBroadcast {
 
     public LobbyJoinBroadcast(String userName) {
         this.userName = userName;
+        setType("lobbyJoinBroadcast");
     }
 
 }
