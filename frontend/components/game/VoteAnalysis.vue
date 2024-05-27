@@ -1,23 +1,35 @@
 <template>
     <h3 class="font-bold text-lg">Vote Analysis</h3>
-    <p class="py-4">This is the result of the vote!</p>
+    <div class="flex justify-between">
+        <p class="py-4">This is the result of the vote!</p>
+
+        <select class="select select-bordered" v-model="finalCard">
+            <option disabled selected>Final Answer</option>
+            <option v-for="card in votingSystem" :key="card" :value="card">
+                {{ card }}
+            </option>
+        </select>
+    </div>
+
     <v-chart class="chart" :option="option" autoresize />
 </template>
 
 <script setup>
-//TODO: chart wird nicht neu geladen wenn eine andere Karte ausgewählt wird
-
 import "echarts";
 import VChart from "vue-echarts";
-import { ref } from "vue";
+import { ref, watch, computed } from "vue";
 import { useLobbyStore } from "~/stores/lobby";
 import { useUserStore } from "~/stores/user";
-import { computed, defineProps } from "vue";
 
 const lobbyStore = useLobbyStore();
 const userStore = useUserStore();
 
-// TODO: votingSystem sollte nicht hardcoded sein -> die Arrays sollten aus dem Store kommen
+// Add emit function
+const emit = defineEmits(["update-final-card"]);
+
+let finalCard = ref(null);
+
+// TODO: votingSystem should not be hardcoded; it should come from the store
 let fibonacciNumbers = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 let tShirtSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 let powersOfTwo = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512];
@@ -37,16 +49,15 @@ const selectedCards = computed(() =>
 );
 
 // Count how often each card was selected
-const cardCounts = ref(
-    computed(() => {
-        const counts = {};
-        selectedCards.value.forEach((card) => {
-            counts[card] = (counts[card] || 0) + 1;
-        });
-        return votingSystem.map((card) => counts[card] || 0);
-    }),
-);
+const cardCounts = computed(() => {
+    const counts = {};
+    selectedCards.value.forEach((card) => {
+        counts[card] = (counts[card] || 0) + 1;
+    });
+    return votingSystem.map((card) => counts[card] || 0);
+});
 
+// Initialize chart option
 const option = ref({
     tooltip: {
         trigger: "item",
@@ -66,6 +77,23 @@ const option = ref({
         },
     ],
 });
+
+// Watch for changes in cardCounts and update the chart data
+watch(
+    cardCounts,
+    (newCounts) => {
+        option.value.series[0].data = newCounts;
+    },
+    { immediate: true },
+);
+
+// Watch for changes in finalCard and emit an event when it changes
+watch(
+    () => finalCard.value,
+    (newCard) => {
+        emit("update-final-card", newCard);
+    },
+);
 </script>
 
 <style scoped>
