@@ -27,7 +27,7 @@ const userStore = useUserStore();
 // Add emit function
 const emit = defineEmits(["update-final-card"]);
 
-let finalCard = ref(null);
+let finalCard = ref("Final Answer");
 
 // TODO: votingSystem should not be hardcoded; it should come from the store
 let fibonacciNumbers = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];

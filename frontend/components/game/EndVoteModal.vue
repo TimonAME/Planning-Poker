@@ -10,19 +10,19 @@
             </div>
 
             <div class="modal-action">
-                <button v-if="!allReady" href="#" class="btn">Wait!</button>
-                <button v-if="!allReady" @click="skipReady()" class="btn">
+                <a v-if="!allReady" href="#" class="btn">Wait!</a>
+                <a v-if="!allReady" @click="skipReady()" class="btn">
                     Next ->
-                </button>
-                <button
+                </a>
+                <a
                     v-if="allReady"
                     @click="nextVote()"
                     href="#"
                     class="btn"
-                    :disabled="finalCard === null"
+                    :class="{ 'btn-disabled': finalCard === null }"
                 >
                     Next Vote
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -49,7 +49,6 @@ const skipReady = () => {
 
 let finalCard = ref(null); // Initialize the finalCard
 const nextVote = () => {
-    //TODO: Modal does not close when pressing next vote
     //TODO: Save the selected card to the userStoryStore
     //TODO: Handle Userstorys
 
