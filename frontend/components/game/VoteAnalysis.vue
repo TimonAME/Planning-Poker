@@ -29,19 +29,8 @@ const emit = defineEmits(["update-final-card"]);
 
 let finalCard = ref("Final Answer");
 
-// TODO: votingSystem should not be hardcoded; it should come from the store
-let fibonacciNumbers = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
-let tShirtSizes = ["XS", "S", "M", "L", "XL", "XXL"];
-let powersOfTwo = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512];
-
-let votingSystem = fibonacciNumbers;
-if (lobbyStore.votingSystem === "Fibonacci") {
-    votingSystem = fibonacciNumbers;
-} else if (lobbyStore.votingSystem === "T-shirts") {
-    votingSystem = tShirtSizes;
-} else if (lobbyStore.votingSystem === "Powers of 2") {
-    votingSystem = powersOfTwo;
-}
+// Ausgewähltes Voting System
+let votingSystem = lobbyStore.votingSystem;
 
 // Get selected cards of all users
 const selectedCards = computed(() =>

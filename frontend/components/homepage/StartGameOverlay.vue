@@ -49,9 +49,9 @@
                     <span class="label-text">Voting system</span>
                 </div>
                 <select class="select select-bordered" v-model="votingSystem">
-                    <option selected>Fibonacci</option>
-                    <option>T-shirts</option>
-                    <option>Powers of 2</option>
+                    <option value="fibonacci" selected>Fibonacci</option>
+                    <option value="tShirt">T-shirts</option>
+                    <option value="powersOfTwo">Powers of 2</option>
                 </select>
             </label>
             <button
@@ -97,13 +97,33 @@ const rules = {
 
 const v$ = useVuelidate(rules, { name, description });
 
+// Kartenarten:
+let fibonacciNumbers = ref([0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]);
+let tShirtSizes = ref(["XS", "S", "M", "L", "XL", "XXL"]);
+let powersOfTwo = ref([1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
+const getVotingSystemArray = (system) => {
+    switch (system) {
+        case "fibonacci":
+            return fibonacciNumbers.value;
+        case "tShirt":
+            return tShirtSizes.value;
+        case "powersOfTwo":
+            return powersOfTwo.value;
+        default:
+            return [];
+    }
+};
+
 const startGame = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
+        const selectedVotingSystemArray = getVotingSystemArray(
+            votingSystem.value,
+        );
         lobbyStore.setLobbyDetails(
             name.value,
             description.value,
-            votingSystem.value,
+            selectedVotingSystemArray,
         );
         userStore.deleteAllUsers();
         router.push("/prelobby/username-input");

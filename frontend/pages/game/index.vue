@@ -28,7 +28,6 @@
                     ></p>
                 </div>
                 <Board :selectedCard="selectedCard" />
-                <!-- TODO: Ready button = wenn gedruückt wird dann wird der User auf ready gesetzt und Cards werden gelocked -->
                 <div class="flex gap-4">
                     <button
                         class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
@@ -92,20 +91,8 @@ import EndVoteModal from "~/components/game/EndVoteModal.vue";
 const lobbyStore = useLobbyStore();
 const userStore = useUserStore();
 
-// Kartenarten:
-let fibonacciNumbers = ref([0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]);
-let tShirtSizes = ref(["XS", "S", "M", "L", "XL", "XXL"]);
-let powersOfTwo = ref([1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
-
 // Ausgewähltes Voting System
-let votingSystem = fibonacciNumbers;
-if (lobbyStore.votingSystem === "Fibonacci") {
-    votingSystem = fibonacciNumbers;
-} else if (lobbyStore.votingSystem === "T-shirts") {
-    votingSystem = tShirtSizes;
-} else if (lobbyStore.votingSystem === "Powers of 2") {
-    votingSystem = powersOfTwo;
-}
+let votingSystem = lobbyStore.votingSystem;
 
 const userStoryStore = useUserStoryStore();
 const userStories = ref(userStoryStore.userStories);

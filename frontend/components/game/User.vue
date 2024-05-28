@@ -16,7 +16,6 @@ watch(
 </script>
 
 <template>
-    <!-- TODO: Indikatoren für status (gevote, nicht gevote) -->
     <!-- https://daisyui.com/components/indicator/ -->
     <tr>
         <td>{{ index + 1 }}</td>
