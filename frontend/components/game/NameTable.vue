@@ -24,10 +24,13 @@ const setRandomUserReady = () => {
         (user, index) => user.status !== "ready" && index !== 0,
     );
     // If all users are ready, clear the interval
+    // DISABLED FOR TESTIG PORPUSES
+    /*
     if (notReadyUsers.length === 0) {
         clearInterval(intervalId);
         return;
     }
+   */
     // Select a random user
     const randomUser =
         notReadyUsers[Math.floor(Math.random() * notReadyUsers.length)];
@@ -39,7 +42,6 @@ const setRandomUserReady = () => {
     randomUser.selectedCard =
         fibonacciNumbers[Math.floor(Math.random() * fibonacciNumbers.length)];
 };
-
 // Start the interval after the component is mounted
 onMounted(() => {
     intervalId = setInterval(setRandomUserReady, 2000); // 2000 ms = 2 seconds
