@@ -7,7 +7,7 @@ export const useUserStore = defineStore("user", {
     actions: {
         // Add a user with name, status and admin
         addUser(name, status, admin) {
-            this.userList.push({ name, status, admin });
+            this.userList.push({ name, status, admin, selectedCard: null });
         },
         deleteAllUsers() {
             this.userList = [];

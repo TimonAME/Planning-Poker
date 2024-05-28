@@ -15,7 +15,7 @@ watch(
 
 // ****** TEMPORARY CODE ******
 // only for demonstation purposes
-
+let fibonacciNumbers = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 let intervalId = null;
 // Function to set a random user to ready
 const setRandomUserReady = () => {
@@ -34,6 +34,10 @@ const setRandomUserReady = () => {
 
     // Set the user status to ready
     userStore.setUserStatus(randomUser, "ready");
+
+    // Vote for a random card
+    randomUser.selectedCard =
+        fibonacciNumbers[Math.floor(Math.random() * fibonacciNumbers.length)];
 };
 
 // Start the interval after the component is mounted

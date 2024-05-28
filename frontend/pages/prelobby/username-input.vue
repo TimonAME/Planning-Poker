@@ -29,11 +29,7 @@
                     </div>
                 </label>
                 <div class="flex justify-end">
-                    <button
-                        type="submit"
-                        class="btn btn-primary mt-2"
-                        @click="enterName"
-                    >
+                    <button type="submit" class="btn btn-primary mt-2">
                         Submit
                     </button>
                 </div>
@@ -70,8 +66,8 @@ const enterName = () => {
         // Set the username in the user store
         // TODO: wenn nicht Lobbyersteller -> admin auf false setzen
         userStore.addUser(username.value, "not ready", true);
-        router.push("/prelobby");
         my_modal_7.close();
+        router.push("/prelobby");
     }
 };
 </script>
