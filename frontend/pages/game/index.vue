@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute inset-0 -z-10 h-full w-full">
+    <div class="absolute inset-0 -z-10 w-full">
         <div
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
@@ -7,9 +7,11 @@
             <LobbyName class="z-20" />
 
             <div
-                class="relative z-10 flex flex-col items-center justify-between flex-grow gap-16 mt-16 mb-5"
+                class="relative z-10 flex flex-col items-center justify-between flex-grow gap-4 mt-16 mb-5"
             >
-                <div class="flex flex-col items-center">
+                <div
+                    class="flex flex-col items-center max-h-full p-4 w-3/4 flex-shrink"
+                >
                     <h1
                         class="text-2xl font-bold text-primary mb-2"
                         v-if="firstUserStory"
@@ -19,9 +21,9 @@
                     <h1 class="text-2xl font-bold text-gray-800 mb-2" v-else>
                         Add new User Stories
                     </h1>
-                    <!-- TODO: Height of title and description should be dynamic -->
+                    <!-- TODO: höhe der Description dynamischer machen (wegen verschieden Bildschirm größen) -->
                     <p
-                        class="text-base text-base-content leading-relaxed max-h-36"
+                        class="text-base text-base-content leading-relaxed break-words overflow-y-auto max-h-44"
                         v-html="styledDescription"
                     ></p>
                 </div>
