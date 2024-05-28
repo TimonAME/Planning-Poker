@@ -19,8 +19,9 @@
                     <h1 class="text-2xl font-bold text-gray-800 mb-2" v-else>
                         Add new User Stories
                     </h1>
+                    <!-- TODO: Height of title and description should be dynamic -->
                     <p
-                        class="text-base text-base-content leading-relaxed"
+                        class="text-base text-base-content leading-relaxed max-h-36"
                         v-html="styledDescription"
                     ></p>
                 </div>
@@ -55,7 +56,7 @@
                         v-for="number in votingSystem"
                         :key="number"
                         :number="number"
-                        :blocked="readyButton"
+                        :blocked="readyButton || !firstUserStory"
                         @cardClicked="handleCardClick"
                     />
                 </div>
