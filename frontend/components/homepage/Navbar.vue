@@ -34,11 +34,14 @@
                 <Documentation />
             </li>
             <li>
+                <!--
                 <router-link
                     to="#"
                     class="text-sm hover:text-primary transition-colors duration-80"
                     >Settings</router-link
                 >
+                -->
+                <Settings />
             </li>
             <ThemeDropdown class="block md:hidden" :small="true" />
         </ul>
