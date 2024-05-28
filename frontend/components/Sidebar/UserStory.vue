@@ -21,7 +21,7 @@
         class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
     >
         <div @click="showUserStoryFullscreen = true" class="py-4 pl-4 w-full">
-            <h3 class="text-xl font-bold text-primary mb-2 break-words">
+            <h3 class="text-xl font-bold text-primary mb-2 break-all">
                 {{ props.userStory.title }}
             </h3>
             <p
@@ -29,7 +29,9 @@
                 v-html="styledDescription"
             ></p>
         </div>
-        <div class="flex flex-col justify-between gap-1 ml-6 pr-4 py-4">
+        <div
+            class="indicator flex flex-col justify-between gap-1 ml-6 pr-4 py-4"
+        >
             <div class="dropdown dropdown-end">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -129,6 +131,11 @@
                     stroke-linejoin="round"
                 />
             </svg>
+            <span
+                class="indicator-item indicator-start badge badge-secondary"
+                v-if="votedSize !== null"
+                >{{ votedSize }}</span
+            >
         </div>
     </div>
 </template>
@@ -150,6 +157,13 @@ const props = defineProps({
 
 const showUserStoryFullscreen = ref(false);
 const showEditUserStory = ref(false);
+
+const votedSize = computed(() => {
+    if (props.userStory.voted) {
+        return props.userStory.size;
+    }
+    return null;
+});
 
 const deleteUserStory = () => {
     // get index of user story

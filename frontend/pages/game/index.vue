@@ -66,6 +66,7 @@
                 @update-all-ready="
                     allReady = $event;
                     readyButton = false;
+                    selectedCard = null;
                 "
             />
         </div>

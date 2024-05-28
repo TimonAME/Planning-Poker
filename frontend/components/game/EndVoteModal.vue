@@ -71,8 +71,10 @@ const nextVote = () => {
     finalCard.value = null;
 
     // make Users unready
+    // reset vote of each user
     userStore.userList.forEach((user) => {
         user.status = "not ready";
+        user.selectedCard = null;
     });
 };
 </script>

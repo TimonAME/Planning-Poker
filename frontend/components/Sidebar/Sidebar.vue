@@ -183,32 +183,6 @@ let votedUserStories = computed(() => {
     return filteredUserStories.value.filter((u) => u.voted);
 });
 
-/*
-const unvotedUserStories = computed(() => {
-    return searchTerm.value
-        ? userStoryStore.userStories.filter(
-              (u) =>
-                  !u.voted &&
-                  u.title
-                      .toLowerCase()
-                      .includes(searchTerm.value.toLowerCase()),
-          )
-        : userStoryStore.userStories.filter((u) => !u.voted);
-});
-
-const votedUserStories = computed(() => {
-    return searchTerm.value
-        ? userStoryStore.userStories.filter(
-              (u) =>
-                  u.voted &&
-                  u.title
-                      .toLowerCase()
-                      .includes(searchTerm.value.toLowerCase()),
-          )
-        : userStoryStore.userStories.filter((u) => u.voted);
-});
- */
-
 const open = ref(false);
 const sidebar = ref(null);
 
