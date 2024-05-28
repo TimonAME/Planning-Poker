@@ -61,7 +61,7 @@
                     />
                 </div>
             </div>
-            <NameTable class="z-20" />
+            <NameTable class="z-20 cursor-default" />
             <EndVoteModal
                 :allReady="allReady"
                 @update-all-ready="

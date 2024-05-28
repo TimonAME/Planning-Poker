@@ -106,6 +106,7 @@ const editUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
         // Create a new User Story object
+        //TODO: userStory wird dupliziert
         const editedUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,

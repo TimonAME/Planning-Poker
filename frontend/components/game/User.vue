@@ -24,7 +24,7 @@ watch(
         <td>
             <input
                 type="checkbox"
-                class="toggle toggle-success"
+                class="toggle toggle-success cursor-default"
                 v-model="isReady"
                 @click.prevent
             />
