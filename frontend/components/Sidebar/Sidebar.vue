@@ -113,7 +113,7 @@
                                         <UserStory
                                             v-for="(
                                                 userStory, index
-                                            ) in filteredUserStories"
+                                            ) in unvotedUserStories"
                                             :key="index"
                                             :index="index"
                                             :userStory="userStory"
@@ -128,7 +128,18 @@
                                 Completed Votes
                             </div>
                             <div class="collapse-content">
-                                <p>ame.me</p>
+                                <div class="mt-3 h-full">
+                                    <div class="flex flex-wrap gap-4">
+                                        <UserStory
+                                            v-for="(
+                                                userStory, index
+                                            ) in votedUserStories"
+                                            :key="index"
+                                            :index="index"
+                                            :userStory="userStory"
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -157,13 +168,28 @@ const searchTerm = ref("");
 
 const showManualUserStory = ref(false);
 
-const filteredUserStories = computed(() => {
-    //console.log(searchTerm.value)
+const unvotedUserStories = computed(() => {
     return searchTerm.value
-        ? userStoryStore.userStories.filter((u) =>
-              u.title.toLowerCase().includes(searchTerm.value.toLowerCase()),
+        ? userStoryStore.userStories.filter(
+              (u) =>
+                  !u.voted &&
+                  u.title
+                      .toLowerCase()
+                      .includes(searchTerm.value.toLowerCase()),
           )
-        : userStoryStore.userStories;
+        : userStoryStore.userStories.filter((u) => !u.voted);
+});
+
+const votedUserStories = computed(() => {
+    return searchTerm.value
+        ? userStoryStore.userStories.filter(
+              (u) =>
+                  u.voted &&
+                  u.title
+                      .toLowerCase()
+                      .includes(searchTerm.value.toLowerCase()),
+          )
+        : userStoryStore.userStories.filter((u) => u.voted);
 });
 
 const open = ref(false);

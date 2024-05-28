@@ -52,13 +52,18 @@ const nextVote = () => {
     //TODO: Save the selected card to the userStoryStore
     //TODO: Handle Userstorys
 
-    // Save the selected card to the userStoryStore
     if (finalCard.value !== null) {
-        userStoryStore.addUserStory({
-            title: finalCard.value,
-            description: "",
-        });
-        //finalCard.value = null; // Reset the selected card
+        // Get the first user story
+        const activeUserStory = userStoryStore.userStories[0];
+
+        // Set the voted attribute to true
+        activeUserStory.voted = true;
+
+        // Add a new attribute size and set its value to finalCard
+        activeUserStory.size = finalCard.value;
+
+        // Emit the update-all-ready event to move to the next vote
+        emit("update-all-ready", false);
     }
 };
 </script>
