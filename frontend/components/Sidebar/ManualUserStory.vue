@@ -108,6 +108,7 @@ const addTheUserStory = () => {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
             voted: false,
+            size: null,
         };
 
         // Add the new User Story to the store

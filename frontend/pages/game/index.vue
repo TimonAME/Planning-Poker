@@ -22,8 +22,7 @@
                     <p
                         class="text-base text-base-content leading-relaxed"
                         v-html="styledDescription"
-                    >
-                    </p>
+                    ></p>
                 </div>
                 <Board :selectedCard="selectedCard" />
                 <!-- TODO: Ready button = wenn gedruückt wird dann wird der User auf ready gesetzt und Cards werden gelocked -->
@@ -103,7 +102,11 @@ if (lobbyStore.votingSystem === "Fibonacci") {
 
 const userStoryStore = useUserStoryStore();
 const userStories = ref(userStoryStore.userStories);
-const firstUserStory = computed(() => userStories.value[0]);
+
+// if userStory on first position is voted=true, then dont show it
+const firstUserStory = computed(() => {
+    return userStories.value.find((userStory) => !userStory.voted);
+});
 
 let selectedCard = ref(null);
 const handleCardClick = (number) => {

@@ -62,6 +62,9 @@ const nextVote = () => {
         // Add a new attribute size and set its value to finalCard
         activeUserStory.size = finalCard.value;
 
+        // Move User Story to the end of the list
+        userStoryStore.userStories.push(userStoryStore.userStories.shift());
+
         // Emit the update-all-ready event to move to the next vote
         emit("update-all-ready", false);
     }
