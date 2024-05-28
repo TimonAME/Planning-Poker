@@ -134,6 +134,7 @@
 </template>
 
 <script setup>
+// TODO: Display the voted size if there is one
 import { useUserStoryStore } from "~/stores/userstory";
 import EditUserStory from "~/components/Sidebar/EditUserStory.vue";
 import UserStoryFullScreen from "~/components/Sidebar/UserStoryFullScreen.vue";

@@ -168,6 +168,22 @@ const searchTerm = ref("");
 
 const showManualUserStory = ref(false);
 
+let filteredUserStories = computed(() => {
+    //console.log(searchTerm.value)
+    return searchTerm.value
+        ? userStoryStore.userStories.filter((u) =>
+              u.title.toLowerCase().includes(searchTerm.value.toLowerCase()),
+          )
+        : userStoryStore.userStories;
+});
+let unvotedUserStories = computed(() => {
+    return filteredUserStories.value.filter((u) => !u.voted);
+});
+let votedUserStories = computed(() => {
+    return filteredUserStories.value.filter((u) => u.voted);
+});
+
+/*
 const unvotedUserStories = computed(() => {
     return searchTerm.value
         ? userStoryStore.userStories.filter(
@@ -191,6 +207,7 @@ const votedUserStories = computed(() => {
           )
         : userStoryStore.userStories.filter((u) => u.voted);
 });
+ */
 
 const open = ref(false);
 const sidebar = ref(null);

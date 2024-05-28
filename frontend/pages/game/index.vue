@@ -63,7 +63,10 @@
             <NameTable class="z-20" />
             <EndVoteModal
                 :allReady="allReady"
-                @update-all-ready="allReady = $event"
+                @update-all-ready="
+                    allReady = $event;
+                    readyButton = false;
+                "
             />
         </div>
     </div>
@@ -143,7 +146,13 @@ const tryEndVote = () => {
 };
 
 const styledDescription = computed(() => {
-    let htmlContent = firstUserStory.value.description;
+    let htmlContent;
+    // if description is empty, return empty string
+    if (!firstUserStory.value) {
+        htmlContent = "";
+    } else {
+        htmlContent = firstUserStory.value.description;
+    }
 
     htmlContent = htmlContent.replace(
         /<h1>/g,

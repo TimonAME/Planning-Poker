@@ -32,6 +32,7 @@
 import VoteAnalysis from "~/components/game/VoteAnalysis.vue";
 import { defineProps, defineEmits } from "vue";
 import { useUserStoryStore } from "~/stores/userstory"; // Import the userStoryStore
+import { useUserStore } from "~/stores/user.js";
 
 const props = defineProps({
     allReady: Boolean,
@@ -40,6 +41,7 @@ const props = defineProps({
 const emit = defineEmits(["update-all-ready"]);
 
 const userStoryStore = useUserStoryStore(); // Initialize the userStoryStore
+const userStore = useUserStore(); // Initialize the userStore
 
 const skipReady = () => {
     if (!props.allReady) {
@@ -49,12 +51,11 @@ const skipReady = () => {
 
 let finalCard = ref(null); // Initialize the finalCard
 const nextVote = () => {
-    //TODO: Save the selected card to the userStoryStore
-    //TODO: Handle Userstorys
-
     if (finalCard.value !== null) {
         // Get the first user story
-        const activeUserStory = userStoryStore.userStories[0];
+        const activeUserStory = userStoryStore.userStories.find(
+            (userStory) => !userStory.voted,
+        );
 
         // Set the voted attribute to true
         activeUserStory.voted = true;
@@ -62,11 +63,16 @@ const nextVote = () => {
         // Add a new attribute size and set its value to finalCard
         activeUserStory.size = finalCard.value;
 
-        // Move User Story to the end of the list
-        userStoryStore.userStories.push(userStoryStore.userStories.shift());
-
         // Emit the update-all-ready event to move to the next vote
         emit("update-all-ready", false);
     }
+
+    // Reset the finalCard
+    finalCard.value = null;
+
+    // make Users unready
+    userStore.userList.forEach((user) => {
+        user.status = "not ready";
+    });
 };
 </script>
