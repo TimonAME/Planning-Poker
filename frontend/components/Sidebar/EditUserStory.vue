@@ -109,6 +109,8 @@ const editUserStory = () => {
         const editedUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
+            voted: props.userStory.voted, // Preserve the voted attribute
+            size: props.userStory.size, // Preserve the size attribute if it exists
         };
 
         // Add the edited User Story to the store
