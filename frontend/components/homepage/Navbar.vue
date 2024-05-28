@@ -4,7 +4,7 @@
     >
         <router-link
             to="#"
-            class="text-3xl font-bold leading-none hidden md:block w-32"
+            class="flex items-center justify-center leading-none md:block w-32"
         >
             <svg
                 id="Layer_1"
@@ -20,6 +20,7 @@
                     d="M232.49,168.15c11.54,12.38,15.29,26.37,9.67,42.14-6,16.83-18.59,25.91-36.16,26.77-21.1,1.03-41.78-14.25-42.76-37.75-.97-23.16,16.96-42.17,39.62-42.58,11.45-.21,21.27,3,29.63,11.42Z"
                 />
             </svg>
+            <!--<SVGImage class="w-1/3" />-->
         </router-link>
         <ul class="flex items-center gap-6" style="margin-right: 15px">
             <li>
@@ -47,6 +48,7 @@
 
 <script setup>
 import ThemeDropdown from "~/components/ThemeDropdown.vue";
+import SVGImage from "~/components/homepage/SVGImage.vue";
 </script>
 
 <style scoped></style>
