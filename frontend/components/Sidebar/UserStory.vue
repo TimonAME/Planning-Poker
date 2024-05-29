@@ -174,21 +174,22 @@ const deleteUserStory = () => {
 const styledDescription = computed(() => {
     let htmlContent = props.userStory.description;
 
-    htmlContent = htmlContent.replace(
-        /<h1>/g,
-        '<h1 class="text-xl font-bold mt-2 mb-4">',
-    );
-
-    htmlContent = htmlContent.replace(/<ul>/g, '<ul class="list-disc pl-5">');
-
-    htmlContent = htmlContent.replace(/<li>/g, '<li class="mb-1">');
-
-    htmlContent = htmlContent.replace(
-        /<h2>/g,
-        '<h2 class="text-lg font-bold mt-2 mb-4">',
-    );
-
-    htmlContent = htmlContent.replace(/<p>/g, '<p class="break-all">');
+    if (htmlContent) {
+        htmlContent = htmlContent.replace(
+            /<h1>/g,
+            '<h1 class="text-xl font-bold mt-2 mb-4">',
+        );
+        htmlContent = htmlContent.replace(
+            /<ul>/g,
+            '<ul class="list-disc pl-5">',
+        );
+        htmlContent = htmlContent.replace(/<li>/g, '<li class="mb-1">');
+        htmlContent = htmlContent.replace(
+            /<h2>/g,
+            '<h2 class="text-lg font-bold mt-2 mb-4">',
+        );
+        htmlContent = htmlContent.replace(/<p>/g, '<p class="break-all">');
+    }
 
     return htmlContent;
 });

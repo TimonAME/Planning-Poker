@@ -97,6 +97,7 @@
                     -->
                     <!-- Sidebar Content -->
                     <!-- TODO: zweiter teil soll unten fix angezeigt werden -->
+                    <!-- TODO: Drag and Drop -->
                     <div class="h-fit overflow-auto mb-10">
                         <div class="collapse collapse-plus bg-base-200">
                             <input

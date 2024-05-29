@@ -19,6 +19,11 @@ let fibonacciNumbers = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
 let intervalId = null;
 // Function to set a random user to ready
 const setRandomUserReady = () => {
+    // if all users exept the first one are ready, skip the function
+    if (userList.value.slice(1).every((user) => user.status === "ready")) {
+        return;
+    }
+
     // Get all users who are not ready and are not user 0
     const notReadyUsers = userList.value.filter(
         (user, index) => user.status !== "ready" && index !== 0,
