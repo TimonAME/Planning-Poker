@@ -1,11 +1,18 @@
-package com.example.messagingstompwebsocket.Message;
+package com.example.messagingstompwebsocket.Message.RequestMessage;
 
-public class LobbyJoinRequest extends BasicMessage {
+public class LobbyJoinRequest extends BasicRequestMessage {
 
     String lobbyHash;
-
-
     String userName;
+    String publicUserHash;
+
+    public String getPublicUserHash() {
+        return publicUserHash;
+    }
+
+    public void setPublicUserHash(String publicUserHash) {
+        this.publicUserHash = publicUserHash;
+    }
 
     public String getLobbyHash() {
         return lobbyHash;

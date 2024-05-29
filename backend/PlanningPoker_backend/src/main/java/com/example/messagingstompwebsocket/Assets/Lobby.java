@@ -8,13 +8,12 @@ public class Lobby {
 
     public ArrayList<UserStory> userStories = new ArrayList<>();
     public String adminHash;
-    Map<String, String> users = new HashMap<String, String>();
+    Map<String, User> users = new HashMap<String, User>();
 
     public String lobbyName;
     public String lobbyDescription;
 
     public String lobbyStatus = "preLobby";
-
 
     public String cardType = "fibonacci";
 
@@ -61,8 +60,12 @@ public class Lobby {
         this.cardType = cardType;
     }
 
-    public void addUser(String key, String user) {
-        users.put(key, user);
+    public void addUser(String privateKey, String userName, String publicKey) {
+        users.put(privateKey, new User(userName, publicKey));
+    }
+
+    public User getUser(String userHash) {
+        return users.get(userHash);
     }
 
     public int addUserStory(UserStory userStory) {

@@ -1,6 +1,6 @@
-package com.example.messagingstompwebsocket.Message;
+package com.example.messagingstompwebsocket.Message.RequestMessage;
 
-public class LobbyCreationRequest extends BasicMessage {
+public class LobbyCreationRequest extends BasicRequestMessage {
 
     String lobbyName;
     String lobbyDescription;
@@ -8,6 +8,7 @@ public class LobbyCreationRequest extends BasicMessage {
 
     String lobbyCardType;
 
+    String publicUserHash;
 
     String userName;
 
@@ -27,7 +28,9 @@ public class LobbyCreationRequest extends BasicMessage {
         this.lobbyDescription = lobbyDescription;
     }
 
-    public String getLobbyCardType() { return lobbyCardType; }
+    public String getLobbyCardType() {
+        return lobbyCardType;
+    }
 
     public void setLobbyCardType(String lobbyCardType) {
         this.lobbyCardType = lobbyCardType;
@@ -48,6 +51,14 @@ public class LobbyCreationRequest extends BasicMessage {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPublicUserHash() {
+        return publicUserHash;
+    }
+
+    public void setPublicUserHash(String publicUserHash) {
+        this.publicUserHash = publicUserHash;
     }
 
     @Override

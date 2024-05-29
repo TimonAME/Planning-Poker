@@ -1,4 +1,4 @@
-package com.example.messagingstompwebsocket.Message;
+package com.example.messagingstompwebsocket.Message.Broadcast;
 
 public abstract class BasicBroadcast {
     public String type = null;

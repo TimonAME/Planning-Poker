@@ -1,6 +1,7 @@
-package com.example.messagingstompwebsocket.Message;
+package com.example.messagingstompwebsocket.Message.Broadcast;
 
 import com.example.messagingstompwebsocket.Assets.UserStory;
+import com.example.messagingstompwebsocket.Message.Broadcast.BasicBroadcast;
 
 public class UserStoryBroadcast extends BasicBroadcast {
 
