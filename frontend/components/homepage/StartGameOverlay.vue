@@ -49,7 +49,7 @@
                     <span class="label-text">Voting system</span>
                 </div>
                 <select class="select select-bordered" v-model="votingSystem">
-                    <option value="fibonacci" selected>Fibonacci</option>
+                    <option value="fibonacci">Fibonacci</option>
                     <option value="tShirt">T-shirts</option>
                     <option value="powersOfTwo">Powers of 2</option>
                 </select>
