@@ -9,10 +9,10 @@
         >
             <!--<Username />-->
             <Navbar class="z-40" />
-            <Lobbyname class="z-50" />
+            <Lobbyname class="sm:z-50 z:30" />
 
             <div
-                class="relative flex flex-col justify-center items-center mt-5"
+                class="relative flex flex-col justify-center items-center mt-24 sm:mt-5"
             >
                 <InvitePlayers />
                 <UserDisplay />

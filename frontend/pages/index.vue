@@ -9,7 +9,7 @@
             <div
                 class="flex sm:flex-row flex-col justify-center items-center w-full lg:gap-32 md:gap-24 sm:gap-16 gap-4"
             >
-                <SVGImage class="md:w-1/5 sm:w-1/3 w-1/2" />
+                <SVGImage class="md:w-1/5 w-3/4" />
                 <MainText />
             </div>
             <div class="flex justify-center">

@@ -52,7 +52,9 @@
                         </button>
                     </a>
                 </div>
-                <div class="flex justify-center space-x-4">
+                <div
+                    class="flex justify-center sm:space-x-4 space-x-1 card-container flex-wrap"
+                >
                     <Card
                         v-for="number in votingSystem"
                         :key="number"
@@ -62,7 +64,7 @@
                     />
                 </div>
             </div>
-            <NameTable class="z-20 cursor-default" />
+            <NameTable class="z-20 cursor-default md:block hidden" />
             <EndVoteModal
                 :allReady="allReady"
                 @update-all-ready="
