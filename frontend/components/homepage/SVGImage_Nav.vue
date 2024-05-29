@@ -61,7 +61,7 @@
 
 <style scoped>
 .cls-1 {
-    fill: oklch(var(--p));
+    fill: oklch(var(--bc));
 }
 
 .cls-1,
