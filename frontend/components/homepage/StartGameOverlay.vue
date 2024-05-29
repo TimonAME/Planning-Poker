@@ -49,9 +49,9 @@
                     <span class="label-text">Voting system</span>
                 </div>
                 <select class="select select-bordered" v-model="votingSystem">
-                    <option value="fibonacci">Fibonacci</option>
-                    <option value="tShirt">T-shirts</option>
-                    <option value="powersOfTwo">Powers of 2</option>
+                    <option selected>Fibonacci</option>
+                    <option>T-shirts</option>
+                    <option>Powers of 2</option>
                 </select>
             </label>
             <button
@@ -103,11 +103,11 @@ let tShirtSizes = ref(["XS", "S", "M", "L", "XL", "XXL"]);
 let powersOfTwo = ref([1, 2, 4, 8, 16, 32, 64, 128, 256, 512]);
 const getVotingSystemArray = (system) => {
     switch (system) {
-        case "fibonacci":
+        case "Fibonacci":
             return fibonacciNumbers.value;
-        case "tShirt":
+        case "T-shirts":
             return tShirtSizes.value;
-        case "powersOfTwo":
+        case "Powers of 2":
             return powersOfTwo.value;
         default:
             return [];
