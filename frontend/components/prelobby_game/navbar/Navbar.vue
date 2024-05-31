@@ -9,7 +9,10 @@
                 class="text-3xl font-bold leading-none hidden md:block w-32"
             >
             </router-link>
-            <ul class="flex items-center gap-6" style="margin-right: 15px">
+            <ul
+                class="flex items-center gap-2 sm:gap-6"
+                style="margin-right: 15px"
+            >
                 <li>
                     <button
                         class="text-sm hover:text-primary transition-colors duration-80"

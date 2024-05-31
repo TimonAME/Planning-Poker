@@ -4,10 +4,10 @@
             class="flex flex-col justify-start h-screen overflow-hidden sm:mx-0 mx-4"
         >
             <Navbar class="z-20" />
-            <LobbyName class="z-20" />
+            <LobbyName class="z-10 sm:z-20" />
 
             <div
-                class="relative z-10 flex flex-col items-center justify-between flex-grow gap-4 mt-16 mb-5"
+                class="relative z-10 flex flex-col items-center justify-between flex-grow gap-1 sm:gap-4 mt-16 mb-5"
             >
                 <div
                     class="flex flex-col items-center max-h-full p-4 w-3/4 flex-shrink"
@@ -28,9 +28,9 @@
                     ></p>
                 </div>
                 <Board :selectedCard="selectedCard" />
-                <div class="flex gap-4">
+                <div class="flex justify-center sm:gap-4 gap-1 w-2/3">
                     <button
-                        class="btn btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                        class="btn sm:btn-wide w-1/2 sm:btn-sm md:btn-md lg:btn-lg"
                         @click="
                             readyButton = !readyButton;
                             setStatus();
@@ -43,7 +43,7 @@
                     <!-- TODO: Button nur anzeigen wenn man admin ist -->
                     <a :href="readyButton ? '#endVote' : null">
                         <button
-                            class="btn btn-active btn-wide sm:btn-sm md:btn-md lg:btn-lg"
+                            class="btn btn-active sm:btn-wide sm:btn-sm md:btn-md lg:btn-lg"
                             @click="tryEndVote()"
                             :class="readyButton ? 'btn-success' : 'btn-neutral'"
                             :disabled="!readyButton"
