@@ -29,7 +29,7 @@ const exportFunction = () => {
         // Exclude 'voted' attribute and change 'size' to 'not voted' if null
         let filteredUserStory = {};
         for (let key in userStory) {
-            if (key !== "voted") {
+            if (key !== "voted" && key !== "originalIndex") {
                 if (key === "size" && userStory[key] === null) {
                     filteredUserStory[key] = "not voted";
                 } else {
