@@ -7,31 +7,24 @@
             class="h-screen w-screen"
         />
     </Transition>
-    <!-- TODO: fade out unsmooth da etwas abgeschnitten wird sonst vom richtexteditor -->
     <Transition name="edit">
         <EditUserStory
             :userStory="userStory"
             :index="props.index"
+            :originalIndex="props.originalIndex"
             v-if="showEditUserStory"
             @close="showEditUserStory = false"
             class=""
         />
     </Transition>
-    <div
-        class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
-    >
+    <div class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52">
         <div @click="showUserStoryFullscreen = true" class="py-4 pl-4 w-full">
             <h3 class="text-xl font-bold text-primary mb-2 break-all">
                 {{ props.userStory.title }}
             </h3>
-            <p
-                class="overflow-y-auto max-h-24 break-words"
-                v-html="styledDescription"
-            ></p>
+            <p class="overflow-y-auto max-h-24 break-words" v-html="styledDescription"></p>
         </div>
-        <div
-            class="indicator flex flex-col justify-between gap-1 ml-6 pr-4 py-4"
-        >
+        <div class="indicator flex flex-col justify-between gap-1 ml-6 pr-4 py-4">
             <div class="dropdown dropdown-end">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +54,6 @@
                     <li><a @click="move(1)">Move To Bottom</a></li>
                 </ul>
             </div>
-            <!-- TODO: bei den svgs einen hover effect einbauen -->
             <button>
                 <svg
                     width="24"
@@ -131,20 +123,16 @@
                     stroke-linejoin="round"
                 />
             </svg>
-            <span
-                class="indicator-item indicator-start badge badge-secondary"
-                v-if="votedSize !== null"
-                >{{ votedSize }}</span
-            >
+            <span class="indicator-item indicator-start badge badge-secondary" v-if="votedSize !== null">{{ votedSize }}</span>
         </div>
     </div>
 </template>
 
 <script setup>
-// TODO: Display the voted size if there is one
-import { useUserStoryStore } from "~/stores/userstory";
-import EditUserStory from "~/components/Sidebar/EditUserStory.vue";
-import UserStoryFullScreen from "~/components/Sidebar/UserStoryFullScreen.vue";
+import { ref, computed } from 'vue';
+import { useUserStoryStore } from '~/stores/userstory';
+import EditUserStory from '~/components/Sidebar/EditUserStory.vue';
+import UserStoryFullScreen from '~/components/Sidebar/UserStoryFullScreen.vue';
 
 const userStoryStore = useUserStoryStore();
 const props = defineProps({
@@ -153,6 +141,7 @@ const props = defineProps({
         required: true,
     },
     index: Number,
+    originalIndex: Number,
 });
 
 const showUserStoryFullscreen = ref(false);
@@ -166,9 +155,7 @@ const votedSize = computed(() => {
 });
 
 const deleteUserStory = () => {
-    // get index of user story
-    const index = userStoryStore.userStories.indexOf(props.userStory);
-    userStoryStore.deleteUserStory(index);
+    userStoryStore.deleteUserStory(props.originalIndex);
 };
 
 const styledDescription = computed(() => {
@@ -194,9 +181,8 @@ const styledDescription = computed(() => {
     return htmlContent;
 });
 
-const dropdownOpen = ref(true); // Neue Referenz für den Zustand des Dropdowns
+const dropdownOpen = ref(true);
 const toggleDropdown = (overwrite) => {
-    //wenn overwrite false ist, kann der Zustand nur auf true gesetzt werden
     if (overwrite) {
         dropdownOpen.value = !dropdownOpen.value;
     } else {
@@ -206,7 +192,6 @@ const toggleDropdown = (overwrite) => {
 
 const move = (location) => {
     const index = userStoryStore.userStories.indexOf(props.userStory);
-    //console.log(`Moving user story from index ${index} to ${location}`);
     if (location === 1) {
         location = userStoryStore.userStories.length - 1;
     }
@@ -216,7 +201,6 @@ const move = (location) => {
 </script>
 
 <style scoped>
-/* TODO: daisyui transitions nehmen */
 .full-enter-active,
 .full-leave-active {
     transition: opacity 150ms ease;
