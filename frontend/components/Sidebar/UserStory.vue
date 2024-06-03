@@ -125,6 +125,12 @@
             </svg>
             <span class="indicator-item indicator-start badge badge-secondary" v-if="votedSize !== null">{{ votedSize }}</span>
         </div>
+        <!-- Add the draggable handle here -->
+        <div class="handle cursor-move p-2">
+            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
+            </svg>
+        </div>
     </div>
 </template>
 

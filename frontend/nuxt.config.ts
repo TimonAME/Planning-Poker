@@ -6,6 +6,7 @@ export default defineNuxtConfig({
         "nuxt-primevue",
         "@pinia/nuxt",
     ],
+    plugins: ["@/plugins/vuedraggable.js"],
     primevue: {},
     css: ["primevue/resources/themes/aura-light-green/theme.css", "@/assets/css/global.css"],
     ssr: false,
