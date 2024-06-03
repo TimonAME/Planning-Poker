@@ -2,9 +2,7 @@
     <dialog id="my_modal_100" class="modal transition-none">
         <div class="modal-box">
             <form method="dialog" @submit.prevent="closeModal">
-                <button
-                    class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-                >
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                     ✕
                 </button>
             </form>
@@ -20,17 +18,6 @@
                         class="input input-bordered w-full"
                         v-model="userStoryTitle"
                     />
-                    <!--
-                    <div
-                        class="input-errors"
-                        v-for="error of v$.userStoryTitle.$errors"
-                        :key="error.$uid"
-                    >
-                        <div class="error-msg text-sm ml-1 mt-1 text-red-600">
-                            {{ error.$message }}
-                        </div>
-                    </div>
-                    -->
                 </div>
             </label>
             <div class="label">
@@ -46,20 +33,18 @@
                 </button>
             </div>
         </div>
-        <form
-            method="dialog"
-            class="modal-backdrop"
-            @submit.prevent="closeModal"
-        >
+        <form method="dialog" class="modal-backdrop" @submit.prevent="closeModal">
             <button>close</button>
         </form>
     </dialog>
 </template>
 
 <script setup>
-import { required } from "@vuelidate/validators";
-import { useVuelidate } from "@vuelidate/core";
-import RichTextEditor from "~/components/Sidebar/RichTextEditor.vue";
+import { ref, onMounted, onUnmounted } from 'vue';
+import { required } from '@vuelidate/validators';
+import { useVuelidate } from '@vuelidate/core';
+import { useUserStoryStore } from '~/stores/userstory';
+import RichTextEditor from '~/components/Sidebar/RichTextEditor.vue';
 
 const props = defineProps({
     userStory: {
@@ -67,9 +52,10 @@ const props = defineProps({
         required: true,
     },
     index: Number,
+    originalIndex: Number,
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(['close']);
 
 const userStoryTitle = ref(props.userStory.title);
 const userStoryDescription = ref(props.userStory.description);
@@ -77,18 +63,18 @@ const userStoryDescription = ref(props.userStory.description);
 const userStoryStore = useUserStoryStore();
 
 const onEscapePress = (event) => {
-    if (event.key === "Escape") {
+    if (event.key === 'Escape') {
         closeModal();
     }
 };
 
 onMounted(() => {
     my_modal_100.showModal();
-    window.addEventListener("keydown", onEscapePress);
+    window.addEventListener('keydown', onEscapePress);
 });
 
 onUnmounted(() => {
-    window.removeEventListener("keydown", onEscapePress);
+    window.removeEventListener('keydown', onEscapePress);
 });
 
 const handleEditorContent = (htmlContent) => {
@@ -105,23 +91,19 @@ const v$ = useVuelidate(rules, { userStoryTitle, userStoryDescription });
 const editUserStory = () => {
     v$.value.$touch();
     if (!v$.value.$error) {
-        // Create a new User Story object
-        //TODO: userStory wird dupliziert
         const editedUserStory = {
             title: userStoryTitle.value,
             description: userStoryDescription.value,
-            voted: props.userStory.voted, // Preserve the voted attribute
-            size: props.userStory.size, // Preserve the size attribute if it exists
+            voted: props.userStory.voted,
+            size: props.userStory.size,
         };
 
-        // Add the edited User Story to the store
-        userStoryStore.editUserStory(props.index, editedUserStory);
-
+        userStoryStore.editUserStory(props.originalIndex, editedUserStory);
         closeModal();
     }
 };
 
 const closeModal = () => {
-    emit("close"); // Emitting the close event
+    emit('close');
 };
 </script>

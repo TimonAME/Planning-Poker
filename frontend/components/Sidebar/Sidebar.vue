@@ -100,11 +100,7 @@
                     <!-- TODO: Drag and Drop -->
                     <div class="h-fit overflow-auto mb-10">
                         <div class="collapse collapse-plus bg-base-200">
-                            <input
-                                type="radio"
-                                name="my-accordion-3"
-                                checked="checked"
-                            />
+                            <input type="radio" name="my-accordion-3" checked="checked" />
                             <div class="collapse-title text-m font-medium">
                                 Unvoted Stories
                             </div>
@@ -112,11 +108,10 @@
                                 <div class="mt-3 h-full">
                                     <div class="flex flex-wrap gap-4">
                                         <UserStory
-                                            v-for="(
-                                                userStory, index
-                                            ) in unvotedUserStories"
+                                            v-for="(userStory, index) in unvotedUserStories"
                                             :key="index"
                                             :index="index"
+                                            :originalIndex="userStory.originalIndex"
                                             :userStory="userStory"
                                         />
                                     </div>
@@ -126,17 +121,16 @@
                         <div class="collapse collapse-plus bg-base-200">
                             <input type="radio" name="my-accordion-3" />
                             <div class="collapse-title text-m font-medium">
-                                Completed Votes
+                                Voted Votes
                             </div>
                             <div class="collapse-content">
                                 <div class="mt-3 h-full">
                                     <div class="flex flex-wrap gap-4">
                                         <UserStory
-                                            v-for="(
-                                                userStory, index
-                                            ) in votedUserStories"
+                                            v-for="(userStory, index) in votedUserStories"
                                             :key="index"
                                             :index="index"
+                                            :originalIndex="userStory.originalIndex"
                                             :userStory="userStory"
                                         />
                                     </div>
@@ -165,31 +159,34 @@ import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
 
 const userStoryStore = useUserStoryStore();
-const searchTerm = ref("");
-
+const searchTerm = ref('');
 const showManualUserStory = ref(false);
 
-let filteredUserStories = computed(() => {
-    //console.log(searchTerm.value)
+const filteredUserStories = computed(() => {
     return searchTerm.value
-        ? userStoryStore.userStories.filter((u) =>
-              u.title.toLowerCase().includes(searchTerm.value.toLowerCase()),
-          )
-        : userStoryStore.userStories;
+        ? userStoryStore.userStories.filter((u, index) => {
+            u.originalIndex = index; // Speichern des Original-Index
+            return u.title.toLowerCase().includes(searchTerm.value.toLowerCase());
+        })
+        : userStoryStore.userStories.map((u, index) => {
+            u.originalIndex = index; // Speichern des Original-Index
+            return u;
+        });
 });
-let unvotedUserStories = computed(() => {
+
+const unvotedUserStories = computed(() => {
     return filteredUserStories.value.filter((u) => !u.voted);
 });
-let votedUserStories = computed(() => {
+
+const votedUserStories = computed(() => {
     return filteredUserStories.value.filter((u) => u.voted);
 });
 
 const open = ref(false);
 const sidebar = ref(null);
 
-const minWidth = 330; // Minimum width of the sidebar in pixels
-const maxWidth = 800; // Maximum width of the sidebar in pixels
-
+const minWidth = 330;
+const maxWidth = 800;
 let isResizing = false;
 let startX = 0;
 let startWidth = 0;
@@ -213,13 +210,13 @@ const stopResize = () => {
 };
 
 onMounted(() => {
-    document.addEventListener("mousemove", doResize);
-    document.addEventListener("mouseup", stopResize);
+    document.addEventListener('mousemove', doResize);
+    document.addEventListener('mouseup', stopResize);
 });
 
 onUnmounted(() => {
-    document.removeEventListener("mousemove", doResize);
-    document.removeEventListener("mouseup", stopResize);
+    document.removeEventListener('mousemove', doResize);
+    document.removeEventListener('mouseup', stopResize);
 });
 </script>
 
