@@ -136,7 +136,39 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- ... -->
+                        <div class="collapse collapse-plus bg-base-200">
+                            <input type="radio" name="my-accordion-3" />
+                            <div class="collapse-title text-m font-medium">
+                                Voted Stories
+                            </div>
+                            <div class="collapse-content">
+                                <div class="mt-3 h-full">
+                                    <draggable
+                                        v-model="votedUserStories"
+                                        class="space-y-2"
+                                        @end="onEnd"
+                                    >
+                                        <template
+                                            #item="{
+                                                element: userStory,
+                                                index,
+                                            }"
+                                        >
+                                            <div>
+                                                <UserStory
+                                                    :key="index"
+                                                    :index="index"
+                                                    :originalIndex="
+                                                        userStory.originalIndex
+                                                    "
+                                                    :userStory="userStory"
+                                                />
+                                            </div>
+                                        </template>
+                                    </draggable>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Sidebar Footer -->
