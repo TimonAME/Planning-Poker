@@ -111,7 +111,7 @@
                             <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
                                     <draggable
-                                        v-model="draggableUserStories"
+                                        v-model="unvotedUserStories"
                                         class="space-y-2"
                                         @end="onEnd"
                                     >
