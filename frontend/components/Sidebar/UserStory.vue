@@ -133,7 +133,7 @@
             <span
                 class="indicator-item indicator-start badge badge-secondary"
                 v-if="votedSize !== null"
-            >{{ votedSize }}</span
+                >{{ votedSize }}</span
             >
         </div>
     </div>
