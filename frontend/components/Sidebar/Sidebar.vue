@@ -100,43 +100,43 @@
                     <!-- TODO: Drag and Drop -->
                     <div class="h-fit overflow-auto mb-10">
                         <div class="collapse collapse-plus bg-base-200">
-                            <input type="radio" name="my-accordion-3" checked="checked" />
+                            <input
+                                type="radio"
+                                name="my-accordion-3"
+                                checked="checked"
+                            />
                             <div class="collapse-title text-m font-medium">
                                 Unvoted Stories
                             </div>
                             <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
-                                    <div class="flex flex-wrap gap-4">
-                                        <UserStory
-                                            v-for="(userStory, index) in unvotedUserStories"
-                                            :key="index"
-                                            :index="index"
-                                            :originalIndex="userStory.originalIndex"
-                                            :userStory="userStory"
-                                        />
-                                    </div>
+                                    <draggable
+                                        v-model="draggableUserStories"
+                                        class="space-y-2"
+                                        @end="onEnd"
+                                    >
+                                        <template
+                                            #item="{
+                                                element: userStory,
+                                                index,
+                                            }"
+                                        >
+                                            <div>
+                                                <UserStory
+                                                    :key="index"
+                                                    :index="index"
+                                                    :originalIndex="
+                                                        userStory.originalIndex
+                                                    "
+                                                    :userStory="userStory"
+                                                />
+                                            </div>
+                                        </template>
+                                    </draggable>
                                 </div>
                             </div>
                         </div>
-                        <div class="collapse collapse-plus bg-base-200">
-                            <input type="radio" name="my-accordion-3" />
-                            <div class="collapse-title text-m font-medium">
-                                Voted Stories
-                            </div>
-                            <div class="collapse-content">
-                                <div class="mt-3 h-full">
-                                    <div class="flex flex-wrap gap-4">
-                                        <UserStory
-                                            v-for="(userStory, index) in votedUserStories"
-                                            :key="index"
-                                            :index="index"
-                                            :originalIndex="userStory.originalIndex"
-                                            :userStory="userStory"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- ... -->
                     </div>
 
                     <!-- Sidebar Footer -->
@@ -157,21 +157,31 @@ import { onMounted, onUnmounted, ref } from "vue";
 import UserStory from "~/components/Sidebar/UserStory.vue";
 import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
+import draggable from "vuedraggable";
 
 const userStoryStore = useUserStoryStore();
-const searchTerm = ref('');
+
+const draggableUserStories = ref(userStoryStore.userStories);
+
+const searchTerm = ref("");
 const showManualUserStory = ref(false);
+
+const onEnd = (event) => {
+    userStoryStore.moveUserStory(event.oldIndex, event.newIndex);
+};
 
 const filteredUserStories = computed(() => {
     return searchTerm.value
         ? userStoryStore.userStories.filter((u, index) => {
-            u.originalIndex = index; // Speichern des Original-Index
-            return u.title.toLowerCase().includes(searchTerm.value.toLowerCase());
-        })
+              u.originalIndex = index; // Speichern des Original-Index
+              return u.title
+                  .toLowerCase()
+                  .includes(searchTerm.value.toLowerCase());
+          })
         : userStoryStore.userStories.map((u, index) => {
-            u.originalIndex = index; // Speichern des Original-Index
-            return u;
-        });
+              u.originalIndex = index; // Speichern des Original-Index
+              return u;
+          });
 });
 
 const unvotedUserStories = computed(() => {
@@ -210,13 +220,13 @@ const stopResize = () => {
 };
 
 onMounted(() => {
-    document.addEventListener('mousemove', doResize);
-    document.addEventListener('mouseup', stopResize);
+    document.addEventListener("mousemove", doResize);
+    document.addEventListener("mouseup", stopResize);
 });
 
 onUnmounted(() => {
-    document.removeEventListener('mousemove', doResize);
-    document.removeEventListener('mouseup', stopResize);
+    document.removeEventListener("mousemove", doResize);
+    document.removeEventListener("mouseup", stopResize);
 });
 </script>
 

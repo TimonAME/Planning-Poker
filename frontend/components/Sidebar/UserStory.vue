@@ -17,14 +17,21 @@
             class=""
         />
     </Transition>
-    <div class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52 select-none">
+    <div
+        class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52 select-none"
+    >
         <div @click="showUserStoryFullscreen = true" class="py-4 pl-4 w-full">
             <h3 class="text-xl font-bold text-primary mb-2 break-all">
                 {{ props.userStory.title }}
             </h3>
-            <p class="overflow-y-auto max-h-24 break-words" v-html="styledDescription"></p>
+            <p
+                class="overflow-y-auto max-h-24 break-words"
+                v-html="styledDescription"
+            ></p>
         </div>
-        <div class="indicator flex flex-col justify-between gap-1 ml-6 pr-4 py-4">
+        <div
+            class="indicator flex flex-col justify-between gap-1 ml-6 pr-4 py-4"
+        >
             <div class="dropdown dropdown-end">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -123,23 +130,23 @@
                     stroke-linejoin="round"
                 />
             </svg>
-            <span class="indicator-item indicator-start badge badge-secondary" v-if="votedSize !== null">{{ votedSize }}</span>
-        </div>
-        <!-- Add the draggable handle here -->
-        <div class="handle cursor-move p-2">
-            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
-            </svg>
+            <span
+                class="indicator-item indicator-start badge badge-secondary"
+                v-if="votedSize !== null"
+            >{{ votedSize }}</span
+            >
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useUserStoryStore } from '~/stores/userstory';
-import EditUserStory from '~/components/Sidebar/EditUserStory.vue';
-import UserStoryFullScreen from '~/components/Sidebar/UserStoryFullScreen.vue';
+import { ref, computed } from "vue";
+import { useUserStoryStore } from "~/stores/userstory";
+import { useUserStore } from "~/stores/user.js";
+import EditUserStory from "~/components/Sidebar/EditUserStory.vue";
+import UserStoryFullScreen from "~/components/Sidebar/UserStoryFullScreen.vue";
 
+const userStore = useUserStore();
 const userStoryStore = useUserStoryStore();
 const props = defineProps({
     userStory: {
@@ -203,6 +210,18 @@ const move = (location) => {
     }
     userStoryStore.moveUserStory(index, location);
     toggleDropdown(true);
+
+    // only remove ready and vote if the user story is moved to the top or the top one is updated
+    if (index === 1 || location === 0) {
+        // make Users unready
+        // reset vote of each user
+        userStore.userList.forEach((user) => {
+            user.status = "not ready";
+            user.selectedCard = null;
+        });
+
+        // TODO: selectedCard = null (from game index.vue)
+    }
 };
 </script>
 
