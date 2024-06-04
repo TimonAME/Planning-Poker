@@ -141,7 +141,7 @@
                             <div class="collapse-title text-m font-medium">
                                 Voted Stories
                             </div>
-                            <div class="collapse-content">
+                            <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
                                     <draggable
                                         v-model="votedUserStories"
