@@ -121,7 +121,7 @@
                         <div class="collapse collapse-plus bg-base-200">
                             <input type="radio" name="my-accordion-3" />
                             <div class="collapse-title text-m font-medium">
-                                Voted Votes
+                                Voted Stories
                             </div>
                             <div class="collapse-content">
                                 <div class="mt-3 h-full">
