@@ -96,8 +96,6 @@
                     </div>
                     -->
                     <!-- Sidebar Content -->
-                    <!-- TODO: zweiter teil soll unten fix angezeigt werden -->
-                    <!-- TODO: Drag and Drop -->
                     <div class="h-fit overflow-auto mb-10">
                         <div class="collapse collapse-plus bg-base-200">
                             <input
@@ -113,7 +111,7 @@
                                     <draggable
                                         v-model="unvotedUserStories"
                                         class="space-y-2"
-                                        @end="onEnd"
+                                        @end="onEndUnvoted"
                                     >
                                         <template
                                             #item="{
@@ -146,7 +144,7 @@
                                     <draggable
                                         v-model="votedUserStories"
                                         class="space-y-2"
-                                        @end="onEnd"
+                                        @end="onEndVoted"
                                     >
                                         <template
                                             #item="{
@@ -185,7 +183,7 @@ import ExportUserStory from "~/components/Sidebar/ExportUserStory.vue";
 import ImportUserStory from "~/components/Sidebar/ImportUserStory.vue";
 
 import { useUserStoryStore } from "~/stores/userstory";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, computed } from "vue";
 import UserStory from "~/components/Sidebar/UserStory.vue";
 import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
@@ -193,13 +191,41 @@ import draggable from "vuedraggable";
 
 const userStoryStore = useUserStoryStore();
 
-const draggableUserStories = ref(userStoryStore.userStories);
-
 const searchTerm = ref("");
 const showManualUserStory = ref(false);
 
-const onEnd = (event) => {
-    userStoryStore.moveUserStory(event.oldIndex, event.newIndex);
+const onEndUnvoted = (event) => {
+    const oldIndex = userStoryStore.userStories.findIndex(
+        (us) =>
+            us.originalIndex ===
+            unvotedUserStories.value[event.oldIndex].originalIndex,
+    );
+    const newIndex =
+        event.newIndex === unvotedUserStories.value.length
+            ? userStoryStore.userStories.length
+            : userStoryStore.userStories.findIndex(
+                  (us) =>
+                      us.originalIndex ===
+                      unvotedUserStories.value[event.newIndex].originalIndex,
+              );
+    userStoryStore.moveUserStory(oldIndex, newIndex);
+};
+
+const onEndVoted = (event) => {
+    const oldIndex = userStoryStore.userStories.findIndex(
+        (us) =>
+            us.originalIndex ===
+            votedUserStories.value[event.oldIndex].originalIndex,
+    );
+    const newIndex =
+        event.newIndex === votedUserStories.value.length
+            ? userStoryStore.userStories.length
+            : userStoryStore.userStories.findIndex(
+                  (us) =>
+                      us.originalIndex ===
+                      votedUserStories.value[event.newIndex].originalIndex,
+              );
+    userStoryStore.moveUserStory(oldIndex, newIndex);
 };
 
 const filteredUserStories = computed(() => {
