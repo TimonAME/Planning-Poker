@@ -90,8 +90,14 @@
                     <div class="mt-5 px-4">
                         <Searchbar @update:searchTerm="searchTerm = $event" />
                     </div>
-
+                    <!--
+                    <div class="mt-4 px-4">
+                        <p class="ml-2 text-base-content">User Stories:</p>
+                    </div>
+                    -->
                     <!-- Sidebar Content -->
+                    <!-- TODO: zweiter teil soll unten fix angezeigt werden -->
+                    <!-- TODO: Drag and Drop -->
                     <div class="h-fit overflow-auto mb-10">
                         <div class="collapse collapse-plus bg-base-200">
                             <input type="radio" name="my-accordion-3" checked="checked" />
@@ -100,15 +106,15 @@
                             </div>
                             <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
-                                    <draggable v-model="unvotedUserStories" handle=".handle" @end="onEnd">
-                                        <template #item="{ element: userStory, index }">
-                                            <UserStory
-                                                :index="index"
-                                                :originalIndex="userStory.originalIndex"
-                                                :userStory="userStory"
-                                            />
-                                        </template>
-                                    </draggable>
+                                    <div class="flex flex-wrap gap-4">
+                                        <UserStory
+                                            v-for="(userStory, index) in unvotedUserStories"
+                                            :key="index"
+                                            :index="index"
+                                            :originalIndex="userStory.originalIndex"
+                                            :userStory="userStory"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -119,15 +125,15 @@
                             </div>
                             <div class="collapse-content">
                                 <div class="mt-3 h-full">
-                                    <draggable v-model="votedUserStories" handle=".handle" @end="onEnd">
-                                        <template #item="{ element: userStory, index }">
-                                            <UserStory
-                                                :index="index"
-                                                :originalIndex="userStory.originalIndex"
-                                                :userStory="userStory"
-                                            />
-                                        </template>
-                                    </draggable>
+                                    <div class="flex flex-wrap gap-4">
+                                        <UserStory
+                                            v-for="(userStory, index) in votedUserStories"
+                                            :key="index"
+                                            :index="index"
+                                            :originalIndex="userStory.originalIndex"
+                                            :userStory="userStory"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -142,15 +148,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
-import draggable from 'vuedraggable';
-import { useUserStoryStore } from '~/stores/userstory';
-import ManualUserStory from '~/components/Sidebar/ManualUserStory.vue';
-import ExportUserStory from '~/components/Sidebar/ExportUserStory.vue';
-import ImportUserStory from '~/components/Sidebar/ImportUserStory.vue';
-import UserStory from '~/components/Sidebar/UserStory.vue';
-import SidebarFooter from '~/components/Sidebar/SidebarFooter.vue';
-import Searchbar from '~/components/Sidebar/Searchbar.vue';
+import ManualUserStory from "~/components/Sidebar/ManualUserStory.vue";
+import ExportUserStory from "~/components/Sidebar/ExportUserStory.vue";
+import ImportUserStory from "~/components/Sidebar/ImportUserStory.vue";
+
+import { useUserStoryStore } from "~/stores/userstory";
+import { onMounted, onUnmounted, ref } from "vue";
+import UserStory from "~/components/Sidebar/UserStory.vue";
+import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
+import Searchbar from "~/components/Sidebar/Searchbar.vue";
 
 const userStoryStore = useUserStoryStore();
 const searchTerm = ref('');
@@ -159,11 +165,11 @@ const showManualUserStory = ref(false);
 const filteredUserStories = computed(() => {
     return searchTerm.value
         ? userStoryStore.userStories.filter((u, index) => {
-            u.originalIndex = index; // Store the original index
+            u.originalIndex = index; // Speichern des Original-Index
             return u.title.toLowerCase().includes(searchTerm.value.toLowerCase());
         })
         : userStoryStore.userStories.map((u, index) => {
-            u.originalIndex = index; // Store the original index
+            u.originalIndex = index; // Speichern des Original-Index
             return u;
         });
 });
@@ -203,10 +209,6 @@ const stopResize = () => {
     isResizing = false;
 };
 
-const onEnd = (event) => {
-    userStoryStore.moveUserStory(event.oldIndex, event.newIndex);
-};
-
 onMounted(() => {
     document.addEventListener('mousemove', doResize);
     document.addEventListener('mouseup', stopResize);
@@ -219,7 +221,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Transition classes for the sidebar */
+/* TODO: daisyui transitions nehmen */
 .v-enter-active {
     transition: opacity 150ms ease;
 }
