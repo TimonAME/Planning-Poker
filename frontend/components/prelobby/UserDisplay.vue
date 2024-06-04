@@ -81,7 +81,7 @@ onMounted(() => {
             intervalId = setInterval(() => {
                 if (users.value.length < 7) {
                     userStore.addUser(
-                        "User " + (users.value.length + 1) + " Test",
+                        "User " + (users.value.length + 1),
                         "not ready",
                         false,
                     );

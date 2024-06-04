@@ -49,7 +49,7 @@ const setRandomUserReady = () => {
 };
 // Start the interval after the component is mounted
 onMounted(() => {
-    intervalId = setInterval(setRandomUserReady, 2000); // 2000 ms = 2 seconds
+    intervalId = setInterval(setRandomUserReady, 1000); // 2000 ms = 2 seconds
 });
 
 // Clear the interval when the component is unmounted
