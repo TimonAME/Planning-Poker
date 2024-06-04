@@ -110,8 +110,16 @@
                                 <div class="mt-3 h-full">
                                     <draggable
                                         v-model="unvotedUserStories"
+                                        tag="transition-group"
                                         class="space-y-2"
+                                        @start="drag = true"
                                         @end="onEndUnvoted"
+                                        :component-data="{
+                                            tag: 'ul',
+                                            type: 'transition-group',
+                                            name: !drag ? 'flip-list' : null,
+                                        }"
+                                        v-bind="dragOptions"
                                     >
                                         <template
                                             #item="{
@@ -119,7 +127,19 @@
                                                 index,
                                             }"
                                         >
-                                            <div>
+                                            <li class="list-group-item">
+                                                <i
+                                                    :class="
+                                                        userStory.fixed
+                                                            ? 'fa fa-anchor'
+                                                            : 'glyphicon glyphicon-pushpin'
+                                                    "
+                                                    @click="
+                                                        userStory.fixed =
+                                                            !userStory.fixed
+                                                    "
+                                                    aria-hidden="true"
+                                                ></i>
                                                 <UserStory
                                                     :key="index"
                                                     :index="index"
@@ -128,7 +148,7 @@
                                                     "
                                                     :userStory="userStory"
                                                 />
-                                            </div>
+                                            </li>
                                         </template>
                                     </draggable>
                                 </div>
@@ -143,8 +163,16 @@
                                 <div class="mt-3 h-full">
                                     <draggable
                                         v-model="votedUserStories"
+                                        tag="transition-group"
                                         class="space-y-2"
+                                        @start="drag = true"
                                         @end="onEndVoted"
+                                        :component-data="{
+                                            tag: 'ul',
+                                            type: 'transition-group',
+                                            name: !drag ? 'flip-list' : null,
+                                        }"
+                                        v-bind="dragOptions"
                                     >
                                         <template
                                             #item="{
@@ -152,7 +180,19 @@
                                                 index,
                                             }"
                                         >
-                                            <div>
+                                            <li class="list-group-item">
+                                                <i
+                                                    :class="
+                                                        userStory.fixed
+                                                            ? 'fa fa-anchor'
+                                                            : 'glyphicon glyphicon-pushpin'
+                                                    "
+                                                    @click="
+                                                        userStory.fixed =
+                                                            !userStory.fixed
+                                                    "
+                                                    aria-hidden="true"
+                                                ></i>
                                                 <UserStory
                                                     :key="index"
                                                     :index="index"
@@ -161,7 +201,7 @@
                                                     "
                                                     :userStory="userStory"
                                                 />
-                                            </div>
+                                            </li>
                                         </template>
                                     </draggable>
                                 </div>
@@ -194,7 +234,17 @@ const userStoryStore = useUserStoryStore();
 const searchTerm = ref("");
 const showManualUserStory = ref(false);
 
+const drag = ref(false);
+
+const dragOptions = ref({
+    animation: 200,
+    group: "description",
+    disabled: false,
+    ghostClass: "ghost",
+});
+
 const onEndUnvoted = (event) => {
+    drag.value = false;
     const oldIndex = userStoryStore.userStories.findIndex(
         (us) =>
             us.originalIndex ===
@@ -304,5 +354,62 @@ onUnmounted(() => {
 
 .v-leave-active {
     transition: opacity 0ms;
+}
+
+.button {
+    margin-top: 35px;
+}
+
+.flip-list-move {
+    transition: transform 0.5s;
+}
+
+.no-move {
+    transition: transform 0s;
+}
+
+.ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+}
+
+.list-group {
+    min-height: 20px;
+}
+
+.list-group-item {
+    cursor: move;
+}
+
+.list-group-item i {
+    cursor: pointer;
+}
+.button {
+    margin-top: 35px;
+}
+
+.flip-list-move {
+    transition: transform 0.5s;
+}
+
+.no-move {
+    transition: transform 0s;
+}
+
+.ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+}
+
+.list-group {
+    min-height: 20px;
+}
+
+.list-group-item {
+    cursor: move;
+}
+
+.list-group-item i {
+    cursor: pointer;
 }
 </style>
