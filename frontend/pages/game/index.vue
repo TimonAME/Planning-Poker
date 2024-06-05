@@ -59,7 +59,11 @@
                         v-for="number in votingSystem"
                         :key="number"
                         :number="number"
-                        :blocked="readyButton || !firstUserStory"
+                        :blocked="
+                            readyButton ||
+                            !firstUserStory ||
+                            lobbyStore.votingInProgress
+                        "
                         @cardClicked="handleCardClick"
                     />
                 </div>
@@ -71,6 +75,7 @@
                     allReady = $event;
                     readyButton = false;
                     selectedCard = null;
+                    lobbyStore.votingInProgress = true;
                 "
             />
         </div>

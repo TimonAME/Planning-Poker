@@ -15,14 +15,13 @@
         </button>
         <div
             tabindex="0"
-            class="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-base-100 text-primary-content"
+            class="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-base-100 text-primary-content mt-1"
             v-show="dropdownOpen"
         >
             <div class="card-body">
                 <h3 class="card-title text-error">
                     Select what you want in your export!
                 </h3>
-                <!--<form @submit.prevent="">-->
                 <div class="form-control">
                     <label class="label cursor-pointer">
                         <span class="label-text">User Stories</span>
@@ -45,7 +44,6 @@
                 <button class="btn btn-neutral" @click="exportFunction">
                     Export
                 </button>
-                <!--</form>-->
             </div>
         </div>
     </div>
@@ -71,8 +69,7 @@ const removeHtmlTags = (str) => {
 };
 
 const exportFunction = () => {
-    if (userStories.length === 0) {
-        console.log("No user stories to export");
+    if (!exportUserStories.value && !exportUserList.value) {
         return;
     }
 

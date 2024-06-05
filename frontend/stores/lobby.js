@@ -6,6 +6,7 @@ export const useLobbyStore = defineStore("lobby", {
         lobbyDescription: "",
         name: "",
         votingSystem: "",
+        votingInProgress: false,
     }),
     actions: {
         setLobbyDetails(name, description, votingSystem) {

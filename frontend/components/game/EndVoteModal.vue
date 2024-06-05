@@ -33,6 +33,7 @@ import VoteAnalysis from "~/components/game/VoteAnalysis.vue";
 import { defineProps, defineEmits } from "vue";
 import { useUserStoryStore } from "~/stores/userstory"; // Import the userStoryStore
 import { useUserStore } from "~/stores/user.js";
+import { useLobbyStore } from "~/stores/lobby.js";
 
 const props = defineProps({
     allReady: Boolean,
@@ -42,6 +43,7 @@ const emit = defineEmits(["update-all-ready"]);
 
 const userStoryStore = useUserStoryStore(); // Initialize the userStoryStore
 const userStore = useUserStore(); // Initialize the userStore
+const lobbyStore = useLobbyStore(); // Initialize the lobbyStore
 
 const skipReady = () => {
     if (!props.allReady) {
@@ -76,5 +78,8 @@ const nextVote = () => {
         user.status = "not ready";
         user.selectedCard = null;
     });
+
+    // Set votingInProgress to false when moving to the next vote
+    lobbyStore.votingInProgress = false;
 };
 </script>
