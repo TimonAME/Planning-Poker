@@ -188,6 +188,7 @@ const styledDescription = computed(() => {
             /<h2>/g,
             '<h2 class="text-lg font-bold mt-2 mb-4">',
         );
+        // TODO: beim import gibt es keine html-tags und deswegen werden keine langen texte gebreak-alled
         htmlContent = htmlContent.replace(/<p>/g, '<p class="break-all">');
     }
 
