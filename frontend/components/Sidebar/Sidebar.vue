@@ -96,25 +96,61 @@
                     </div>
                     -->
                     <!-- Sidebar Content -->
-                    <!-- TODO: zweiter teil soll unten fix angezeigt werden -->
-                    <!-- TODO: Drag and Drop -->
                     <div class="h-fit overflow-auto mb-10">
                         <div class="collapse collapse-plus bg-base-200">
-                            <input type="radio" name="my-accordion-3" checked="checked" />
+                            <input
+                                type="radio"
+                                name="my-accordion-3"
+                                checked="checked"
+                            />
                             <div class="collapse-title text-m font-medium">
                                 Unvoted Stories
                             </div>
                             <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
-                                    <div class="flex flex-wrap gap-4">
-                                        <UserStory
-                                            v-for="(userStory, index) in unvotedUserStories"
-                                            :key="index"
-                                            :index="index"
-                                            :originalIndex="userStory.originalIndex"
-                                            :userStory="userStory"
-                                        />
-                                    </div>
+                                    <draggable
+                                        v-model="unvotedUserStories"
+                                        tag="transition-group"
+                                        class="space-y-2"
+                                        @start="drag = true"
+                                        @end="onEndUnvoted"
+                                        :component-data="{
+                                            tag: 'ul',
+                                            type: 'transition-group',
+                                            name: !drag ? 'flip-list' : null,
+                                        }"
+                                        v-bind="dragOptions"
+                                    >
+                                        <template
+                                            #item="{
+                                                element: userStory,
+                                                index,
+                                            }"
+                                        >
+                                            <li class="list-group-item">
+                                                <i
+                                                    :class="
+                                                        userStory.fixed
+                                                            ? 'fa fa-anchor'
+                                                            : 'glyphicon glyphicon-pushpin'
+                                                    "
+                                                    @click="
+                                                        userStory.fixed =
+                                                            !userStory.fixed
+                                                    "
+                                                    aria-hidden="true"
+                                                ></i>
+                                                <UserStory
+                                                    :key="index"
+                                                    :index="index"
+                                                    :originalIndex="
+                                                        userStory.originalIndex
+                                                    "
+                                                    :userStory="userStory"
+                                                />
+                                            </li>
+                                        </template>
+                                    </draggable>
                                 </div>
                             </div>
                         </div>
@@ -123,17 +159,51 @@
                             <div class="collapse-title text-m font-medium">
                                 Voted Stories
                             </div>
-                            <div class="collapse-content">
+                            <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
-                                    <div class="flex flex-wrap gap-4">
-                                        <UserStory
-                                            v-for="(userStory, index) in votedUserStories"
-                                            :key="index"
-                                            :index="index"
-                                            :originalIndex="userStory.originalIndex"
-                                            :userStory="userStory"
-                                        />
-                                    </div>
+                                    <draggable
+                                        v-model="votedUserStories"
+                                        tag="transition-group"
+                                        class="space-y-2"
+                                        @start="drag = true"
+                                        @end="onEndVoted"
+                                        :component-data="{
+                                            tag: 'ul',
+                                            type: 'transition-group',
+                                            name: !drag ? 'flip-list' : null,
+                                        }"
+                                        v-bind="dragOptions"
+                                    >
+                                        <template
+                                            #item="{
+                                                element: userStory,
+                                                index,
+                                            }"
+                                        >
+                                            <li class="list-group-item">
+                                                <i
+                                                    :class="
+                                                        userStory.fixed
+                                                            ? 'fa fa-anchor'
+                                                            : 'glyphicon glyphicon-pushpin'
+                                                    "
+                                                    @click="
+                                                        userStory.fixed =
+                                                            !userStory.fixed
+                                                    "
+                                                    aria-hidden="true"
+                                                ></i>
+                                                <UserStory
+                                                    :key="index"
+                                                    :index="index"
+                                                    :originalIndex="
+                                                        userStory.originalIndex
+                                                    "
+                                                    :userStory="userStory"
+                                                />
+                                            </li>
+                                        </template>
+                                    </draggable>
                                 </div>
                             </div>
                         </div>
@@ -153,25 +223,73 @@ import ExportUserStory from "~/components/Sidebar/ExportUserStory.vue";
 import ImportUserStory from "~/components/Sidebar/ImportUserStory.vue";
 
 import { useUserStoryStore } from "~/stores/userstory";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref, computed } from "vue";
 import UserStory from "~/components/Sidebar/UserStory.vue";
 import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
+import draggable from "vuedraggable";
 
 const userStoryStore = useUserStoryStore();
-const searchTerm = ref('');
+
+const searchTerm = ref("");
 const showManualUserStory = ref(false);
+
+const drag = ref(false);
+
+const dragOptions = ref({
+    animation: 200,
+    group: "description",
+    disabled: false,
+    ghostClass: "ghost",
+});
+
+const onEndUnvoted = (event) => {
+    drag.value = false;
+    const oldIndex = userStoryStore.userStories.findIndex(
+        (us) =>
+            us.originalIndex ===
+            unvotedUserStories.value[event.oldIndex].originalIndex,
+    );
+    const newIndex =
+        event.newIndex === unvotedUserStories.value.length
+            ? userStoryStore.userStories.length
+            : userStoryStore.userStories.findIndex(
+                  (us) =>
+                      us.originalIndex ===
+                      unvotedUserStories.value[event.newIndex].originalIndex,
+              );
+    userStoryStore.moveUserStory(oldIndex, newIndex);
+};
+
+const onEndVoted = (event) => {
+    const oldIndex = userStoryStore.userStories.findIndex(
+        (us) =>
+            us.originalIndex ===
+            votedUserStories.value[event.oldIndex].originalIndex,
+    );
+    const newIndex =
+        event.newIndex === votedUserStories.value.length
+            ? userStoryStore.userStories.length
+            : userStoryStore.userStories.findIndex(
+                  (us) =>
+                      us.originalIndex ===
+                      votedUserStories.value[event.newIndex].originalIndex,
+              );
+    userStoryStore.moveUserStory(oldIndex, newIndex);
+};
 
 const filteredUserStories = computed(() => {
     return searchTerm.value
         ? userStoryStore.userStories.filter((u, index) => {
-            u.originalIndex = index; // Speichern des Original-Index
-            return u.title.toLowerCase().includes(searchTerm.value.toLowerCase());
-        })
+              u.originalIndex = index; // Speichern des Original-Index
+              return u.title
+                  .toLowerCase()
+                  .includes(searchTerm.value.toLowerCase());
+          })
         : userStoryStore.userStories.map((u, index) => {
-            u.originalIndex = index; // Speichern des Original-Index
-            return u;
-        });
+              u.originalIndex = index; // Speichern des Original-Index
+              return u;
+          });
 });
 
 const unvotedUserStories = computed(() => {
@@ -210,13 +328,13 @@ const stopResize = () => {
 };
 
 onMounted(() => {
-    document.addEventListener('mousemove', doResize);
-    document.addEventListener('mouseup', stopResize);
+    document.addEventListener("mousemove", doResize);
+    document.addEventListener("mouseup", stopResize);
 });
 
 onUnmounted(() => {
-    document.removeEventListener('mousemove', doResize);
-    document.removeEventListener('mouseup', stopResize);
+    document.removeEventListener("mousemove", doResize);
+    document.removeEventListener("mouseup", stopResize);
 });
 </script>
 
@@ -236,5 +354,62 @@ onUnmounted(() => {
 
 .v-leave-active {
     transition: opacity 0ms;
+}
+
+.button {
+    margin-top: 35px;
+}
+
+.flip-list-move {
+    transition: transform 0.5s;
+}
+
+.no-move {
+    transition: transform 0s;
+}
+
+.ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+}
+
+.list-group {
+    min-height: 20px;
+}
+
+.list-group-item {
+    cursor: move;
+}
+
+.list-group-item i {
+    cursor: pointer;
+}
+.button {
+    margin-top: 35px;
+}
+
+.flip-list-move {
+    transition: transform 0.5s;
+}
+
+.no-move {
+    transition: transform 0s;
+}
+
+.ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+}
+
+.list-group {
+    min-height: 20px;
+}
+
+.list-group-item {
+    cursor: move;
+}
+
+.list-group-item i {
+    cursor: pointer;
 }
 </style>

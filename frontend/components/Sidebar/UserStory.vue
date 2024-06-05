@@ -18,7 +18,7 @@
         />
     </Transition>
     <div
-        class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52"
+        class="bg-base-300 hover:opacity-100 opacity-75 cursor-pointer rounded-md shadow-md transition-all duration-200 flex justify-between min-w-52 select-none h-40"
     >
         <div @click="showUserStoryFullscreen = true" class="py-4 pl-4 w-full">
             <h3 class="text-xl font-bold text-primary mb-2 break-all">
