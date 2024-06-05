@@ -60,7 +60,10 @@
             >
                 Advanced settings...
             </button>
-            <AdvancedSettings v-if="advancedSettings" />
+            <AdvancedSettings
+                v-if="advancedSettings"
+                @update-timer-value="updateTimerValue"
+            />
             <div class="flex justify-end">
                 <button class="btn btn-primary mt-3" @click="startGame">
                     Start Game
@@ -125,8 +128,21 @@ const startGame = () => {
             description.value,
             selectedVotingSystemArray,
         );
+
+        if (!updatedTimer) {
+            lobbyStore.timerValue = null;
+        }
+
         userStore.deleteAllUsers();
         router.push("/prelobby/username-input");
+    }
+};
+
+let updatedTimer = false;
+const updateTimerValue = ({ enableTimer, timerValue }) => {
+    if (enableTimer) {
+        lobbyStore.timerValue = timerValue;
+        updatedTimer = true;
     }
 };
 </script>

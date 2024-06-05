@@ -69,6 +69,7 @@
                 </div>
             </div>
             <NameTable class="z-20 cursor-default md:block hidden" />
+            <Timer class="md:block hidden" :reset="updateTimer" />
             <EndVoteModal
                 :allReady="allReady"
                 @update-all-ready="
@@ -76,6 +77,7 @@
                     readyButton = false;
                     selectedCard = null;
                     lobbyStore.votingInProgress = true;
+                    resetTimer;
                 "
             />
         </div>
@@ -94,6 +96,7 @@ import { useLobbyStore } from "~/stores/lobby";
 import { useUserStoryStore } from "~/stores/userstory";
 import { useUserStore } from "~/stores/user.js";
 import EndVoteModal from "~/components/game/EndVoteModal.vue";
+import Timer from "~/components/game/Timer.vue";
 
 const lobbyStore = useLobbyStore();
 const userStore = useUserStore();
@@ -141,6 +144,12 @@ const tryEndVote = () => {
             allReady.value = false;
         }
     });
+};
+
+let updateTimer = ref(false);
+const resetTimer = () => {
+    // Toggle updateTimer
+    updateTimer.value = !updateTimer.value;
 };
 
 const styledDescription = computed(() => {
