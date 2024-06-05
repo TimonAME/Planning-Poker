@@ -1,20 +1,34 @@
 <script setup lang="ts">
-// TODO: timer muss noch resetted werden
-// TODO: timer muss resetted werden wenn erste userstory sich ändert
-
-const props = defineProps<{
-    reset: boolean;
-}>();
-
 import { useLobbyStore } from "~/stores/lobby";
 
 const lobbyStore = useLobbyStore();
+
+const props = defineProps<{
+    resetTimestamp: number;
+}>();
+
+watch(
+    () => props.resetTimestamp,
+    () => {
+        console.log("reset");
+        if (interval) {
+            clearInterval(interval);
+        }
+        firstCheck();
+    },
+);
+
+// execute first check on mount
+onMounted(() => {
+    firstCheck();
+});
 
 let useCountdown = ref(false);
 let countdown = ref(0);
 let countdownMin = ref(0);
 let countdownSec = ref(0);
 let overtime = ref(false);
+let interval: any = null;
 
 const firstCheck = () => {
     console.log(lobbyStore.timerValue);
@@ -27,7 +41,7 @@ const firstCheck = () => {
 };
 
 const startCountdown = () => {
-    const interval = setInterval(() => {
+    interval = setInterval(() => {
         countdown.value -= 1;
         countdownMin.value = Math.floor(countdown.value / 60);
         countdownSec.value = countdown.value % 60;
@@ -37,22 +51,6 @@ const startCountdown = () => {
         }
     }, 1000);
 };
-
-// execute first check on mount
-onMounted(() => {
-    firstCheck();
-});
-
-// Reset countdown if reset value changes
-watch(
-    () => props.reset,
-    () => {
-        if (newVal !== oldVal) {
-            console.log("reset");
-            firstCheck();
-        }
-    },
-);
 </script>
 
 <template>

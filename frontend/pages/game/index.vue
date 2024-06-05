@@ -69,7 +69,7 @@
                 </div>
             </div>
             <NameTable class="z-20 cursor-default md:block hidden" />
-            <Timer class="md:block hidden" :reset="updateTimer" />
+            <Timer class="md:block hidden" :reset-timestamp="resetTimestamp" />
             <EndVoteModal
                 :allReady="allReady"
                 @update-all-ready="
@@ -77,7 +77,7 @@
                     readyButton = false;
                     selectedCard = null;
                     lobbyStore.votingInProgress = true;
-                    resetTimer;
+                    resetTimestamp = Date.now();
                 "
             />
         </div>
@@ -111,6 +111,14 @@ const userStories = ref(userStoryStore.userStories);
 const firstUserStory = computed(() => {
     return userStories.value.find((userStory) => !userStory.voted);
 });
+
+watch(
+    () => firstUserStory.value,
+    () => {
+        // Reset the timer whenever the first user story changes
+        resetTimestamp.value = Date.now();
+    },
+);
 
 let selectedCard = ref(null);
 const handleCardClick = (number) => {
@@ -146,11 +154,7 @@ const tryEndVote = () => {
     });
 };
 
-let updateTimer = ref(false);
-const resetTimer = () => {
-    // Toggle updateTimer
-    updateTimer.value = !updateTimer.value;
-};
+let resetTimestamp = ref(Date.now());
 
 const styledDescription = computed(() => {
     let htmlContent;
