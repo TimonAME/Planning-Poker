@@ -79,7 +79,7 @@ watch([enableTimer, timerValue], () => {
             timerValue: mappedTimerValue,
         });
         firstSelected = true;
-        console.log(mappedTimerValue);
+        //console.log(mappedTimerValue);
     }
 });
 watch(manualTimerValue, (newValue) => {
@@ -99,7 +99,7 @@ watch([enableTimer, manualTimerValue], () => {
             timerValue: mappedTimerValue,
         });
         firstSelected = false;
-        console.log(mappedTimerValue);
+        //console.log(mappedTimerValue);
     }
 });
 </script>
