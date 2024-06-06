@@ -110,24 +110,28 @@
                                 <div class="mt-3 h-full">
                                     <draggable
                                         v-model="unvotedUserStories"
-                                        tag="transition-group"
+                                        tag="ul"
                                         class="space-y-2"
                                         @start="drag = true"
                                         @end="onEndUnvoted"
                                         :component-data="{
-                                            tag: 'ul',
                                             type: 'transition-group',
                                             name: !drag ? 'flip-list' : null,
                                         }"
                                         v-bind="dragOptions"
+                                        :item-key="''"
                                     >
                                         <template
                                             #item="{
                                                 element: userStory,
                                                 index,
                                             }"
+                                            :key="index"
                                         >
-                                            <li class="list-group-item">
+                                            <li
+                                                class="list-group-item"
+                                                :key="index"
+                                            >
                                                 <i
                                                     :class="
                                                         userStory.fixed
@@ -163,16 +167,16 @@
                                 <div class="mt-3 h-full">
                                     <draggable
                                         v-model="votedUserStories"
-                                        tag="transition-group"
+                                        tag="ul"
                                         class="space-y-2"
                                         @start="drag = true"
                                         @end="onEndVoted"
                                         :component-data="{
-                                            tag: 'ul',
                                             type: 'transition-group',
                                             name: !drag ? 'flip-list' : null,
                                         }"
                                         v-bind="dragOptions"
+                                        :item-key="''"
                                     >
                                         <template
                                             #item="{
@@ -228,7 +232,7 @@ import UserStory from "~/components/Sidebar/UserStory.vue";
 import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
 import draggable from "vuedraggable";
-import {useUserStore} from "~/stores/user.js";
+import { useUserStore } from "~/stores/user.js";
 
 const userStoryStore = useUserStoryStore();
 const userStore = useUserStore();
