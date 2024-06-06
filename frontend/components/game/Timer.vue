@@ -76,7 +76,7 @@ const pauseTimer = () => {
             <span
                 class="indicator-item badge badge-primary transition-opacity"
                 :class="{ 'opacity-0': !paused }"
-                >paused</span
+                >Paused</span
             >
             <span
                 class="countdown font-mono text-6xl transition-colors duration-500 ease-in-out"
