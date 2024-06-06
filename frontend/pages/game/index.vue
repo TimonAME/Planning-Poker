@@ -7,7 +7,7 @@
             <LobbyName class="z-10 sm:z-20" />
 
             <div
-                class="relative z-10 flex flex-col items-center justify-between flex-grow gap-1 sm:gap-4 mt-16 mb-5"
+                class="relative z-10 flex flex-col items-center justify-between flex-grow gap-1 md:gap-4 mt-16 mb-5"
             >
                 <div
                     class="flex flex-col items-center max-h-full p-4 w-3/4 flex-shrink"
@@ -53,7 +53,7 @@
                     </a>
                 </div>
                 <div
-                    class="flex justify-center sm:space-x-4 space-x-1 card-container flex-wrap"
+                    class="flex justify-center md:space-x-4 sm:space-x-2 space-x-1 mx-4 card-container flex-wrap w-full lg:w-2/3 xl:w-full"
                 >
                     <Card
                         v-for="number in votingSystem"
@@ -68,7 +68,7 @@
                     />
                 </div>
             </div>
-            <NameTable class="z-20 cursor-default md:block hidden" />
+            <NameTable class="z-20 cursor-default lg:block hidden" />
             <Timer class="md:block hidden" :reset-timestamp="resetTimestamp" />
             <EndVoteModal
                 :allReady="allReady"

@@ -13,6 +13,7 @@ watch(
     },
 );
 
+//
 // ****** TEMPORARY CODE ******
 // only for demonstation purposes
 let fibonacciNumbers = [0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
@@ -51,7 +52,6 @@ const setRandomUserReady = () => {
 onMounted(() => {
     intervalId = setInterval(setRandomUserReady, 1000); // 2000 ms = 2 seconds
 });
-
 // Clear the interval when the component is unmounted
 onUnmounted(() => {
     clearInterval(intervalId);
