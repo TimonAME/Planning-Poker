@@ -18,7 +18,11 @@ const emit = defineEmits(["cardClicked"]);
 </script>
 
 <template>
-    <button class="btn btn-lg mb-2" @click="handleClick" :disabled="blocked">
+    <button
+        class="btn sm:btn-sm md:btn-md lg:btn-lg mb-2"
+        @click="handleClick"
+        :disabled="blocked"
+    >
         {{ number }}
     </button>
 </template>
