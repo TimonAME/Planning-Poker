@@ -37,6 +37,7 @@
                     type="number"
                     placeholder="Enter timer value in seconds"
                     class="input input-bordered w-auto mt-2 ml-2 transition-all duration-500 ease-in-out"
+                    max="3600"
                     v-model="manualTimerValue"
                     :class="{ 'text-success shadow-lg': !firstSelected }"
                 />
@@ -79,6 +80,11 @@ watch([enableTimer, timerValue], () => {
         });
         firstSelected = true;
         console.log(mappedTimerValue);
+    }
+});
+watch(manualTimerValue, (newValue) => {
+    if (newValue > 3600) {
+        manualTimerValue.value = 3600;
     }
 });
 watch([enableTimer, manualTimerValue], () => {
