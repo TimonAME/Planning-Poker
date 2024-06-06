@@ -56,7 +56,7 @@ const startCountdown = () => {
 <template>
     <div class="fixed top-20 left-8" v-if="useCountdown">
         <span
-            class="countdown font-mono text-6xl"
+            class="countdown font-mono text-6xl transition-colors duration-500 ease-in-out"
             :class="{ 'text-error': overtime }"
         >
             <span :style="`--value:${countdownMin}`"></span>:
