@@ -110,16 +110,16 @@
                                 <div class="mt-3 h-full">
                                     <draggable
                                         v-model="unvotedUserStories"
-                                        tag="transition-group"
+                                        tag="ul"
                                         class="space-y-2"
                                         @start="drag = true"
                                         @end="onEndUnvoted"
                                         :component-data="{
-                                            tag: 'ul',
                                             type: 'transition-group',
                                             name: !drag ? 'flip-list' : null,
                                         }"
                                         v-bind="dragOptions"
+                                        :item-key="userStory => userStory.originalIndex"
                                     >
                                         <template
                                             #item="{
@@ -163,16 +163,16 @@
                                 <div class="mt-3 h-full">
                                     <draggable
                                         v-model="votedUserStories"
-                                        tag="transition-group"
+                                        tag="ul"
                                         class="space-y-2"
                                         @start="drag = true"
                                         @end="onEndVoted"
                                         :component-data="{
-                                            tag: 'ul',
                                             type: 'transition-group',
                                             name: !drag ? 'flip-list' : null,
                                         }"
                                         v-bind="dragOptions"
+                                        :item-key="userStory => userStory.originalIndex"
                                     >
                                         <template
                                             #item="{
@@ -260,8 +260,8 @@ const onEndUnvoted = (event) => {
                       us.originalIndex ===
                       unvotedUserStories.value[event.newIndex].originalIndex,
               );
-    console.log("oldIndex: " + oldIndex + " newIndex: " + newIndex);
-    if (newIndex === 0) {
+    //console.log("oldIndex: " + oldIndex + " newIndex: " + newIndex);
+    if (newIndex === 0 || oldIndex === 0) {
         // make Users unready
         // reset vote of each user
         userStore.userList.forEach((user) => {
