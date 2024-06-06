@@ -117,6 +117,8 @@ watch(
     () => {
         // Reset the timer whenever the first user story changes
         resetTimestamp.value = Date.now();
+        selectedCard.value = null;
+        readyButton.value = false;
     },
 );
 

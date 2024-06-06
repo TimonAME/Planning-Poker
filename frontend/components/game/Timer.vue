@@ -10,7 +10,7 @@ const props = defineProps<{
 watch(
     () => props.resetTimestamp,
     () => {
-        console.log("reset");
+        //console.log("reset");
         if (interval) {
             clearInterval(interval);
         }
