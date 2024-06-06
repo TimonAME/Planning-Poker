@@ -228,8 +228,10 @@ import UserStory from "~/components/Sidebar/UserStory.vue";
 import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
 import draggable from "vuedraggable";
+import {useUserStore} from "~/stores/user.js";
 
 const userStoryStore = useUserStoryStore();
+const userStore = useUserStore();
 
 const searchTerm = ref("");
 const showManualUserStory = ref(false);
@@ -258,6 +260,17 @@ const onEndUnvoted = (event) => {
                       us.originalIndex ===
                       unvotedUserStories.value[event.newIndex].originalIndex,
               );
+    console.log("oldIndex: " + oldIndex + " newIndex: " + newIndex);
+    if (newIndex === 0) {
+        // make Users unready
+        // reset vote of each user
+        userStore.userList.forEach((user) => {
+            user.status = "not ready";
+            user.selectedCard = null;
+        });
+
+        // TODO: selectedCard = null (from game index.vue)
+    }
     userStoryStore.moveUserStory(oldIndex, newIndex);
 };
 
