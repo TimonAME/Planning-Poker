@@ -4,7 +4,10 @@ import com.example.messagingstompwebsocket.Message.Broadcast.BasicBroadcast;
 
 public class ReadyUpBroadcast extends BasicBroadcast {
 
-    public ReadyUpBroadcast(){
+    String publicUserHash;
+
+    public ReadyUpBroadcast(String publicUserHash) {
+        this.publicUserHash = publicUserHash;
         setType("readyUpBroadcast");
     }
 }

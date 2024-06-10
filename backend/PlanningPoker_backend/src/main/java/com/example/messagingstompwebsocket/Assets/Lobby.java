@@ -8,7 +8,7 @@ public class Lobby {
 
     public ArrayList<UserStory> userStories = new ArrayList<>();
     public String adminHash;
-    Map<String, User> users = new HashMap<String, User>();
+    private Map<String, User> users = new HashMap<String, User>();
 
     public String lobbyName;
     public String lobbyDescription;

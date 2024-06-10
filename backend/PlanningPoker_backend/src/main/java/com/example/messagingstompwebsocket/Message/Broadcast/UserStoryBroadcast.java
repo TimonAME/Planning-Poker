@@ -1,17 +1,29 @@
 package com.example.messagingstompwebsocket.Message.Broadcast;
 
+import java.io.Serializable;
+
 import com.example.messagingstompwebsocket.Assets.UserStory;
 import com.example.messagingstompwebsocket.Message.Broadcast.BasicBroadcast;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class UserStoryBroadcast extends BasicBroadcast {
+public class UserStoryBroadcast extends BasicBroadcast implements Serializable {
 
-    String type;
+    @JsonProperty
     UserStory userStory;
-    int index;
+    @JsonProperty
+    String userStoryHash;
 
-    public UserStoryBroadcast(UserStory userStory, int index) {
+    public UserStoryBroadcast(UserStory userStory, String userStoryHash) {
         this.userStory = userStory;
-        this.index = index;
+        this.userStoryHash = userStoryHash;
         setType("userStoryBroadcast");
+    }
+
+    public UserStory getUserStory() {
+        return userStory;
+    }
+
+    public String getHash() {
+        return userStoryHash;
     }
 }

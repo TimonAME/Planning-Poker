@@ -88,23 +88,25 @@ public class LobbyController {
         Lobby lobby = lobbies.get(id);
         if (lobby.getAdminHash().equals(lobbyStartRequest.getUserHash())) {
             lobby.lobbyStatus = "lobby";
-        }
-        LobbyStartBroadcast lobbyStartBroadcast = new LobbyStartBroadcast();
+            LobbyStartBroadcast lobbyStartBroadcast = new LobbyStartBroadcast();
 
-        System.out.println("Lobby " + id + "started by " + lobbyStartRequest.getUserHash());
-        simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartBroadcast);
+            System.out.println("Lobby " + id + "started by " + lobbyStartRequest.getUserHash());
+            simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartBroadcast);
+        }
+
     }
 
     @MessageMapping("/lobby/{id}/addUserStory")
     public void addUserStory(@DestinationVariable String id, UserStory userStory) {
         int userStoryIndex = lobbies.get(id).addUserStory(userStory);
-        UserStoryBroadcast userStoryBroadCast = new UserStoryBroadcast(userStory, userStoryIndex);
+        UserStoryBroadcast userStoryBroadCast = new UserStoryBroadcast(userStory, userStory.userStoryHash);
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, userStoryBroadCast);
     }
 
     @MessageMapping("/lobby/{id}/readyUp")
     public void readyUp(@DestinationVariable String id, ReadyUpRequest readyUpRequest) {
-        ReadyUpBroadcast readyUpBroadcast = new ReadyUpBroadcast();
+        ReadyUpBroadcast readyUpBroadcast = new ReadyUpBroadcast(
+                lobbies.get(id).getUser(readyUpRequest.getUserHash()).getPublicUserHash());
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, readyUpBroadcast);
     }
 
@@ -113,5 +115,9 @@ public class LobbyController {
         lobbies.get(id).getUser(vote.getUserHash()).getPublicUserHash();
         VoteBroadcast voteBroadcast = new VoteBroadcast();
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, voteBroadcast);
+    }
+
+    public void setCurrentUserStory(String id){
+
     }
 }
