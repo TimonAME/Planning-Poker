@@ -1,10 +1,12 @@
 package com.example.messagingstompwebsocket.Message.Broadcast;
 
 public class FinalizeBroadcast extends BasicBroadcast {
-    String vote;
+    String finalVote;
+    String userStoryHash;
 
-    public FinalizeBroadcast(String vote) {
+    public FinalizeBroadcast(String vote, String userStoryHash) {
         setType("finalizeBroadcast");
-        this.vote = vote;
+        this.finalVote = vote;
+        this.userStoryHash = userStoryHash;
     }
 }

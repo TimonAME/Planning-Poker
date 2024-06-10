@@ -105,11 +105,12 @@ public class LobbyController {
 
             System.out.println("Lobby " + id + "started by " + lobbyStartRequest.getUserHash());
             simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, lobbyStartBroadcast);
-            //message above has to reach the client first
+            // message above has to reach the client first
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {
-            };
+            }
+            ;
             setCurrentUserStory(id);
         }
     }
@@ -150,8 +151,18 @@ public class LobbyController {
     @MessageMapping("/lobby/{id}/finalize")
     public void finalize(@DestinationVariable String id, FinalizeRequest finalizeRequest) {
         if (lobbies.get(id).getAdminHash().equals(finalizeRequest.getUserHash())) {
-            FinalizeBroadcast finalizeBroadcast = new FinalizeBroadcast(finalizeRequest.getVote());
+            FinalizeBroadcast finalizeBroadcast = new FinalizeBroadcast(finalizeRequest.getVote(),
+                    lobbies.get(id).userStoryHashes.get(0));
+
+            lobbies.get(id).doneUserStoryHashes.add(lobbies.get(id).userStoryHashes.remove(0));
+
             simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, finalizeBroadcast);
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+            }
+            ;
+            setCurrentUserStory(id);
         }
     }
 

@@ -1,7 +1,5 @@
 package com.example.messagingstompwebsocket.Message.Broadcast;
 
-import com.example.messagingstompwebsocket.Message.Broadcast.BasicBroadcast;
-
 public class LobbyJoinBroadcast extends BasicBroadcast {
     public String getUserName() {
         return userName;
