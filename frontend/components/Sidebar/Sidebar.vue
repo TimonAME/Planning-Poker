@@ -109,7 +109,7 @@
                             <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
                                     <draggable
-                                        v-model="unvotedUserStories"
+                                        v-model="unvotedUserStoriesRef"
                                         tag="ul"
                                         class="space-y-2"
                                         @start="drag = true"
@@ -162,7 +162,7 @@
                             <div class="collapse-content -mt-3">
                                 <div class="mt-3 h-full">
                                     <draggable
-                                        v-model="votedUserStories"
+                                        v-model="votedUserStoriesRef"
                                         tag="ul"
                                         class="space-y-2"
                                         @start="drag = true"
@@ -309,8 +309,18 @@ const unvotedUserStories = computed(() => {
     return filteredUserStories.value.filter((u) => !u.voted);
 });
 
+const unvotedUserStoriesRef = ref(unvotedUserStories.value);
+watch(unvotedUserStories, () => {
+    unvotedUserStoriesRef.value = unvotedUserStories.value;
+});
+
 const votedUserStories = computed(() => {
     return filteredUserStories.value.filter((u) => u.voted);
+});
+
+const votedUserStoriesRef = ref(votedUserStories.value);
+watch(votedUserStories, () => {
+    votedUserStoriesRef.value = votedUserStories.value;
 });
 
 const open = ref(false);
