@@ -3,6 +3,7 @@ package com.example.messagingstompwebsocket;
 import com.example.messagingstompwebsocket.Assets.UserStory;
 import com.example.messagingstompwebsocket.Message.*;
 import com.example.messagingstompwebsocket.Message.Broadcast.EndVoteBroadcast;
+import com.example.messagingstompwebsocket.Message.Broadcast.FinalizeBroadcast;
 import com.example.messagingstompwebsocket.Message.Broadcast.LobbyJoinBroadcast;
 import com.example.messagingstompwebsocket.Message.Broadcast.LobbyStartBroadcast;
 import com.example.messagingstompwebsocket.Message.Broadcast.ReadyUpBroadcast;
@@ -10,6 +11,7 @@ import com.example.messagingstompwebsocket.Message.Broadcast.RevokeReadyBroadcas
 import com.example.messagingstompwebsocket.Message.Broadcast.UserStoryBroadcast;
 import com.example.messagingstompwebsocket.Message.Broadcast.UserStorySetter;
 import com.example.messagingstompwebsocket.Message.RequestMessage.EndVoteRequest;
+import com.example.messagingstompwebsocket.Message.RequestMessage.FinalizeRequest;
 import com.example.messagingstompwebsocket.Message.RequestMessage.LobbyCreationRequest;
 import com.example.messagingstompwebsocket.Message.RequestMessage.LobbyJoinRequest;
 import com.example.messagingstompwebsocket.Message.RequestMessage.LobbyStartRequest;
@@ -146,8 +148,11 @@ public class LobbyController {
     }
 
     @MessageMapping("/lobby/{id}/finalize")
-    public void finalize(@DestinationVariable String id, EndVoteRequest endVoteRequest) {
-
+    public void finalize(@DestinationVariable String id, FinalizeRequest finalizeRequest) {
+        if (lobbies.get(id).getAdminHash().equals(finalizeRequest.getUserHash())) {
+            FinalizeBroadcast finalizeBroadcast = new FinalizeBroadcast(finalizeRequest.getVote());
+            simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, finalizeBroadcast);
+        }
     }
 
 }
