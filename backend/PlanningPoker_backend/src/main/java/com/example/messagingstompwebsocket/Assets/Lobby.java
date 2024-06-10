@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class Lobby {
 
-    public ArrayList<UserStory> userStories = new ArrayList<>();
     public ArrayList<String> userStoryHashes = new ArrayList<>();
+    public ArrayList<String> doneUserStoryHashes = new ArrayList<>();
     public String adminHash;
     private Map<String, User> users = new HashMap<String, User>();
 
@@ -18,6 +18,8 @@ public class Lobby {
 
     public String cardType = "fibonacci";
 
+    private Map<String, String> tempVotes = new HashMap<>();
+
     /**
      * cardType options:
      * 1. fibonacci
@@ -27,6 +29,24 @@ public class Lobby {
 
     public Lobby(String adminHash) {
         this.adminHash = adminHash;
+    }
+
+    public void addVote(String userHash, String vote) {
+        tempVotes.put(userHash, vote);
+    }
+
+    public void removeVote(String userHash) {
+        tempVotes.remove(userHash);
+    }
+
+    public String[] getVotes() {
+        String[] votes = new String[tempVotes.keySet().size()];
+        String[] keys = (String[]) tempVotes.keySet().toArray();
+        for (int i = 0; i < keys.length; i++) {
+            votes[i] = tempVotes.get(keys[i]);
+        }
+        tempVotes = new HashMap<>();
+        return votes;
     }
 
     public String getAdminHash() {
