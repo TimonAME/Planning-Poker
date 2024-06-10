@@ -98,7 +98,7 @@ public class LobbyController {
 
     @MessageMapping("/lobby/{id}/addUserStory")
     public void addUserStory(@DestinationVariable String id, UserStory userStory) {
-        int userStoryIndex = lobbies.get(id).addUserStory(userStory);
+        lobbies.get(id).addUserStoryHash(userStory.getUserStoryHash());
         UserStoryBroadcast userStoryBroadCast = new UserStoryBroadcast(userStory, userStory.userStoryHash);
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, userStoryBroadCast);
     }
@@ -117,7 +117,7 @@ public class LobbyController {
         simpMessagingTemplate.convertAndSend("/topic/lobby/" + id, voteBroadcast);
     }
 
-    public void setCurrentUserStory(String id){
+    public void setCurrentUserStory(String id) {
 
     }
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 public class Lobby {
 
     public ArrayList<UserStory> userStories = new ArrayList<>();
+    public ArrayList<String> userStoryHashes = new ArrayList<>();
     public String adminHash;
     private Map<String, User> users = new HashMap<String, User>();
 
@@ -68,9 +69,8 @@ public class Lobby {
         return users.get(userHash);
     }
 
-    public int addUserStory(UserStory userStory) {
-        this.userStories.add(userStory);
-        return userStories.size() - 1;
+    public void addUserStoryHash(String hash) {
+        this.userStoryHashes.add(hash);
     }
 
     @Override
