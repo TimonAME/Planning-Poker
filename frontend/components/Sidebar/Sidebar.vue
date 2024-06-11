@@ -119,7 +119,10 @@
                                             name: !drag ? 'flip-list' : null,
                                         }"
                                         v-bind="dragOptions"
-                                        :item-key="userStory => userStory.originalIndex"
+                                        :item-key="
+                                            (userStory) =>
+                                                userStory.originalIndex
+                                        "
                                     >
                                         <template
                                             #item="{
@@ -172,7 +175,10 @@
                                             name: !drag ? 'flip-list' : null,
                                         }"
                                         v-bind="dragOptions"
-                                        :item-key="userStory => userStory.originalIndex"
+                                        :item-key="
+                                            (userStory) =>
+                                                userStory.originalIndex
+                                        "
                                     >
                                         <template
                                             #item="{
@@ -228,7 +234,7 @@ import UserStory from "~/components/Sidebar/UserStory.vue";
 import SidebarFooter from "~/components/Sidebar/SidebarFooter.vue";
 import Searchbar from "~/components/Sidebar/Searchbar.vue";
 import draggable from "vuedraggable";
-import {useUserStore} from "~/stores/user.js";
+import { useUserStore } from "~/stores/user.js";
 
 const userStoryStore = useUserStoryStore();
 const userStore = useUserStore();

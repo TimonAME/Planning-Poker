@@ -33,8 +33,8 @@ const onFileChange = (event) => {
             let [title, description] = lines[i].split(";");
 
             // Remove the double quotes from the beginning and end of the title and description
-            title = title.slice(1, -1);
-            description = description.slice(1, -1);
+            /*title = title.slice(1, -1);
+            description = description.slice(1, -1);*/
 
             const userStory = {
                 title,
