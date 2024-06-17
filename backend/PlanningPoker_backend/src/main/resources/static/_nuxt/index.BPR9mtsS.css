@@ -1,0 +1,1 @@
+.list-enter-active,.list-leave-active{transition:all .5s}.list-enter-from,.list-leave-to{opacity:0;transform:scale(.5)}.alertPopup{grid-column-start:1;grid-row-start:1;max-height:calc(100vh - 5em);max-width:32rem;width:91.666667%}.fade-enter-active,.fade-leave-active{transition:opacity .5s}.fade-enter,.fade-leave-to{opacity:0}
