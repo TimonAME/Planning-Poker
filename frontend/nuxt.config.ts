@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     css: ["primevue/resources/themes/aura-light-green/theme.css", "@/assets/css/global.css"],
     ssr: false,
     app: {
-        baseURL: '/Planning-Poker/', // baseURL: '/<repository>/'
+        //baseURL: '/Planning-Poker/', // baseURL: '/<repository>/'
+        baseURL: process.env.NUXT_APP_BASE_URL || '/Planning-Poker/'
     }
 });
