@@ -13,26 +13,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: cd Planning-Poker/frontend && npm install
-      - run: cd Planning-Poker/frontend && npx nuxt build --preset github_pages
-      - name: Check build output
-        run: |
-          if [ ! -d "Planning-Poker/frontend/.output/public" ]; then
-            echo "Build output directory does not exist"
-            exit 1
-          fi
+      # Pick your own package manager and build script
+      - run: cd frontend && npm install
+      - run: cd frontend && npx nuxt build --preset github_pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: Planning-Poker/frontend/.output/public
+          path: frontend/.output/public
+  # Deployment job
   deploy:
+    # Add a dependency to the build job
     needs: build
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write
-      id-token: write
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    # Deploy to the github_pages environment
     environment:
       name: github_pages
       url: ${{ steps.deployment.outputs.page_url }}
+    # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
