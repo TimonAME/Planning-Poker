@@ -12,5 +12,11 @@ export default defineNuxtConfig({
     ssr: false,
     app: {
         baseURL: '/Planning-Poker/', // baseURL: '/<repository>/'
+        head: {
+            title: 'Planning Poker',
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+            ]
+        }
     }
 });
