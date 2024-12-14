@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useUserStoryStore } from "@/stores/userStory";
+import { useUserStoryStore } from "@/stores/userstory";
 
 const fileInput = ref(null);
 

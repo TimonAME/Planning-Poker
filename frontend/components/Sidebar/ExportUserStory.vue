@@ -50,7 +50,7 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import { useUserStoryStore } from "@/stores/userStory";
+import { useUserStoryStore } from "@/stores/userstory";
 import { useLobbyStore } from "~/stores/lobby.js";
 import { useUserStore } from "~/stores/user.js";
 
