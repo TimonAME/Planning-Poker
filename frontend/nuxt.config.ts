@@ -15,7 +15,7 @@ export default defineNuxtConfig({
         head: {
             title: 'Planning Poker',
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: '/Planning-Poker/favicon.ico' }
             ]
         }
     }
